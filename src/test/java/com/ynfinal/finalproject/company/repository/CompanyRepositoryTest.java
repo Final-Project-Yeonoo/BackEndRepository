@@ -45,16 +45,42 @@ class CompanyRepositoryTest {
     @DisplayName("회사 정보 조회")
     void testFindCompany(){
         // given
-        List<Company> companyList = companyRepository.findAll();
         // when
-
+        List<Company> companyList = companyRepository.findAll();
         // then
         for (Company company : companyList) {
             System.out.println(company.getCompName());
         }
-
     }
 
+
+    @Test
+    @DisplayName("comp000003을 조회하면 대표이름이 강남이3 이어야 한다")
+    void testFindOne(){
+        // given
+        String compCode = "comp000003";
+        // when
+        Company company = companyRepository.findById(compCode)
+                .orElseThrow(
+                        () -> new RuntimeException("회사 정보가 없음")
+                );
+        // then
+        assertEquals(company.getCompCeo(), "강남이3");
+        assertEquals(company.getCompPhone(), "010-1234-123");
+    }
+
+
+    @Test
+    @DisplayName("comp000003의 회사 대표명 강남이3을 여누3으로 수정한다")
+    void testUpdate(){
+        // given
+        String compCode = "comp000003";
+        // when
+
+
+        // then
+
+    }
 
 
 
