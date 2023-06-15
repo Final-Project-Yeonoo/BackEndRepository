@@ -1,7 +1,6 @@
 package com.ynfinal.finalproject.inventory.storeHouse.entity;
 
 
-import com.ynfinal.finalproject.utils.Check;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 

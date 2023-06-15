@@ -1,6 +1,7 @@
 package com.ynfinal.finalproject.organization.company.entity;
 
 
+import com.ynfinal.finalproject.util.Check;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -27,9 +28,8 @@ public class TradeCompany {
     @Column(nullable = false)
     private String trCompCeo;
     private String trCompPhone;
-    //TODO ENUM 타입으로 바꿀것 trBuy trSell
-    private boolean trBuy = false;
-    private boolean trSell = false;
+    private Check trBuy = Check.N;
+    private Check trSell = Check.N;
     private LocalDateTime trStartDate;
     private LocalDateTime trEndDate;
     private LocalDateTime trRegDate;

@@ -1,6 +1,6 @@
 package com.ynfinal.finalproject.inventory.orders.entity;
 
-import com.ynfinal.finalproject.utils.Check;
+import com.ynfinal.finalproject.util.Check;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
