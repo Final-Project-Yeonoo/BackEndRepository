@@ -1,4 +1,4 @@
-package com.ynfinal.finalproject.organization.tradecompany.entity;
+package com.ynfinal.finalproject.organization.company.entity;
 
 
 import lombok.*;

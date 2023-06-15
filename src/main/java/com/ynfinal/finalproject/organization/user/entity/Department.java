@@ -1,4 +1,4 @@
-package com.ynfinal.finalproject.organization.department.entity;
+package com.ynfinal.finalproject.organization.user.entity;
 
 import lombok.*;
 

@@ -1,6 +1,6 @@
-package com.ynfinal.finalproject.organization.department.repository;
+package com.ynfinal.finalproject.organization.user.repository;
 
-import com.ynfinal.finalproject.organization.department.entity.Department;
+import com.ynfinal.finalproject.organization.user.entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DepartmentRepository

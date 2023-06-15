@@ -1,6 +1,6 @@
-package com.ynfinal.finalproject.organization.tradecompany.repository;
+package com.ynfinal.finalproject.organization.company.repository;
 
-import com.ynfinal.finalproject.organization.tradecompany.entity.TradeCompany;
+import com.ynfinal.finalproject.organization.company.entity.TradeCompany;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TradeCompanyRepository
