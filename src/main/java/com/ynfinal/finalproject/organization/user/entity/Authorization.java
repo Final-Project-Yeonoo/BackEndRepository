@@ -28,7 +28,10 @@ public class Authorization {
     private Check productAuth = Check.N;
 
 
-    //    private Long empNo;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emp_no", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Employees employees;
+
 
 
 }

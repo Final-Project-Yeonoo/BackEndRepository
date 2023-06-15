@@ -1,13 +1,12 @@
 package com.ynfinal.finalproject.organization.company.entity;
 
 
+import com.ynfinal.finalproject.inventory.storeHouse.entity.StoreHouse;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.util.Check;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -37,7 +36,14 @@ public class TradeCompany {
     @Column(nullable = false)
     private String trAddr;
 
-//    private String storehouseCode;
-//    private Long empNo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_house_code", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private StoreHouse storeHouse;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emp_no", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Employees employees;
+
 
 }

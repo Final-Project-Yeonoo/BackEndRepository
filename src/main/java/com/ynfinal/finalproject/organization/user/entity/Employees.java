@@ -1,6 +1,7 @@
 package com.ynfinal.finalproject.organization.user.entity;
 
 
+import com.ynfinal.finalproject.organization.company.entity.Company;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,7 +35,16 @@ public class Employees {
     private String empProfile;
 
     private boolean empValidate = false;
-//    private String deptCode;
-//    private String compCode;
-//    private String posCode;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dept_code", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    Department department;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "comp_code", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    Company company;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pos_code", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    Position position;
+
 }
