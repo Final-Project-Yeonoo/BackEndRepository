@@ -37,7 +37,7 @@ public class TradeCompany {
     @Column(nullable = false)
     private String trAddr;
 
-    private String storehouse_code;
-    private Long empNo;
+//    private String storehouseCode;
+//    private Long empNo;
 
 }

@@ -34,7 +34,7 @@ public class Employees {
     private String empProfile;
 
     private boolean empValidate = false;
-    private String deptCode;
-    private String compCode;
-    private String posCode;
+//    private String deptCode;
+//    private String compCode;
+//    private String posCode;
 }

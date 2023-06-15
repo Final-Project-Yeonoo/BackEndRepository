@@ -25,7 +25,7 @@ public class Authorization {
     private boolean purchaseAuth = false;
     private boolean inventoryAuth = false;
     private boolean productAuth = false;
-    private Long empNo;
+//    private Long empNo;
 
 
 }
