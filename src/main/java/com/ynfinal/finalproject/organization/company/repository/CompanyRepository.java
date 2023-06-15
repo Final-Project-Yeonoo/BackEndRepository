@@ -1,9 +1,7 @@
-package com.ynfinal.finalproject.company.repository;
+package com.ynfinal.finalproject.organization.company.repository;
 
-import com.ynfinal.finalproject.company.entity.Company;
+import com.ynfinal.finalproject.organization.company.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 public interface CompanyRepository
                 extends JpaRepository<Company, String> {
