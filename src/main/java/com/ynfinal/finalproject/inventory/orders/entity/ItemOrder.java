@@ -1,5 +1,6 @@
 package com.ynfinal.finalproject.inventory.orders.entity;
 
+
 import com.ynfinal.finalproject.organization.tradecompany.entity.TradeCompany;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.util.Check;

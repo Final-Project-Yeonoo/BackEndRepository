@@ -19,6 +19,7 @@ public class Authorization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer authCode;
+
     //TODO ENUM 타입으로 바꿀것
     @Builder.Default
     private Check userAuth = Check.N;
@@ -32,7 +33,11 @@ public class Authorization {
     private Check inventoryAuth = Check.N;
     @Builder.Default
     private Check productAuth = Check.N;
-//    private Long empNo;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emp_no", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Employees employees;
+
 
 
 }
