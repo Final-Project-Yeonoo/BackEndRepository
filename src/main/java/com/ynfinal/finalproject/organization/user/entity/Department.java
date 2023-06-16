@@ -2,10 +2,7 @@ package com.ynfinal.finalproject.organization.user.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @ToString
@@ -17,7 +14,8 @@ import javax.persistence.Table;
 @Table(name = "HR_DEPARTMENT")
 public class Department {
     @Id
-    private String deptCode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long deptCode;
     @Column(nullable = false)
     private String deptName;
     @Column(nullable = false)
