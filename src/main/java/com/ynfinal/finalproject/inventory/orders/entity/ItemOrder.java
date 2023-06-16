@@ -1,7 +1,7 @@
 package com.ynfinal.finalproject.inventory.orders.entity;
 
 
-import com.ynfinal.finalproject.organization.tradecompany.entity.TradeCompany;
+import com.ynfinal.finalproject.organization.company.entity.TradeCompany;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.util.Check;
 import lombok.*;
@@ -20,7 +20,7 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name = "ITEM_ORDER")
-public class  ItemOrder {
+public class ItemOrder {
 
 
     @Id
