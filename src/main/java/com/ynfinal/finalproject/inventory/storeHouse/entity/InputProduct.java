@@ -1,6 +1,10 @@
 package com.ynfinal.finalproject.inventory.storeHouse.entity;
 
 
+
+import com.ynfinal.finalproject.inventory.orders.entity.ItemOrder;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
+
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -26,12 +30,15 @@ public class InputProduct {
     @NotNull
     private LocalDateTime inputProductDate;
 
-    @JoinColumn(name = "ITEM_ORDER", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private String itemOrderCode;
+    @ManyToOne
+    @JoinColumn(name = "ITEM_ORDER", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private ItemOrder itemOrder;
 
-    @JoinColumn(name = "STORE_HOUSE", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private String storehouseCode;
+    @ManyToOne
+    @JoinColumn(name = "STORE_HOUSE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private StoreHouse storeHouse;
 
-    @JoinColumn(name = "HR_EMPLOYEES", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Long empNo;
+    @ManyToOne
+    @JoinColumn(name = "HR_EMPLOYEES", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Employees employees ;
 }

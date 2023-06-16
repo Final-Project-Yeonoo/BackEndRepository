@@ -1,5 +1,8 @@
 package com.ynfinal.finalproject.inventory.orders.entity;
 
+
+import com.ynfinal.finalproject.organization.tradecompany.entity.TradeCompany;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.util.Check;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +20,7 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name = "ITEM_ORDER")
-public class ItemOrder {
+public class  ItemOrder {
 
 
     @Id
@@ -40,12 +43,12 @@ public class ItemOrder {
     @CreationTimestamp
     private LocalDateTime itemOrderUpdate;
 
+    @ManyToOne
+    @JoinColumn(name = "TRADING_COMPANY", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private TradeCompany tradeCompany;
 
-    @JoinColumn(name = "TRADING_COMPANY", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private String trCompCode;
-
-
-    @JoinColumn(name = "HR_EMPLOYEES", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Long empNo;
+    @ManyToOne
+    @JoinColumn(name = "HR_EMPLOYEES", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Employees employees;
 
 }

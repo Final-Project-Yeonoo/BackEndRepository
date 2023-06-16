@@ -1,5 +1,6 @@
 package com.ynfinal.finalproject.inventory.orders.entity;
 
+import com.ynfinal.finalproject.inventory.storeHouse.entity.StoreHouse;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,11 +31,13 @@ public class ItemOrderDetail {
     @Builder.Default
     private double taxCode = 0.1;
 
-    @JoinColumn(name = "ITEM_ORDER", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private String itemOrderCode;
+    @ManyToOne
+    @JoinColumn(name = "ITEM_ORDER", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private ItemOrder itemOrder;
 
-    @JoinColumn(name = "STORE_HOUSE", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private String storehouseCode;
+    @ManyToOne
+    @JoinColumn(name = "STORE_HOUSE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private StoreHouse storeHouse;
 
 
 
