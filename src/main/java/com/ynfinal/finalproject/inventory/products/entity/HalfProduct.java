@@ -1,5 +1,7 @@
 package com.ynfinal.finalproject.inventory.products.entity;
 
+import com.ynfinal.finalproject.inventory.storeHouse.entity.StoreHouse;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -39,10 +41,12 @@ public class HalfProduct {
     private int halfPrice;
 
 
-    @JoinColumn(name = "STORE_HOUSE", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private String storehouseCode;
+    @ManyToOne // 체크 할것
+    @JoinColumn(name = "STORE_HOUSE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private StoreHouse storeHouse;
 
-    @JoinColumn(name = "HR_EMPLOYEES", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Long empNo;
+    @ManyToOne
+    @JoinColumn(name = "HR_EMPLOYEES", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Employees employees;
 
 }

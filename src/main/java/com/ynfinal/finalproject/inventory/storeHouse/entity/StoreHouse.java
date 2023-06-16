@@ -1,5 +1,6 @@
 package com.ynfinal.finalproject.inventory.storeHouse.entity;
 
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,7 +34,8 @@ public class StoreHouse {
     @Column(length = 200)
     private String storehouseAddr;
 
-    @JoinColumn(name = "HR_EMPLOYEES", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Long empNo;
+    @ManyToOne
+    @JoinColumn(name = "HR_EMPLOYEES", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Employees employees;
 
 }

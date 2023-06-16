@@ -2,6 +2,7 @@ package com.ynfinal.finalproject.organization.user.entity;
 
 
 import com.sun.xml.bind.v2.TODO;
+import com.ynfinal.finalproject.util.Check;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,12 +20,18 @@ public class Authorization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer authCode;
     //TODO ENUM 타입으로 바꿀것
-    private boolean userAuth = false;
-    private boolean infoAuth = false;
-    private boolean salesAuth = false;
-    private boolean purchaseAuth = false;
-    private boolean inventoryAuth = false;
-    private boolean productAuth = false;
+    @Builder.Default
+    private Check userAuth = Check.N;
+    @Builder.Default
+    private Check infoAuth = Check.N;
+    @Builder.Default
+    private Check salesAuth = Check.N;
+    @Builder.Default
+    private Check purchaseAuth = Check.N;
+    @Builder.Default
+    private Check inventoryAuth = Check.N;
+    @Builder.Default
+    private Check productAuth = Check.N;
 //    private Long empNo;
 
 
