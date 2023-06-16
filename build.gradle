@@ -19,27 +19,28 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	//jpa
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	//security
-	testImplementation 'org.springframework.security:spring-security-test'
+    //security
+    testImplementation 'org.springframework.security:spring-security-test'
 
 
-	//lombok
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	// maria db
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    //lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    // maria db
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
-	//validate
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
+    //validate
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
