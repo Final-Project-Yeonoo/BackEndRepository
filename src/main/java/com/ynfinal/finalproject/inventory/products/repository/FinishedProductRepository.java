@@ -9,8 +9,6 @@ public interface FinishedProductRepository
         extends JpaRepository<FinishedProduct, String> {
 
 
-    @Override
-    List<FinishedProduct> findAll();
 
 
 

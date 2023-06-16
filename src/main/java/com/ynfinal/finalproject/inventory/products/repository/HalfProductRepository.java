@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface HalfProductRepository extends JpaRepository<HalfProduct, String> {
 
-    @Override
-    List<HalfProduct> findAll();
 }

@@ -27,7 +27,9 @@ public class TradeCompany {
     @Column(nullable = false)
     private String trCompCeo;
     private String trCompPhone;
+    @Builder.Default
     private Check trBuy = Check.N;
+    @Builder.Default
     private Check trSell = Check.N;
     private LocalDateTime trStartDate;
     private LocalDateTime trEndDate;

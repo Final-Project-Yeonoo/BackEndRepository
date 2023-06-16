@@ -28,6 +28,7 @@ public class FinishedProduct {
     private String finishedName;
 
     @Column(length = 8)
+    @Builder.Default
     private int finishedCount = 0;
 
     @CreationTimestamp

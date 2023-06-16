@@ -29,6 +29,7 @@ public class HalfProduct {
     private String halfName;
 
     @Column(length = 8)
+    @Builder.Default
     private int halfCount = 0;
 
     @CreationTimestamp

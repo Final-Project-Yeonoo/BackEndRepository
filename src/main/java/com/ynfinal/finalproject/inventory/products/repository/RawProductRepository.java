@@ -7,8 +7,5 @@ import java.util.List;
 
 public interface RawProductRepository extends JpaRepository<RawProduct, String> {
 
-    @Override
-    List<RawProduct> findAll();
-
 
 }

@@ -28,6 +28,7 @@ public class RawProduct {
     private String rawName;
 
     @Column(length = 8)
+    @Builder.Default
     private int rawCount = 0;
 
     @CreationTimestamp
