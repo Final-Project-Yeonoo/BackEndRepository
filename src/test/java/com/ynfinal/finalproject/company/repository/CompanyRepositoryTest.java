@@ -13,11 +13,12 @@ import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@Rollback(value = false)
+@Rollback
 @Transactional
 @SpringBootTest
 class CompanyRepositoryTest {
@@ -76,11 +77,22 @@ class CompanyRepositoryTest {
         String compCode = "comp000003";
         // when
 
-
+        Company company = companyRepository.findById(compCode).orElseThrow();
+        company.setCompCeo("여누3");
+        companyRepository.save(company);
         // then
-
+        assertEquals("여누3", companyRepository.findById(compCode).orElseThrow().getCompCeo());
     }
 
+    @Test
+    @DisplayName("comp000003을 삭제에 성공한다.")
+    void testDelete(){
+        // given
+        String compCode = "comp000003";
+        // when
+        companyRepository.deleteById(compCode);
+        // then
+    }
 
 
 }

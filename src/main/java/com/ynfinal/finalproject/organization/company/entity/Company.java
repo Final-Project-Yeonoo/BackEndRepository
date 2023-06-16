@@ -1,6 +1,7 @@
 package com.ynfinal.finalproject.organization.company.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -27,4 +28,9 @@ public class Company {
     private String compCeo;
     // 전화번호
     private String compPhone; // "010-3333-3333"
+
+
+    public void setCompCeo(String compCeo) {
+        this.compCeo = compCeo;
+    }
 }
