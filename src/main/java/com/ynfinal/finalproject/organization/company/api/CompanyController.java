@@ -17,12 +17,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/ynfinal/comp")
 public class CompanyController {
-    CompanyService companyService;
+    private final CompanyService companyService;
 
     @GetMapping
     public ResponseEntity<?> companyRender(){
         log.info("/ynfinal/comp GET!!");
         List<Company> companyList = companyService.findAll();
+        for (Company company : companyList) {
+            log.info("compnay {}", company);
+        }
         return ResponseEntity.ok().body(companyList);
     }
 

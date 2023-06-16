@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CompanyService {
 
-    CompanyRepository companyRepository;
+    private final CompanyRepository companyRepository;
 
     public List<Company> findAll(){
         return companyRepository.findAll();
