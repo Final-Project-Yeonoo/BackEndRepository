@@ -48,6 +48,7 @@ class CompanyRepositoryTest {
         List<Company> companyList = companyRepository.findAll();
         // then
         for (Company company : companyList) {
+            System.out.print(company.getCompCode() + " ");
             System.out.println(company.getCompName());
         }
     }
@@ -60,10 +61,10 @@ class CompanyRepositoryTest {
         Long compCode = 3L;
         // when
 
-//        Company company = companyRepository.findById(3L);
+        Company company = companyRepository.findByCompCode(3L);
         // then
-//        assertEquals(company.getCompCeo(), "강남이3");
-//        assertEquals(company.getCompPhone(), "010-1234-123");
+        assertEquals(company.getCompCeo(), "강남이3");
+        assertEquals(company.getCompPhone(), "010-1234-123");
     }
 
 

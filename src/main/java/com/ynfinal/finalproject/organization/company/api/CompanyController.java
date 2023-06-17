@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @GetMapping
-    public ResponseEntity<?> companyRender(){
+    public ResponseEntity<?> handleCompGetRequest(){
         log.info("/ynfinal/comp GET!!");
         List<Company> companyList = companyService.findAll();
         for (Company company : companyList) {
@@ -31,7 +28,14 @@ public class CompanyController {
         return ResponseEntity.ok(companyList);
     }
 
+    // 회사 정보를 수정한다
+    @PostMapping
+    public ResponseEntity<String> handleCompPostRequest(@RequestBody String jsonData) {
+        log.info(jsonData);
 
+
+        return ResponseEntity.ok("POST 요청이 성공적으로 처리되었습니다.");
+    }
 
 
 }
