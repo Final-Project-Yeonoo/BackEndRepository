@@ -11,6 +11,7 @@ import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,6 +27,10 @@ class EmployeesRepositoryTest {
     @Autowired
     PasswordEncoder encoder;
 
+
+
+
+
     @Test
     @DisplayName("1번 회원의 중복체크 여부를 확인한다.")
     void existsByIdTest(){
@@ -35,19 +40,44 @@ class EmployeesRepositoryTest {
     }
 
     @Test
+    @DisplayName("사원아이디 중복체크를 하면 중복이 되어야함")
+    void empId(){
+        String empId = "camp@camp.com";
+
+        boolean flag = employeesRepository.existsByEmpId(empId);
+        assertTrue(flag);
+    }
+
+
+    @Test
+    @DisplayName("이메일로 회원조회")
+    void findId(){
+
+        //given
+        String empId = "camp@camp.com";
+
+        Optional<Employees> employeesOptional = employeesRepository.findByEmpId(empId);
+
+        assertTrue(employeesOptional.isPresent());
+        Employees employees = employeesOptional.get();
+        assertEquals("안녕안녕", employees.getEmpName());
+
+    }
+
+    @Test
     @DisplayName("사원을 등록을 성공해야 한다.")
     void registerTest(){
         Employees employees = Employees.builder()
-                .empId("camp@camp.com")
+                .empId("camping@camp.com")
                 .empPassword(encoder.encode("aaa111!!!"))
                 .empName("안녕안녕")
                 .empHiredDate(LocalDateTime.now())
-                .empPhone("010-1111-1111")
-                .empExtension("1111")
+                .empPhone("010-1111-1112")
+                .empExtension("1112")
                 .build();
 
         Employees employees1 = employeesRepository.save(employees);
-        assertEquals("camp@camp.com", employees1.getEmpId());
+        assertEquals("camping@camp.com", employees1.getEmpId());
 
     }
 
