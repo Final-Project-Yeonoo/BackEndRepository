@@ -4,6 +4,7 @@ import com.ynfinal.finalproject.organization.user.auth.TokenProvider;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
+import com.ynfinal.finalproject.organization.user.dto.response.LoginResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.organization.user.exception.DuplicatedEmpIdExpcetion;
 import com.ynfinal.finalproject.organization.user.exception.NoRegisteredArgumentsException;
@@ -57,7 +58,7 @@ public class EmployeesService {
     }
 
     // 사원 인증
-    public void authenticate(final EmployeesLoginRequestDto dto){
+    public LoginResponseDTO authenticate(final EmployeesLoginRequestDto dto){
 
         // 사원 아이디를 통해 회원 정보 조회
         Employees employees = employeesRepository.findByEmpId(dto.getEmpId())
@@ -74,8 +75,11 @@ public class EmployeesService {
         }
 
         log.info("{}님 로그인 성공!!", employees.getEmpName());
-
         // 로그인 성공 후에 클라이언트에 리턴된 값, 토큰 인증 방식
+        // Jwt를 클라이언트에게 발급
+        String token = tokenProvider.createToken(employees);
+
+        return new LoginResponseDTO(employees, token);
 
 
     }

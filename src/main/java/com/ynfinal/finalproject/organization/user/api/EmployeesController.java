@@ -1,7 +1,9 @@
 package com.ynfinal.finalproject.organization.user.api;
 
+import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
+import com.ynfinal.finalproject.organization.user.dto.response.LoginResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.organization.user.exception.DuplicatedEmpIdExpcetion;
 import com.ynfinal.finalproject.organization.user.exception.NoRegisteredArgumentsException;
@@ -60,26 +62,20 @@ public class EmployeesController {
         EmployeesSignUpResponseDTO responseDTO = employeesService.create(dto);
             return ResponseEntity.ok()
                     .body(responseDTO);
+    }
 
-//        try {
-//            EmployeesSignUpResponseDTO responseDTO = employeesService.create(dto);
-//            return ResponseEntity.ok()
-//                    .body(responseDTO);
-//        } catch (NoRegisteredArgumentsException e) {
-//            log.warn("필수 가입 정보를 전달받지 못했습니다");
-//            return ResponseEntity.badRequest()
-//                    .body(e.getMessage());
-//        } catch (DuplicatedEmpIdExpcetion e){
-//            log.warn("사원아이디가 중복입니다!");
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
+    // 로그인 요청 처리
+    @PostMapping("/signin")
+    public ResponseEntity<?> signIn(
+            @Validated @RequestBody EmployeesLoginRequestDto dto
+            ) {
 
+        LoginResponseDTO loginResponseDTO = employeesService.authenticate(dto);
 
+        return ResponseEntity.ok().body(loginResponseDTO);
 
 
     }
-
-
 
 }
 

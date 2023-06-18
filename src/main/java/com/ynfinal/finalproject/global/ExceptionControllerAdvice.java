@@ -37,6 +37,6 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(Exception.class)
     public ErrorResult exHandler(Exception e) {
         log.error("[exceptionHandler] ex", e);
-        return new ErrorResult("EX", "내부 오류");
+        return new ErrorResult("Server Error", e.getMessage());
     }
 }
