@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/ynfinal/comp")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 //@CrossOrigin(origins = "http://127.0.0.1:5502")
 public class CompanyController {
     private final CompanyService companyService;

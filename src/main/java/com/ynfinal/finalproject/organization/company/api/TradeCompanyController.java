@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @RequestMapping("")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class TradeCompanyController {
 
 
