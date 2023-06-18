@@ -9,7 +9,6 @@ public interface FinishedProductRepository
         extends JpaRepository<FinishedProduct, String> {
 
 
-    List<FinishedProduct> findAll();
 
 
 

@@ -34,6 +34,7 @@ public class Employees {
 
     private String empProfile;
 
+    @Builder.Default
     private boolean empValidate = false;
 
 
