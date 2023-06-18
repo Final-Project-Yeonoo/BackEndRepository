@@ -5,11 +5,14 @@ import com.ynfinal.finalproject.organization.company.repository.CompanyRepositor
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
@@ -19,6 +22,7 @@ public class CompanyService {
     }
 
 
-
-
+    public Company findOne(Long compCode) {
+        return companyRepository.findByCompCode(compCode);
+    }
 }

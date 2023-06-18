@@ -7,5 +7,7 @@ public interface EmployeesRepository
         extends JpaRepository<Employees, Long> {
 
 
-
+    // 중복체크 기능
+    @Override
+    boolean existsById(Long empNo);
 }

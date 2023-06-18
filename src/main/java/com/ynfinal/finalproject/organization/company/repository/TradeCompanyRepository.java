@@ -4,6 +4,6 @@ import com.ynfinal.finalproject.organization.company.entity.TradeCompany;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TradeCompanyRepository
-    extends JpaRepository<TradeCompany, String> {
+    extends JpaRepository<TradeCompany, Long> {
 
 }
