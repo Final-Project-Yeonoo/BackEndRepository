@@ -47,4 +47,7 @@ public class Employees {
     @JoinColumn(name = "pos_code", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     Position position;
 
+
+
+
 }
