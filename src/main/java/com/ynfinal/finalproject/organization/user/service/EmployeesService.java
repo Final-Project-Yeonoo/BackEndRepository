@@ -1,5 +1,6 @@
 package com.ynfinal.finalproject.organization.user.service;
 
+import com.ynfinal.finalproject.organization.user.auth.TokenProvider;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
@@ -22,7 +23,7 @@ public class EmployeesService {
 
     private final EmployeesRepository employeesRepository;
     private final PasswordEncoder encoder;
-
+    private final TokenProvider tokenProvider;
     // 회원가입 처리
     public EmployeesSignUpResponseDTO create(EmployeesSignUpRequestDto dto)
     throws RuntimeException{

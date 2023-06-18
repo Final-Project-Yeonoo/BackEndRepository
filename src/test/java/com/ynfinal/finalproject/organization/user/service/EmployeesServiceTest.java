@@ -10,7 +10,9 @@ import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,6 +44,20 @@ class EmployeesServiceTest {
         assertThrows(RuntimeException.class,
                 () -> {employeesService.create(dto);});
 
+
+    }
+
+
+    @Test
+    @DisplayName("토큰 서명 해시값 생성하기")
+    void makeSecretKey(){
+        SecureRandom random = new SecureRandom();
+        byte[] key = new byte[64];  // 64byte = 512bit
+        random.nextBytes(key);
+        String encodedKey = Base64.getEncoder().encodeToString(key);
+        System.out.println("\n\n\n");
+        System.out.println(encodedKey);
+        System.out.println("\n\n\n");
 
     }
 }
