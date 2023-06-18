@@ -10,4 +10,7 @@ public interface EmployeesRepository
     // 중복체크 기능
     @Override
     boolean existsById(Long empNo);
+    boolean existsByEmpId(String empId);
+
+
 }
