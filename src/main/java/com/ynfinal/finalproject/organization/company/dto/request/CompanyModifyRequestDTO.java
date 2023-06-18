@@ -2,8 +2,6 @@ package com.ynfinal.finalproject.organization.company.dto.request;
 
 import lombok.*;
 
-import javax.persistence.Column;
-
 @Setter
 @Getter
 @ToString
@@ -11,7 +9,7 @@ import javax.persistence.Column;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CompanyModifyDTO {
+public class CompanyModifyRequestDTO {
     private Long compCode;
     private String compName;
     private String compRegNo;

@@ -1,15 +1,11 @@
 package com.ynfinal.finalproject.organization.company.api;
 
-import com.ynfinal.finalproject.organization.company.dto.request.CompanyModifyDTO;
+import com.ynfinal.finalproject.organization.company.dto.request.CompanyModifyRequestDTO;
 import com.ynfinal.finalproject.organization.company.entity.Company;
-import com.ynfinal.finalproject.organization.company.repository.CompanyRepository;
 import com.ynfinal.finalproject.organization.company.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,9 +48,9 @@ public class CompanyController {
 
     // 회사 정보를 수정한다
     @PatchMapping
-    public ResponseEntity<String> handleCompPostRequest(@RequestBody List<CompanyModifyDTO> jsonData) {
+    public ResponseEntity<String> handleCompPostRequest(@RequestBody List<CompanyModifyRequestDTO> jsonData) {
 
-        for (CompanyModifyDTO companyModifyDTO : jsonData) {
+        for (CompanyModifyRequestDTO companyModifyDTO : jsonData) {
             log.info(companyModifyDTO.toString());
         }
 
