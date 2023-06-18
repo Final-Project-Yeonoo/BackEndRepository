@@ -22,13 +22,15 @@ public class HalfProduct {
 
     @Id
     @Column(length = 20)
-    private String halfCode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long halfCode;
 
     @Column(length = 20)
     @NotNull
     private String halfName;
 
     @Column(length = 8)
+    @Builder.Default
     private int halfCount = 0;
 
     @CreationTimestamp

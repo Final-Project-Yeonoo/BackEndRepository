@@ -21,13 +21,15 @@ public class FinishedProduct {
 
     @Id
     @Column(length = 20)
-    private String finishedCode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long finishedCode;
 
     @Column(length = 20)
     @NotNull
     private String finishedName;
 
     @Column(length = 8)
+    @Builder.Default
     private int finishedCount = 0;
 
     @CreationTimestamp
