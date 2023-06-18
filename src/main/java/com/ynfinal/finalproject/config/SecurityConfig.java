@@ -1,8 +1,10 @@
 package com.ynfinal.finalproject.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -15,15 +17,27 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+
     // 시큐리티 기본 설정을 처리하는 빈 등록
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         // 시큐리티 설치 시 초기에 뜨는 강제 인증을 해제
-        http.csrf().disable() // csrf토큰공격 방어기능 해제
+        http
+                .cors()
+                .and()
+                .csrf().disable()
+                .httpBasic()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                .antMatchers("/**")
-                .permitAll(); // 인증없이 못들어옴
+               // .antMatchers(HttpMethod.PUT, "/api/auth/promote").authenticated()
+               // .antMatchers("/api/auth/load-profile").authenticated()
+               // .antMatchers("/*", "/api/auth/**").permitAll()
+//                .anyRequest().authenticated();
+                .anyRequest().permitAll();
         return http.build();
     }
 

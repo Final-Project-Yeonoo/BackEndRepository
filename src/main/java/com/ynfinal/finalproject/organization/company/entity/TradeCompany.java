@@ -19,7 +19,8 @@ import java.time.LocalDateTime;
 @Table(name = "TRADING_COMPANY")
 public class TradeCompany {
     @Id
-    private String trCompCode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long trCompCode;
     @Column(nullable = false)
     private String trCompName;
     @Column(nullable = false)
