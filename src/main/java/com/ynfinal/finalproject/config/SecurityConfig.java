@@ -1,5 +1,7 @@
 package com.ynfinal.finalproject.config;
 
+import com.ynfinal.finalproject.organization.user.filter.JwtAuthFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity // 웹보안 관련 설정을 이파일을 기반으로 적용
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+
+    private final JwtAuthFilter jwtAuthFilter;
+
     // 비밀번호 암호화 객체 빈 등록
     @Bean
     public PasswordEncoder encoder(){
@@ -29,7 +36,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .httpBasic()
                 .and()
-                .sessionManagement()
+                .sessionManagement() // 세션 인증은 사용하지 않겠다
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
