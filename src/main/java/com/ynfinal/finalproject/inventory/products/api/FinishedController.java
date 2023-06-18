@@ -1,4 +1,4 @@
-package com.ynfinal.finalproject.inventory.products.productsapi;
+package com.ynfinal.finalproject.inventory.products.api;
 
 import com.ynfinal.finalproject.inventory.products.dto.request.FinishedProductInsertRequestDTO;
 import com.ynfinal.finalproject.inventory.products.dto.request.FinishedProductModifyRequestDTO;
