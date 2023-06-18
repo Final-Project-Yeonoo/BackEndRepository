@@ -21,7 +21,8 @@ public class EmployeesService {
     private final PasswordEncoder encoder;
 
     // 회원가입 처리
-    public EmployeesSignUpResponseDTO create(EmployeesSignUpRequestDto dto){
+    public EmployeesSignUpResponseDTO create(EmployeesSignUpRequestDto dto)
+    throws RuntimeException{
 
         if(dto == null){
             throw new RuntimeException("가입 정보가 없습니다.");
@@ -29,7 +30,7 @@ public class EmployeesService {
 
         String empId = dto.getEmpId();
 
-        if(employeesRepository.existsByEmpId(empId)){
+        if(isDuplicate(empId)){
             log.warn("이메일이 중복되었습니다. {}", empId );
 
             throw new RuntimeException("중복된 이메일입니다.");
@@ -47,9 +48,6 @@ public class EmployeesService {
         return new EmployeesSignUpResponseDTO(saved);
 
     }
-
-
-
 
 
     public boolean isDuplicate(String empId) {

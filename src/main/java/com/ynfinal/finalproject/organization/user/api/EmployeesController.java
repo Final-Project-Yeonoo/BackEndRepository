@@ -1,27 +1,28 @@
 package com.ynfinal.finalproject.organization.user.api;
 
+import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
+import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.organization.user.service.EmployeesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
 @RequestMapping("/ynfinal/employee")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RequiredArgsConstructor
 public class EmployeesController {
 
 
     private final EmployeesService employeesService;
 
-    // empId 중복체크
+    // empId 중복체크 GET:  /ynfinal/employee/check?empId=aaa@aaa.com
     @GetMapping("/check")
     public ResponseEntity<?> check(String empId){
 
@@ -38,6 +39,31 @@ public class EmployeesController {
     }
 
 
+    // 회원가입 요청처리
+    // POST : /ynfinal/employee
+    @PostMapping
+    public ResponseEntity<?> signUp(
+            @Validated @RequestBody EmployeesSignUpRequestDto dto,
+            BindingResult result
+    ){
+        log.info("/api/auth POST! - {}", dto);
+
+        if( result.hasErrors()){
+            log.warn(result.toString());
+            return ResponseEntity.badRequest()
+                    .body(result.getFieldError());
+        }
+
+        try {
+            EmployeesSignUpResponseDTO responseDTO = employeesService.create(dto);
+        } catch (RuntimeException e) {
+
+        }
+
+
+        return null;
+
+    }
 
 
 
