@@ -46,17 +46,4 @@ public class RawProduct {
     @ManyToOne
     @JoinColumn(name = "HR_EMPLOYEES", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
-
-
-    public void setRawName(String rawName){
-        this.rawName = rawName;
-    }
-
-    public void setRawCount(Integer rawCount) {
-        this.rawCount = rawCount;
-    }
-
-    public void setRawPrice(Integer rawPrice) {
-        this.rawPrice = rawPrice;
-    }
 }

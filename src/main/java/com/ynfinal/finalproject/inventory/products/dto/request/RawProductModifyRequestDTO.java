@@ -15,6 +15,4 @@ public class RawProductModifyRequestDTO {
     public int rawCount;
     public int rawPrice;
 
-
-
 }
