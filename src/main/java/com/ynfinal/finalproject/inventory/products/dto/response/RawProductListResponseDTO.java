@@ -1,5 +1,6 @@
 package com.ynfinal.finalproject.inventory.products.dto.response;
 
+import com.ynfinal.finalproject.inventory.products.entity.HalfProduct;
 import com.ynfinal.finalproject.inventory.products.entity.RawProduct;
 import lombok.*;
 
@@ -21,11 +22,13 @@ public class RawProductListResponseDTO {
     private int rawPrice;
 
     public RawProductListResponseDTO(RawProduct rawProduct){
-        this.rawCode = (rawProduct.getRawCode());
+        this.rawCode = rawProduct.getRawCode();
         this.rawName = rawProduct.getRawName();
         this.rawCount = rawProduct.getRawCount();
         this.rawRegDate = rawProduct.getRawRegDate();
         this.rawRegUpdate = rawProduct.getRawRegUpdate();
         this.rawPrice = rawProduct.getRawPrice();
     }
+
+
 }

@@ -16,11 +16,11 @@ public class RawProductInsertRequestDTO {
     private Integer rawPrice;
 
     public RawProduct toEntity() {
-        RawProduct rawProduct = new RawProduct();
-        rawProduct.setRawName(this.rawName);
-        rawProduct.setRawCount(this.rawCount);
-        rawProduct.setRawPrice(this.rawPrice);
-        return rawProduct;
+        return RawProduct.builder()
+                .rawName(this.rawName)
+                .rawCount(this.rawCount)
+                .rawPrice(this.rawPrice)
+                .build();
     }
 
 }
