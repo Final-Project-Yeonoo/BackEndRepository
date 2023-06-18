@@ -44,7 +44,7 @@ public class RawProductService {
         return true;
     }
 
-
+    // 원자재 수정하기
     public List<RawProductListResponseDTO> modifyRawProducts(RawProductModifyRequestDTO requestDTO) {
 
         log.info("{}", requestDTO);

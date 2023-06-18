@@ -45,7 +45,7 @@ public class HalfController {
 
         halfService.addHalfProducts(requestDTO);
 
-        return ResponseEntity.ok().body("상품이 등록되었습니다.");
+        return ResponseEntity.ok().body("반제품이 정상적으로 등록되었습니다.");
 
     }
 
