@@ -21,7 +21,8 @@ public class FinishedProduct {
 
     @Id
     @Column(length = 20)
-    private String finishedCode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long finishedCode;
 
     @Column(length = 20)
     @NotNull

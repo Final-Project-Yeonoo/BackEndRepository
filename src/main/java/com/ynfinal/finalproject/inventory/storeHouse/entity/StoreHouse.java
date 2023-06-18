@@ -19,7 +19,7 @@ public class StoreHouse {
 
     @Id
     @Column(length = 200)
-    private String storehouseCode;
+    private Long storehouseCode;
 
     @Column(length = 100)
     private String storehouseName;

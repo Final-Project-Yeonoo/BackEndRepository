@@ -24,7 +24,7 @@ public class InputProduct {
 
     @Id
     @Column(length = 20)
-    private String inputProductCode;
+    private Long inputProductCode;
 
     @CreationTimestamp
     @NotNull

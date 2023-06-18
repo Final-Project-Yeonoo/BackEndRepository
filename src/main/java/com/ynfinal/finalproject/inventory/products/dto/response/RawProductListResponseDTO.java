@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class RawProductListResponseDTO {
 
-    private String rawCode;
+    private Long rawCode;
     private String rawName;
     private int rawCount;
     private LocalDateTime rawRegDate;
@@ -21,7 +21,7 @@ public class RawProductListResponseDTO {
     private int rawPrice;
 
     public RawProductListResponseDTO(RawProduct rawProduct){
-        this.rawCode = rawProduct.getRawCode();
+        this.rawCode = (rawProduct.getRawCode());
         this.rawName = rawProduct.getRawName();
         this.rawCount = rawProduct.getRawCount();
         this.rawRegDate = rawProduct.getRawRegDate();

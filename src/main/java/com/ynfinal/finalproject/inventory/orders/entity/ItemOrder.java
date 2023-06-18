@@ -25,7 +25,7 @@ public class ItemOrder {
 
     @Id
     @Column(length = 20)
-    private String itemOrderCode;
+    private Long itemOrderCode;
 
     @Enumerated(EnumType.STRING)
     @Builder.Default

@@ -22,7 +22,8 @@ public class HalfProduct {
 
     @Id
     @Column(length = 20)
-    private String halfCode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long halfCode;
 
     @Column(length = 20)
     @NotNull

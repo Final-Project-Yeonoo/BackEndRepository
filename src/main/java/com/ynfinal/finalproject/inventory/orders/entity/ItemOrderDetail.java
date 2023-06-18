@@ -17,7 +17,7 @@ public class ItemOrderDetail {
 
     @Id
     @Column(length = 20)
-    private String itemOrderDetailCode;
+    private Long itemOrderDetailCode;
 
     @Column(length = 50)
     private String itemOrderDetailName;

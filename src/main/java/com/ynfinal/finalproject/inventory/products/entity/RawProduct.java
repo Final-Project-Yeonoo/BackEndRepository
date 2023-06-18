@@ -20,11 +20,10 @@ import java.time.LocalDateTime;
 public class RawProduct {
 
     @Id
-    @Column(length = 20)
-    private String rawCode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long rawCode;
 
-    @Column(length = 20)
-    @NotNull
+    @Column(length = 20, nullable = false)
     private String rawName;
 
     @Column(length = 8)
@@ -48,4 +47,16 @@ public class RawProduct {
     @JoinColumn(name = "HR_EMPLOYEES", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 
+
+    public void setRawName(String rawName){
+        this.rawName = rawName;
+    }
+
+    public void setRawCount(Integer rawCount) {
+        this.rawCount = rawCount;
+    }
+
+    public void setRawPrice(Integer rawPrice) {
+        this.rawPrice = rawPrice;
+    }
 }
