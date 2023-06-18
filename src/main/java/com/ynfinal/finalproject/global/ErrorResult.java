@@ -1,4 +1,4 @@
-package com.ynfinal.finalproject.organization.global;
+package com.ynfinal.finalproject.global;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

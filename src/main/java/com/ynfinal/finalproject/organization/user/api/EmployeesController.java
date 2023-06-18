@@ -57,18 +57,22 @@ public class EmployeesController {
                     .body(result.getFieldError());
         }
 
-        try {
-            EmployeesSignUpResponseDTO responseDTO = employeesService.create(dto);
+        EmployeesSignUpResponseDTO responseDTO = employeesService.create(dto);
             return ResponseEntity.ok()
                     .body(responseDTO);
-        } catch (NoRegisteredArgumentsException e) {
-            log.warn("필수 가입 정보를 전달받지 못했습니다");
-            return ResponseEntity.badRequest()
-                    .body(e.getMessage());
-        } catch (DuplicatedEmpIdExpcetion e){
-            log.warn("사원아이디가 중복입니다!");
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+
+//        try {
+//            EmployeesSignUpResponseDTO responseDTO = employeesService.create(dto);
+//            return ResponseEntity.ok()
+//                    .body(responseDTO);
+//        } catch (NoRegisteredArgumentsException e) {
+//            log.warn("필수 가입 정보를 전달받지 못했습니다");
+//            return ResponseEntity.badRequest()
+//                    .body(e.getMessage());
+//        } catch (DuplicatedEmpIdExpcetion e){
+//            log.warn("사원아이디가 중복입니다!");
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
 
 
 
