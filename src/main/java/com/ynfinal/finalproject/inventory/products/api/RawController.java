@@ -1,4 +1,4 @@
-package com.ynfinal.finalproject.inventory.products.productsapi;
+package com.ynfinal.finalproject.inventory.products.api;
 
 import com.ynfinal.finalproject.inventory.products.dto.request.RawProductInsertRequestDTO;
 import com.ynfinal.finalproject.inventory.products.dto.request.RawProductModifyRequestDTO;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 

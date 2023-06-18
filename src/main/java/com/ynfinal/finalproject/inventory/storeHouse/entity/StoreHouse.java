@@ -18,7 +18,7 @@ public class StoreHouse {
 
 
     @Id
-    @Column(length = 200)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long storehouseCode;
 
     @Column(length = 100)
