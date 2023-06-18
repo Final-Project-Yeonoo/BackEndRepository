@@ -10,6 +10,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.filter.CorsFilter;
 
 @EnableWebSecurity // 웹보안 관련 설정을 이파일을 기반으로 적용
 @RequiredArgsConstructor
@@ -45,6 +46,14 @@ public class SecurityConfig {
                // .antMatchers("/*", "/api/auth/**").permitAll()
 //                .anyRequest().authenticated();
                 .anyRequest().permitAll();
+
+         // 토큰인증 필터 연결
+            http.addFilterAfter(
+                    jwtAuthFilter
+                    , CorsFilter.class
+            );
+
+
         return http.build();
     }
 
