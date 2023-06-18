@@ -4,8 +4,8 @@ import com.ynfinal.finalproject.organization.company.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CompanyRepository
-                extends JpaRepository<Company, String> {
+                extends JpaRepository<Company, Long> {
 
-    Company findById(Long compCode);
+    Company findByCompCode(long compCode);
 
 }

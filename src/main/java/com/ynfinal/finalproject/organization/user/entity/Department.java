@@ -18,8 +18,7 @@ public class Department {
     private Long deptCode;
     @Column(nullable = false)
     private String deptName;
-    @Column(nullable = false)
-    private String deptSuperCode;
+    private Long deptSuperCode;
 
 
 }
