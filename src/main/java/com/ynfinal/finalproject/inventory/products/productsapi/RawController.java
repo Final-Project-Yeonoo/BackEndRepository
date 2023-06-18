@@ -46,7 +46,7 @@ public class RawController {
         log.info("/ynfinal/rawitem : POST!! {}", dto);
         Boolean b = rawProductService.addRawProducts(dto);
 
-        return ResponseEntity.ok().body(b);
+        return ResponseEntity.ok().body("원자제가 정상적으로 등록되었습니다.");
     }
 
     // 원자제 수정하기
