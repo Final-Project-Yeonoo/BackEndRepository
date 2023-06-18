@@ -3,10 +3,13 @@ package com.ynfinal.finalproject.organization.user.api;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
+import com.ynfinal.finalproject.organization.user.exception.DuplicatedEmpIdExpcetion;
+import com.ynfinal.finalproject.organization.user.exception.NoRegisteredArgumentsException;
 import com.ynfinal.finalproject.organization.user.service.EmployeesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -41,7 +44,7 @@ public class EmployeesController {
 
     // 회원가입 요청처리
     // POST : /ynfinal/employee
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> signUp(
             @Validated @RequestBody EmployeesSignUpRequestDto dto,
             BindingResult result
@@ -56,12 +59,19 @@ public class EmployeesController {
 
         try {
             EmployeesSignUpResponseDTO responseDTO = employeesService.create(dto);
-        } catch (RuntimeException e) {
-
+            return ResponseEntity.ok()
+                    .body(responseDTO);
+        } catch (NoRegisteredArgumentsException e) {
+            log.warn("필수 가입 정보를 전달받지 못했습니다");
+            return ResponseEntity.badRequest()
+                    .body(e.getMessage());
+        } catch (DuplicatedEmpIdExpcetion e){
+            log.warn("사원아이디가 중복입니다!");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
 
 
-        return null;
+
 
     }
 

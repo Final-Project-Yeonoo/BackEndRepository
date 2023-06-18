@@ -3,6 +3,8 @@ package com.ynfinal.finalproject.organization.user.service;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
+import com.ynfinal.finalproject.organization.user.exception.DuplicatedEmpIdExpcetion;
+import com.ynfinal.finalproject.organization.user.exception.NoRegisteredArgumentsException;
 import com.ynfinal.finalproject.organization.user.repository.EmployeesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +27,7 @@ public class EmployeesService {
     throws RuntimeException{
 
         if(dto == null){
-            throw new RuntimeException("가입 정보가 없습니다.");
+            throw new NoRegisteredArgumentsException("가입 정보가 없습니다.");
         }
 
         String empId = dto.getEmpId();
@@ -33,7 +35,7 @@ public class EmployeesService {
         if(isDuplicate(empId)){
             log.warn("이메일이 중복되었습니다. {}", empId );
 
-            throw new RuntimeException("중복된 이메일입니다.");
+            throw new DuplicatedEmpIdExpcetion("중복된 사원아이디입니다.");
         }
 
         // 패스워드 인코딩
