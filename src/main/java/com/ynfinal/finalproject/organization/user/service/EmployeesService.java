@@ -1,5 +1,6 @@
 package com.ynfinal.finalproject.organization.user.service;
 
+import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
@@ -50,9 +51,32 @@ public class EmployeesService {
         return new EmployeesSignUpResponseDTO(saved);
 
     }
-
-
     public boolean isDuplicate(String empId) {
         return employeesRepository.existsByEmpId(empId);
     }
+
+    // 사원 인증
+    public void authenticate(final EmployeesLoginRequestDto dto){
+
+        // 사원 아이디를 통해 회원 정보 조회
+        Employees employees = employeesRepository.findByEmpId(dto.getEmpId())
+                .orElseThrow(
+                        () -> new RuntimeException("가입된 사원이 아닙니다")
+                );
+
+        // 패스워드 검증
+        String rawPassword = dto.getEmpPassword();
+        String encodedPassword = employees.getEmpPassword();
+
+        if (!encoder.matches(rawPassword, encodedPassword)){
+            throw new RuntimeException("비밀번호가 틀렸습니다.");
+        }
+
+        log.info("{}님 로그인 성공!!", employees.getEmpName());
+
+        // 로그인 성공 후에 클라이언트에 리턴된 값, 토큰 인증 방식
+
+
+    }
+
 }
