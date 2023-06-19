@@ -20,6 +20,7 @@ public interface EmployeesRepository
     @Override
     boolean existsById(Long empNo);
     boolean existsByEmpId(String empId);
-
+    boolean existsByEmpExtension(String empExtension);
+    boolean existsByEmpPhone(String empPhone);
 
 }

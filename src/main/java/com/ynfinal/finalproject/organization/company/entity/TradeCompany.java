@@ -1,13 +1,16 @@
 package com.ynfinal.finalproject.organization.company.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ynfinal.finalproject.inventory.storeHouse.entity.StoreHouse;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.util.Check;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @ToString
@@ -29,24 +32,34 @@ public class TradeCompany {
     private String trCompCeo;
     private String trCompPhone;
     @Builder.Default
+    @Enumerated(EnumType.STRING)
     private Check trBuy = Check.N;
     @Builder.Default
+    @Enumerated(EnumType.STRING)
     private Check trSell = Check.N;
+    @CreationTimestamp
     private LocalDateTime trStartDate;
+    @CreationTimestamp
     private LocalDateTime trEndDate;
+    @CreationTimestamp
     private LocalDateTime trRegDate;
+    @CreationTimestamp
     private LocalDateTime trUpdateDate;
     @Column(nullable = false)
     private String trAddr;
 
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_house_code", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "storehouse_code", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StoreHouse storeHouse;
 
+//    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
+
+
 
 
 }

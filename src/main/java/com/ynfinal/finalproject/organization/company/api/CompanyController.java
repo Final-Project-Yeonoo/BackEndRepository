@@ -1,11 +1,13 @@
 package com.ynfinal.finalproject.organization.company.api;
 
 import com.ynfinal.finalproject.organization.company.dto.request.CompanyModifyRequestDTO;
+import com.ynfinal.finalproject.organization.company.dto.request.CompanyPostRequestDTO;
 import com.ynfinal.finalproject.organization.company.entity.Company;
 import com.ynfinal.finalproject.organization.company.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,18 +47,31 @@ public class CompanyController {
 
 
 
+    // 하나의 회사를 저장한다.
+    // POST /ynfinal/comp
+    @PostMapping
+    public ResponseEntity<?> handleCompPostRequest(@RequestBody CompanyPostRequestDTO companyPostRequestDTO){
+        Company company = companyService.insertOne(companyPostRequestDTO);
+
+        return ResponseEntity.ok(company + " 저장 성공");
+    }
 
     // 회사 정보를 수정한다
     @PatchMapping
-    public ResponseEntity<String> handleCompPostRequest(@RequestBody List<CompanyModifyRequestDTO> jsonData) {
+    public ResponseEntity<?> handleCompPatchRequest(@Validated @RequestBody List<CompanyModifyRequestDTO> companyModifyRequestDTOList) {
 
-        for (CompanyModifyRequestDTO companyModifyDTO : jsonData) {
+        List<Company> companies = companyService.modifyAll(companyModifyRequestDTOList);
+
+        for (CompanyModifyRequestDTO companyModifyDTO : companyModifyRequestDTOList) {
             log.info(companyModifyDTO.toString());
         }
-
-
-        return ResponseEntity.ok("Patch 요청이 성공적으로 처리되었습니다.");
+        return ResponseEntity.ok(companies);
     }
 
+    @DeleteMapping("/{compCode}")
+    public ResponseEntity<?> handleCompDeleteRequest(@PathVariable("compCode")Long compCode ){
+        List<Company> companies = companyService.deleteOne(compCode);
+        return ResponseEntity.ok(companies);
+    }
 
 }

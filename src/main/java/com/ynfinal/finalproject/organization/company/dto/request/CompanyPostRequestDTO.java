@@ -3,8 +3,8 @@ package com.ynfinal.finalproject.organization.company.dto.request;
 import com.ynfinal.finalproject.organization.company.entity.Company;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Setter
 @Getter
@@ -13,9 +13,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CompanyModifyRequestDTO {
-    @NotBlank
-    private Long compCode;
+public class CompanyPostRequestDTO {
     @NotBlank
     private String compName;
     @NotBlank
@@ -26,7 +24,6 @@ public class CompanyModifyRequestDTO {
 
     public Company toEntity(){
         return Company.builder()
-                .compCode(compCode)
                 .compName(compName)
                 .compRegNo(compRegNo)
                 .compCeo(compCeo)
