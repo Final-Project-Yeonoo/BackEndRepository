@@ -1,4 +1,4 @@
-package com.ynfinal.finalproject.inventory.orders.entity;
+package com.ynfinal.finalproject.inventory.storeHouse.entity;
 
 
 import com.ynfinal.finalproject.organization.company.entity.TradeCompany;
@@ -44,11 +44,11 @@ public class ItemOrder {
     private LocalDateTime itemOrderUpdate;
 
     @ManyToOne
-    @JoinColumn(name = "TRADING_COMPANY", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "TR_COMP_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private TradeCompany tradeCompany;
 
     @ManyToOne
-    @JoinColumn(name = "HR_EMPLOYEES", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 
 }
