@@ -20,12 +20,10 @@ import java.time.LocalDateTime;
 public class FinishedProduct {
 
     @Id
-    @Column(length = 20)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long finishedCode;
 
-    @Column(length = 20)
-    @NotNull
+    @Column(length = 20, nullable = false)
     private String finishedName;
 
     @Column(length = 8)

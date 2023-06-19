@@ -1,4 +1,4 @@
-package com.ynfinal.finalproject.inventory.products.productsapi;
+package com.ynfinal.finalproject.inventory.products.api;
 
 import com.ynfinal.finalproject.inventory.products.dto.request.RawProductInsertRequestDTO;
 import com.ynfinal.finalproject.inventory.products.dto.request.RawProductModifyRequestDTO;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -19,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/ynfinal/rawitem")
 @Validated
-public class RawApiController {
+public class RawController {
 
 
     private final RawProductService rawProductService;
@@ -28,7 +27,7 @@ public class RawApiController {
     @GetMapping
     public ResponseEntity<?> rawItemList(){
 
-        log.info("/ynfinal/raitem : GET!! ");
+        log.info("/ynfinal/rawitem : GET!! ");
 
         List<RawProductListResponseDTO> listResponseDTO = rawProductService.rawProductList();
 
@@ -46,14 +45,13 @@ public class RawApiController {
         log.info("/ynfinal/rawitem : POST!! {}", dto);
         Boolean b = rawProductService.addRawProducts(dto);
 
-        return ResponseEntity.ok().body(b);
+        return ResponseEntity.ok().body("원자제가 정상적으로 등록되었습니다.");
     }
 
     // 원자제 수정하기
     @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT})
     public ResponseEntity<?> updateRawProducts(
-            @Valid @RequestBody RawProductModifyRequestDTO requestDTO,
-            HttpServletRequest request
+            @Valid @RequestBody RawProductModifyRequestDTO requestDTO
     ){
 
         log.info("/ynfinal/rawitem : PATCH!! {} ", requestDTO);
@@ -73,7 +71,7 @@ public class RawApiController {
 
         rawProductService.deleteRawProduct(rawCode);
 
-        return ResponseEntity.ok("아이템이 삭제 되었습니다.");
+        return ResponseEntity.ok("원자제가 정상적으로 삭제 되었습니다.");
 
     }
 

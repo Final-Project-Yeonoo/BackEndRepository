@@ -44,19 +44,16 @@ public class RawProductService {
         return true;
     }
 
-
+    // 원자재 수정하기
     public List<RawProductListResponseDTO> modifyRawProducts(RawProductModifyRequestDTO requestDTO) {
 
-        System.out.println("\n\n\n\n\n");
         log.info("{}", requestDTO);
-        System.out.println("\n\n\n\n\n");
 
         // 수정 전 데이터 조회
         Long target = requestDTO.getRawCode();
-        System.out.println("\n\n");
         System.out.println(target);
 
-        Optional<RawProduct> foundRawItem = rawRepository.findById(requestDTO.getRawCode());
+        Optional<RawProduct> foundRawItem = rawRepository.findById(target);
 
         System.out.println("\n\n");
         System.out.println("foundRawItem = " + foundRawItem);
@@ -65,9 +62,9 @@ public class RawProductService {
 
             // 기본값을 유지하기 위한 코드
             long rawCode = entity.getRawCode();
-            String rawName = entity.getRawName();
             int rawCount = entity.getRawCount();
             int rawPrice = entity.getRawPrice();
+            String rawName = entity.getRawName();
             LocalDateTime rawRegDate = entity.getRawRegDate();
 
             // dto에서 받아온 값
@@ -104,7 +101,7 @@ public class RawProductService {
     }
 
 
-    // ra
+    // 원자제 삭제하기
     public void deleteRawProduct(Long rawCode) {
 
         rawRepository.deleteById(rawCode);
