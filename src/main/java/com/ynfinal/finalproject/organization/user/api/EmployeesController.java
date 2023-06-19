@@ -27,6 +27,12 @@ public class EmployeesController {
 
     private final EmployeesService employeesService;
 
+
+    //    @GetMapping
+//    @PostMapping
+//    @PutMapping
+//    @DeleteMapping
+
     // empId 중복체크 GET:  /ynfinal/employee/check?empId=aaa@aaa.com
     @GetMapping("/check")
     public ResponseEntity<?> check(String empId){
@@ -46,7 +52,7 @@ public class EmployeesController {
 
     // 회원가입 요청처리
     // POST : /ynfinal/employee
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public ResponseEntity<?> signUp(
             @Validated @RequestBody EmployeesSignUpRequestDto dto,
             BindingResult result

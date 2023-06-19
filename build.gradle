@@ -32,6 +32,9 @@ dependencies {
     //security
 //    testImplementation 'org.springframework.security:spring-security-test'
 
+	// swagger api
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+
 
     //lombok
     compileOnly 'org.projectlombok:lombok'
@@ -46,6 +49,10 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
+	//자바 역직렬화 문제 해결 패키지
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.5'
 
 }
 

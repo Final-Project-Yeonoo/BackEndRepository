@@ -3,6 +3,7 @@ package com.ynfinal.finalproject.organization.user.auth;
 // 토큰 발급, 서명 위조 검사 객체
 
 import com.ynfinal.finalproject.organization.user.entity.Employees;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -66,14 +67,39 @@ public class TokenProvider {
                         SignatureAlgorithm.HS512
                 )
                 // token payload에 들어갈 클레임 생성
+                .setClaims(claims)
                 .setIssuer("여누솔루션") // iss : 발급자 정보
                 .setIssuedAt(new Date()) // iat: 발급시간
                 .setExpiration(expiry) // exp: 만료시간
                 .setSubject(employeesEntity.getEmpId()) // 토큰을 식별할 수 있는 주요
-                .setClaims(claims)
                 .compact();
     }
 
+    /**
+     * 클라이언트가 전송한 토큰을 디코딩하여 토큰의 위조여부 확인
+     * 토큰을 json을 파싱해서 클레임(토큰정보)를 리턴
+     *
+     * @param token
+     * @return - 토큰 안에 있는 인증된 유저정보를 반환
+     */
+    public TokenEmployeeInfo validateAndGetTokenUserInfo(String token){
+
+        Claims claims = Jwts.parserBuilder()
+                // 토큰 발급자의 발급 당시의 서명을 넣어줌
+                .setSigningKey(Keys.hmacShaKeyFor(SECRET_KEY.getBytes()))
+                // 서명 위조 검사 : 위조된 경우 예외가 발생
+                // 위조가 되지 않은 경우 페이로드를 리턴
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        log.info("claim: {} ", claims);
+        return TokenEmployeeInfo.builder()
+                .empId(claims.getSubject())
+                .empName(claims.get("empName", String.class))
+                .build();
+
+    }
 
 
 

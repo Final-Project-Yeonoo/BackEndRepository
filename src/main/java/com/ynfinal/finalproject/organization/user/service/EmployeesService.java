@@ -5,9 +5,11 @@ import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequ
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.LoginResponseDTO;
+import com.ynfinal.finalproject.organization.user.entity.Authorization;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.organization.user.exception.DuplicatedEmpIdExpcetion;
 import com.ynfinal.finalproject.organization.user.exception.NoRegisteredArgumentsException;
+import com.ynfinal.finalproject.organization.user.repository.AuthorizationRepository;
 import com.ynfinal.finalproject.organization.user.repository.EmployeesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +23,7 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 @Transactional
 public class EmployeesService {
-
+    private final AuthorizationRepository authorizationRepository;
     private final EmployeesRepository employeesRepository;
     private final PasswordEncoder encoder;
     private final TokenProvider tokenProvider;
@@ -32,27 +34,67 @@ public class EmployeesService {
         if(dto == null){
             throw new NoRegisteredArgumentsException("가입 정보가 없습니다.");
         }
+        // 중복검증 테스트
+        duplicateValidate(dto);
 
-        String empId = dto.getEmpId();
-
-        if(isDuplicate(empId)){
-            log.warn("이메일이 중복되었습니다. {}", empId );
-
-            throw new DuplicatedEmpIdExpcetion("중복된 사원아이디입니다.");
-        }
 
         // 패스워드 인코딩
         String encoded = encoder.encode(dto.getEmpPassword());
         dto.setEmpPassword(encoded);
 
+
+
         // 사원 엔터티로 변환
         Employees employees = dto.toEntity();
         Employees saved = employeesRepository.save(employees);
+
+        // 권한 저장 처리
+        Authorization authorization = Authorization.builder()
+                .employees(Employees.builder().empNo(saved.getEmpNo()).build())
+                .userAuth(dto.getUserAuth())
+                .infoAuth(dto.getInfoAuth())
+                .purchaseAuth(dto.getPurchaseAuth())
+                .inventoryAuth(dto.getInventoryAuth())
+                .build();
+        authorizationRepository.save(authorization);
+
         log.info("회원가입 정상 수행!!! -- save user {}", saved);
+
+
+
 
         return new EmployeesSignUpResponseDTO(saved);
 
     }
+
+    private void duplicateValidate(EmployeesSignUpRequestDto dto) {
+        String empId = dto.getEmpId();
+        String empExtension = dto.getEmpExtension();
+        String empPhone = dto.getEmpPhone();
+        if(isDuplicate(empId)){
+            log.warn("이메일이 중복되었습니다. {}", empId );
+            throw new DuplicatedEmpIdExpcetion("중복된 사원아이디입니다.");
+        }
+
+        if(isEmpPhone(empPhone)){
+            log.warn("핸드폰번호가 중복되었습니다. - {}", empPhone);
+            throw new DuplicatedEmpIdExpcetion("중복된 핸드폰번호입니다.");
+        }
+
+        if(isExtensionDuplicate(empExtension)){
+            log.warn("내선번호가 중복되었습니다. - {}", empExtension);
+            throw new DuplicatedEmpIdExpcetion("중복된 내선번호입니다.");
+        }
+    }
+
+    private boolean isEmpPhone(String empPhone) {
+        return employeesRepository.existsByEmpPhone(empPhone);
+    }
+
+    private boolean isExtensionDuplicate(String empExtension) {
+        return employeesRepository.existsByEmpExtension(empExtension);
+    }
+
     public boolean isDuplicate(String empId) {
         return employeesRepository.existsByEmpId(empId);
     }

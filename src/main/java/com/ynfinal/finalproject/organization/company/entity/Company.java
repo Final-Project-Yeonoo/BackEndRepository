@@ -13,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Setter
 @Table(name = "MY_COMPANY")
 public class Company {
     @Id
@@ -31,7 +32,4 @@ public class Company {
     private String compPhone;
 
 
-    public void setCompCeo(String compCeo) {
-        this.compCeo = compCeo;
-    }
 }

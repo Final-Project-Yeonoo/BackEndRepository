@@ -1,6 +1,8 @@
 package com.ynfinal.finalproject.organization.user.repository;
 
+import com.ynfinal.finalproject.organization.user.entity.Authorization;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,6 +26,8 @@ class EmployeesRepositoryTest {
 
     @Autowired
     EmployeesRepository employeesRepository;
+    @Autowired
+    AuthorizationRepository authorizationRepository;
 
     @Autowired
     PasswordEncoder encoder;
@@ -91,6 +96,8 @@ class EmployeesRepositoryTest {
         System.out.println("encodePassword = " + encodePassword);
 
     }
+
+
 
 
 }
