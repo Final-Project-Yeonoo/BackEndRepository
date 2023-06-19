@@ -2,6 +2,7 @@ package com.ynfinal.finalproject.inventory.storeHouse.api;
 
 import com.ynfinal.finalproject.inventory.products.dto.request.FinishedProductInsertRequestDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHouseInsertDTO;
+import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHouseModifyRequestDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.response.StoreHouseListResponseDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.service.StoreHouseService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class StoreHouseController {
     @GetMapping
     public ResponseEntity<?> storeHouseList(){
 
-        log.info("/ynfinal/storehouse");
+        log.info("/ynfinal/storehouse : GET!!");
 
         List<StoreHouseListResponseDTO> storehouseList = storeHouseService.storehouseList();
 
@@ -41,12 +42,24 @@ public class StoreHouseController {
             @Valid @RequestBody StoreHouseInsertDTO requestDTO
     ){
 
-        log.info("/ynfinal/finisheditem : POST!! ");
+        log.info("/ynfinal/storehouse : POST!! ");
         storeHouseService.insertStoreHouse(requestDTO);
 
         return ResponseEntity.ok("완제품이 정상적으로 등록되었습니다.");
     }
 
+    // 창고 정보 수정하기
+    @PutMapping
+    public ResponseEntity<?> modifyStoreHouse(
+            StoreHouseModifyRequestDTO requestDTO
+    ){
+
+        log.info("/ynfinal/storehouse : FETCH !!");
+        List<StoreHouseListResponseDTO> storehouseModifyList = storeHouseService.storehouseModify(requestDTO);
+
+        return ResponseEntity.ok().body(storehouseModifyList);
+
+    }
 
 
     // 창고삭제하기
