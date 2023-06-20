@@ -2,6 +2,7 @@ package com.ynfinal.finalproject.organization.user.api;
 
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
+import com.ynfinal.finalproject.organization.user.dto.response.EmployeesResponseDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.LoginResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
@@ -16,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -32,6 +35,24 @@ public class EmployeesController {
 //    @PostMapping
 //    @PutMapping
 //    @DeleteMapping
+
+
+//    사용자 조회
+
+    @GetMapping
+    public ResponseEntity<?> handleEmployeesGetRequest(){
+        List<EmployeesResponseDTO> responseDTOList = employeesService.findAll();
+
+        return ResponseEntity.ok(responseDTOList);
+    }
+
+    @GetMapping("{empNo}")
+    public ResponseEntity<?> handlefindOneEmployeesGetRequest(@PathVariable("empNo")Long empNo){
+
+
+        return ResponseEntity.ok("");
+    }
+
 
     // empId 중복체크 GET:  /ynfinal/employee/check?empId=aaa@aaa.com
     @GetMapping("/check")
