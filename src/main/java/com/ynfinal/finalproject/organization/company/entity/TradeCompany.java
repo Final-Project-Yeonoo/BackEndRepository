@@ -26,9 +26,9 @@ public class TradeCompany {
     private Long trCompCode;
     @Column(nullable = false)
     private String trCompName;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String trCompRegNo;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String trCompCeo;
     private String trCompPhone;
     @Builder.Default
@@ -45,18 +45,18 @@ public class TradeCompany {
     private LocalDateTime trRegDate;
     @CreationTimestamp
     private LocalDateTime trUpdateDate;
-    @Column(nullable = false)
+
     private String trAddr;
+    private String trEtc;
 
-
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "storehouse_code", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "storehouse_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StoreHouse storeHouse;
 
 //    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_no", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "emp_no", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 
 

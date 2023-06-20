@@ -1,9 +1,7 @@
 package com.ynfinal.finalproject.organization.user.dto.request;
 
-
 import lombok.*;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Setter
@@ -13,10 +11,13 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EmployeesLoginRequestDto {
+public class MypageModifyDTO {
     @NotBlank
     private String empId;
     @NotBlank
     private String empPassword;
-    private Boolean isAutoLogin;
+    @NotBlank
+    private String empPhone;
+    @NotBlank
+    private String empAddress;
 }

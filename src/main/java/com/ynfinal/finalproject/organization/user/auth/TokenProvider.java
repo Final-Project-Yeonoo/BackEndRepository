@@ -58,6 +58,11 @@ public class TokenProvider {
         Map<String, String> claims = new HashMap<>();
         claims.put("empId", employeesEntity.getEmpId());
         claims.put("empName", employeesEntity.getEmpName());
+        claims.put("posName", employeesEntity.getPosition().getPosName());
+        claims.put("empExtension", employeesEntity.getEmpExtension());
+        claims.put("empPhone", employeesEntity.getEmpPhone());
+        claims.put("empAddress", employeesEntity.getEmpAddress());
+
 
 
         return Jwts.builder()

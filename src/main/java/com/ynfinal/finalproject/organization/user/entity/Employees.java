@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
@@ -33,6 +34,8 @@ public class Employees {
     private String empPhone;
     @Column(unique=true)
     private String empExtension;
+
+    private String empAddress;
 
     private String empProfile;
     @Builder.Default

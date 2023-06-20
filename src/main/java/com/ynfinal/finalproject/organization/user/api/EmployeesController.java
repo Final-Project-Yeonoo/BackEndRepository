@@ -2,9 +2,11 @@ package com.ynfinal.finalproject.organization.user.api;
 
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
+import com.ynfinal.finalproject.organization.user.dto.request.MypageModifyDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesResponseDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.LoginResponseDTO;
+import com.ynfinal.finalproject.organization.user.dto.response.MypageResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.organization.user.exception.DuplicatedEmpIdExpcetion;
 import com.ynfinal.finalproject.organization.user.exception.NoRegisteredArgumentsException;
@@ -46,11 +48,11 @@ public class EmployeesController {
         return ResponseEntity.ok(responseDTOList);
     }
 
-    @GetMapping("{empNo}")
-    public ResponseEntity<?> handlefindOneEmployeesGetRequest(@PathVariable("empNo")Long empNo){
+    @GetMapping("/mypage/{empNo}")
+    public ResponseEntity<?> handleMyPageEmployeesGetRequest(@PathVariable("empNo")Long empNo){
+        MypageResponseDTO mypageResponseDTO = employeesService.findMyPage(empNo);
 
-
-        return ResponseEntity.ok("");
+        return ResponseEntity.ok(mypageResponseDTO);
     }
 
 
@@ -102,6 +104,14 @@ public class EmployeesController {
         return ResponseEntity.ok().body(loginResponseDTO);
 
 
+    }
+
+
+    @PatchMapping("/mypage")
+    public ResponseEntity<?> handleMyPageEmployeesGetRequest(@Validated @RequestBody MypageModifyDTO modifyDTO){
+        MypageResponseDTO mypageResponseDTO = employeesService.updateMyPage(modifyDTO);
+
+        return ResponseEntity.ok(mypageResponseDTO);
     }
 
 }
