@@ -1,6 +1,7 @@
 package com.ynfinal.finalproject.organization.company.api;
 
 
+import com.ynfinal.finalproject.organization.company.dto.request.TradeCompanyRequestDTO;
 import com.ynfinal.finalproject.organization.company.dto.response.TradeCompanyResponseDTO;
 import com.ynfinal.finalproject.organization.company.entity.Company;
 import com.ynfinal.finalproject.organization.company.entity.TradeCompany;
@@ -8,6 +9,7 @@ import com.ynfinal.finalproject.organization.company.service.TradeCompanyService
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,10 +36,10 @@ public class TradeCompanyController {
     }
 
     @PostMapping
-    public ResponseEntity<?> handleTrCompPostRequest(){
+    public ResponseEntity<?> handleTrCompPostRequest(@Validated @RequestBody TradeCompanyRequestDTO tradeCompanyRequestDTO){
 
-
-        return null;
+        TradeCompanyResponseDTO tradeCompanyResponseDTO = tradeCompanyService.insertTradeCompany(tradeCompanyRequestDTO);
+        return ResponseEntity.ok(tradeCompanyResponseDTO);
     }
 //    @PutMapping
 //

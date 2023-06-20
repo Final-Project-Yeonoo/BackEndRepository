@@ -29,5 +29,6 @@ public class TradeCompanyResponseDTO {
     private String trAddr;
     private String storehouseName;
     private String empName;
+    private String trEtc;
 
 }

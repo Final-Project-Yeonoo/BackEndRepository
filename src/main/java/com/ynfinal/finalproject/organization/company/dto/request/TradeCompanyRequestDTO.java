@@ -23,5 +23,8 @@ public class TradeCompanyRequestDTO {
     @Enumerated(EnumType.STRING)
     private Check trSell = Check.N;
     private Long trCompCode;
-
+    private String trCompName;
+    private String trCompPhone;
+    private String trAddr;
+    private String trEtc;
 }
