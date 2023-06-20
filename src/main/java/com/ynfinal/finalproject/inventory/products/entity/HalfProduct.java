@@ -40,12 +40,11 @@ public class HalfProduct {
     @Column(columnDefinition = "INT CHECK (halfPrice >= 0)", length = 10)
     private int halfPrice;
 
-
-    @ManyToOne // 체크 할것
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STOREHOUSE_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StoreHouse storeHouse;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 

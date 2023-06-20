@@ -3,6 +3,8 @@ package com.ynfinal.finalproject.inventory.storeHouse.service;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.request.ItemOrderInputRequestDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.response.ItemOrderListResponseDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.entity.ItemOrder;
+import com.ynfinal.finalproject.inventory.storeHouse.entity.ItemOrderDetail;
+import com.ynfinal.finalproject.inventory.storeHouse.repository.ItemOrderDetailRepository;
 import com.ynfinal.finalproject.inventory.storeHouse.repository.ItemOrderRepository;
 import com.ynfinal.finalproject.organization.company.entity.TradeCompany;
 import com.ynfinal.finalproject.organization.company.repository.TradeCompanyRepository;
@@ -12,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +24,7 @@ import java.util.stream.Collectors;
 public class ItemOrderService {
 
     private final ItemOrderRepository itemOrderRepository;
+    private final ItemOrderDetailRepository detailRepository;
     private final TradeCompanyRepository tradeCompanyRepository;
     private final EmployeesRepository employeesRepository;
 
@@ -34,34 +38,32 @@ public class ItemOrderService {
 
     }
 
-
     // 발주 등록하기
-    public ItemOrder addItemOrder(ItemOrderInputRequestDTO requestDTO) {
+    @Transactional
+    public boolean addItemOrder(ItemOrderInputRequestDTO requestDTO) {
 
-        // ItemOrder 엔티티 생성
+        Long trCompCode = requestDTO.getTrCompCode();
+        Long empNo = requestDTO.getEmpNo();
+
+        TradeCompany tradeCompany = tradeCompanyRepository.findByTrCompCode(trCompCode);
+        Employees foundEmp = employeesRepository.findByEmpNo(empNo);
+
         ItemOrder itemOrder = ItemOrder.builder()
                 .itemOrderCheck(requestDTO.getItemOrderCheck())
                 .itemOrderStart(requestDTO.getItemOrderStart())
                 .itemOrderReg(requestDTO.getItemOrderReg())
                 .itemOrderUpdate(requestDTO.getItemOrderUpdate())
+                .tradeCompany(tradeCompany)
+                .employees(foundEmp)
                 .build();
 
-        // TradeCompany 조회 및 연결
-        TradeCompany tradeCompany = tradeCompanyRepository.findById(requestDTO.getTrCompCode())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Trade Company Code"));
-        itemOrder.setTradeCompany(tradeCompany);
-
-        // Employees 조회 및 연결
-        Employees employees = employeesRepository.findById(requestDTO.getEmpNo())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Employee Number"));
-        itemOrder.setEmployees(employees);
-
-        // ItemOrder 저장
-        return itemOrderRepository.save(itemOrder);
-
-
+        itemOrderRepository.save(itemOrder);
+        return true;
     }
 
+
+
+    // 발주서 삭제하기
     public void deleteItemOrder(Long itemOrderCode) {
 
         log.info("발주서 삭제하기");

@@ -44,14 +44,7 @@ public class StoreHouseService {
     }
 
 
-    // 창고 삭제하기
-    public void deleteStoreHouse(Long storehouseCode) {
-
-        log.info("delete service");
-        repository.deleteById(storehouseCode);
-
-    }
-
+    // 창고 정보 수정
     public List<StoreHouseListResponseDTO> storehouseModify(StoreHouseModifyRequestDTO requestDTO) {
 
 
@@ -95,6 +88,15 @@ public class StoreHouseService {
         });
 
         return storehouseList();
+
+    }
+
+
+    // 창고 삭제하기
+    public void deleteStoreHouse(Long storehouseCode) {
+
+        log.info("delete service");
+        repository.deleteById(storehouseCode);
 
     }
 }

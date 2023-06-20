@@ -38,7 +38,7 @@ class EmployeesServiceTest {
                 .empHiredDate(LocalDateTime.now())
                 .empPhone("123-456-7890")
                 .empExtension("123")
-                .empProfile("profile.png")
+//                .empProfile("profile.png")
                 .build();
 
         assertThrows(RuntimeException.class,

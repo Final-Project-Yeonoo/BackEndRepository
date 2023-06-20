@@ -24,7 +24,7 @@ public class ItemOrder {
 
 
     @Id
-    @Column(length = 20)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itemOrderCode;
 
     // 발주서의 저장, 확정 확인
@@ -48,19 +48,12 @@ public class ItemOrder {
     @CreationTimestamp
     private LocalDateTime itemOrderUpdate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TR_COMP_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private TradeCompany tradeCompany;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 
-    public void setTradeCompany(TradeCompany tradeCompany) {
-        this.tradeCompany = tradeCompany;
-    }
-
-    public void setEmployees(Employees employees) {
-        this.employees = employees;
-    }
 }

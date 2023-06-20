@@ -19,6 +19,8 @@ public class ItemOrderListResponseDTO {
     private Date itemOrderStart;
     private Date itemOrderEnd;
     private LocalDateTime itemOrderReg;
+    private LocalDateTime itemOrderUpdate;
+
 
     public ItemOrderListResponseDTO(ItemOrder itemOrder) {
 
@@ -27,7 +29,7 @@ public class ItemOrderListResponseDTO {
         this.itemOrderStart = itemOrder.getItemOrderStart();
         this.itemOrderEnd = itemOrder.getItemOrderEnd();
         this.itemOrderReg = itemOrder.getItemOrderReg();
-
+        this.itemOrderUpdate = itemOrder.getItemOrderUpdate();
 
     }
 }

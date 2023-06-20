@@ -24,7 +24,7 @@ public class ItemOrderController {
     //모든 발주서 확인하기
     @GetMapping
     public ResponseEntity<?> itemOrderList(){
-
+        log.info("/ynfinal/order : GET!! ");
         List<ItemOrderListResponseDTO> itemOrderList = itemOrderService.itemOrderList();
         return ResponseEntity.ok().body(itemOrderList);
 
@@ -36,9 +36,10 @@ public class ItemOrderController {
     ){
 
         log.info("/ynfinal/order : POST !! ");
-        ItemOrder itemOrder = itemOrderService.addItemOrder(requestDTO);
+        boolean b = itemOrderService.addItemOrder(requestDTO);
 
-        return ResponseEntity.ok().body(itemOrder);
+
+        return ResponseEntity.ok().body(b);
     }
 
 
