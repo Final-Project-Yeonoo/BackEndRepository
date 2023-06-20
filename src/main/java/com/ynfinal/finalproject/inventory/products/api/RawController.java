@@ -43,9 +43,9 @@ public class RawController {
     ){
 
         log.info("/ynfinal/rawitem : POST!! {}", dto);
-        Boolean b = rawProductService.addRawProducts(dto);
+        List<RawProductListResponseDTO> rawList = rawProductService.addRawProducts(dto);
 
-        return ResponseEntity.ok().body("원자제가 정상적으로 등록되었습니다.");
+        return ResponseEntity.ok().body(rawList);
     }
 
     // 원자제 수정하기
@@ -69,9 +69,9 @@ public class RawController {
     ){
         log.info("/ynfinal/rawitem/{} = DELETE 요청!",rawCode);
 
-        rawProductService.deleteRawProduct(rawCode);
+        List<RawProductListResponseDTO> rawList = rawProductService.deleteRawProduct(rawCode);
 
-        return ResponseEntity.ok("원자제가 정상적으로 삭제 되었습니다.");
+        return ResponseEntity.ok().body(rawList);
 
     }
 

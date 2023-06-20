@@ -33,13 +33,13 @@ public class FinishedProductService {
     }
 
     // 완제품 등록하기
-    public boolean insertFinishedProduct(final FinishedProductInsertRequestDTO requestDTO) {
+    public List<FinishedProductListResponseDTO> insertFinishedProduct(final FinishedProductInsertRequestDTO requestDTO) {
 
         log.info("finishedInsert service : {}", requestDTO);
         FinishedProduct finishedProduct = requestDTO.toEntity();
         FinishedProduct save = finishedRepository.save(finishedProduct);
 
-        return true;
+        return finishedProductsList();
 
     }
 
@@ -98,9 +98,11 @@ public class FinishedProductService {
     }
 
     // 완제품 삭제하기
-    public void deleteFinishedProduct(Long finishedCode) {
+    public List<FinishedProductListResponseDTO> deleteFinishedProduct(Long finishedCode) {
 
         log.info("delete service {}", finishedCode);
         finishedRepository.deleteById(finishedCode);
+
+        return finishedProductsList();
     }
 }

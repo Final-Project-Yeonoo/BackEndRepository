@@ -2,7 +2,6 @@ package com.ynfinal.finalproject.inventory.storeHouse.entity;
 
 
 
-import com.ynfinal.finalproject.inventory.orders.entity.ItemOrder;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 
 import lombok.*;
@@ -23,22 +22,26 @@ import java.time.LocalDateTime;
 public class InputProduct {
 
     @Id
-    @Column(length = 20)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long inputProductCode;
 
     @CreationTimestamp
     @NotNull
     private LocalDateTime inputProductDate;
 
-    @ManyToOne
-    @JoinColumn(name = "ITEM_ORDER", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ITEM_ORDER_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private ItemOrder itemOrder;
 
-    @ManyToOne
-    @JoinColumn(name = "STORE_HOUSE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ITEM_ORDER_DETAIL_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private ItemOrderDetail itemOrderDetail;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "STOREHOUSE_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StoreHouse storeHouse;
 
-    @ManyToOne
-    @JoinColumn(name = "HR_EMPLOYEES", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees ;
 }

@@ -1,4 +1,4 @@
-package com.ynfinal.finalproject.inventory.orders.entity;
+package com.ynfinal.finalproject.inventory.storeHouse.entity;
 
 
 import com.ynfinal.finalproject.organization.company.entity.TradeCompany;
@@ -24,31 +24,36 @@ public class ItemOrder {
 
 
     @Id
-    @Column(length = 20)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itemOrderCode;
 
+    // 발주서의 저장, 확정 확인
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private Check itemOrderCheck = Check.N;
 
+    // 입고예정일
     @CreatedDate
     private Date itemOrderStart;
 
+    // 발주서 유효기간
     @CreatedDate
     private Date itemOrderEnd;
 
+    // 발주서 등록일
     @CreationTimestamp
     private LocalDateTime itemOrderReg;
 
+    // 발주서 수정일
     @CreationTimestamp
     private LocalDateTime itemOrderUpdate;
 
-    @ManyToOne
-    @JoinColumn(name = "TRADING_COMPANY", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TR_COMP_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private TradeCompany tradeCompany;
 
-    @ManyToOne
-    @JoinColumn(name = "HR_EMPLOYEES", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 
 }

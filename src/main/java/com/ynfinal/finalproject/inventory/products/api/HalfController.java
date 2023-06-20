@@ -43,9 +43,9 @@ public class HalfController {
 
         log.info("{} ", requestDTO.getHalfName());
 
-        halfService.addHalfProducts(requestDTO);
+        List<HalfProductListResponseDTO> halfProducts = halfService.addHalfProducts(requestDTO);
 
-        return ResponseEntity.ok().body("반제품이 정상적으로 등록되었습니다.");
+        return ResponseEntity.ok().body(halfProducts);
 
     }
 
@@ -70,9 +70,9 @@ public class HalfController {
 
         log.info("/ynfinal/halfitem/{} : DELETE 요청~", halfCode);
 
-        halfService.deleteHalfProduct(halfCode);
+        List<HalfProductListResponseDTO> halfProduct = halfService.deleteHalfProduct(halfCode);
 
-        return ResponseEntity.ok("반제품이 정상적으로 삭제 되었습니다.");
+        return ResponseEntity.ok().body(halfProduct);
     }
 
 

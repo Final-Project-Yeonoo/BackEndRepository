@@ -28,9 +28,9 @@ public class FinishedController {
     public ResponseEntity<?> finisedProductList(){
 
         log.info("/ynfinal/finisheditem : GET!! ");
-        List<FinishedProductListResponseDTO> finishedProductsList = finishedService.finishedProductsList();
+        List<FinishedProductListResponseDTO> finishedList = finishedService.finishedProductsList();
 
-        return ResponseEntity.ok().body(finishedProductsList);
+        return ResponseEntity.ok().body(finishedList);
     }
 
     // 완제품 등록하기
@@ -40,9 +40,9 @@ public class FinishedController {
     ){
 
         log.info("/ynfinal/finisheditem : POST!! ");
-        finishedService.insertFinishedProduct(requestDTO);
+        List<FinishedProductListResponseDTO> finishedList = finishedService.insertFinishedProduct(requestDTO);
 
-        return ResponseEntity.ok("완제품이 정상적으로 등록되었습니다.");
+        return ResponseEntity.ok().body(finishedList);
     }
 
     // 완제품 수정하기
@@ -65,9 +65,9 @@ public class FinishedController {
     ){
         log.info("/ynfinal/finisheditem/{finishedCode} : DELETE");
 
-        finishedService.deleteFinishedProduct(finishedCode);
+        List<FinishedProductListResponseDTO> finishedList = finishedService.deleteFinishedProduct(finishedCode);
 
 
-        return ResponseEntity.ok("완제품이 정상적으로 삭제되었습니다.");
+        return ResponseEntity.ok().body(finishedList);
     }
 }
