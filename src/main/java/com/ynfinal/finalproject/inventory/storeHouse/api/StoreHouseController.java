@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("/ynfinal/storehouse")
+@RequestMapping("/ynfinal/store")
 public class StoreHouseController {
 
     private final StoreHouseService storeHouseService;
@@ -29,7 +29,7 @@ public class StoreHouseController {
     @GetMapping
     public ResponseEntity<?> storeHouseList(){
 
-        log.info("/ynfinal/storehouse : GET!!");
+        log.info("/ynfinal/store : GET!!");
 
         List<StoreHouseListResponseDTO> storehouseList = storeHouseService.storehouseList();
 
@@ -42,7 +42,7 @@ public class StoreHouseController {
             @Valid @RequestBody StoreHouseInsertDTO requestDTO
     ){
 
-        log.info("/ynfinal/storehouse : POST!! ");
+        log.info("/ynfinal/store : POST!! ");
         storeHouseService.insertStoreHouse(requestDTO);
 
         return ResponseEntity.ok("완제품이 정상적으로 등록되었습니다.");
@@ -54,7 +54,7 @@ public class StoreHouseController {
             StoreHouseModifyRequestDTO requestDTO
     ){
 
-        log.info("/ynfinal/storehouse : FETCH !!");
+        log.info("/ynfinal/store : FETCH !!");
         List<StoreHouseListResponseDTO> storehouseModifyList = storeHouseService.storehouseModify(requestDTO);
 
         return ResponseEntity.ok().body(storehouseModifyList);
@@ -68,7 +68,7 @@ public class StoreHouseController {
             @PathVariable Long storehouseCode
     ){
 
-        log.info("/ynfinal/storehouse/{storehouseCode} : DELETE");
+        log.info("/ynfinal/store/{storehouseCode} : DELETE");
 
         storeHouseService.deleteStoreHouse(storehouseCode);
         return ResponseEntity.ok().body("창고를 정상적으로 삭제했습니다.");

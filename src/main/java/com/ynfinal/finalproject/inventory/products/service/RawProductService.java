@@ -31,17 +31,19 @@ public class RawProductService {
     }
 
     // 원자제 등록하기
-    public boolean addRawProducts(
+    public List<RawProductListResponseDTO> addRawProducts(
             final RawProductInsertRequestDTO dto
     ) {
         log.info("-----{}", dto);
 
         RawProduct rawProduct = dto.toEntity();
         log.info("{}", rawProduct);
+
         rawRepository.save(rawProduct);
+
         log.info("새로운 원자제가 등록되었습니다. {}", rawProduct.getRawName());
 
-        return true;
+        return rawProductList();
     }
 
     // 원자재 수정하기
@@ -102,8 +104,10 @@ public class RawProductService {
 
 
     // 원자제 삭제하기
-    public void deleteRawProduct(Long rawCode) {
+    public List<RawProductListResponseDTO> deleteRawProduct(Long rawCode) {
 
         rawRepository.deleteById(rawCode);
+        
+        return rawProductList();
     }
 }

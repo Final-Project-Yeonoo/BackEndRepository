@@ -34,7 +34,7 @@ public class HalfProductService {
     }
 
     // 반제품 추가하기
-    public boolean addHalfProducts(
+    public List<HalfProductListResponseDTO> addHalfProducts(
             final HalfProductInsertRequestDTO requestDTO) {
 
         log.info("=== service dto {} ", requestDTO);
@@ -43,7 +43,7 @@ public class HalfProductService {
 
         log.info("반제품이 정상적으로 등록되었습니다. {}", halfProduct.getHalfName());
 
-        return true;
+        return halfProductsList();
 
     }
 
@@ -98,8 +98,10 @@ public class HalfProductService {
     }
 
     // 원자제 삭제하기
-    public void deleteHalfProduct(Long halfCode) {
+    public List<HalfProductListResponseDTO> deleteHalfProduct(Long halfCode) {
 
         halfRepository.deleteById(halfCode);
+
+        return halfProductsList();
     }
 }
