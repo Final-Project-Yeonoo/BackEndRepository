@@ -3,9 +3,11 @@ package com.ynfinal.finalproject.organization.user.service;
 import com.ynfinal.finalproject.organization.user.auth.TokenProvider;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
+import com.ynfinal.finalproject.organization.user.dto.request.MypageModifyDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesResponseDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.LoginResponseDTO;
+import com.ynfinal.finalproject.organization.user.dto.response.MypageResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Authorization;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.organization.user.exception.DuplicatedEmpIdExpcetion;
@@ -45,7 +47,7 @@ public class EmployeesService {
 
 
         // 패스워드 인코딩
-        String encoded = encoder.encode(dto.getEmpPassword());
+        String encoded = passwordEncode(dto);
         dto.setEmpPassword(encoded);
 
 
@@ -71,6 +73,11 @@ public class EmployeesService {
 
         return new EmployeesSignUpResponseDTO(saved);
 
+    }
+
+    private String passwordEncode(EmployeesSignUpRequestDto dto) {
+        String encoded = encoder.encode(dto.getEmpPassword());
+        return encoded;
     }
 
     private void duplicateValidate(EmployeesSignUpRequestDto dto) {
@@ -146,6 +153,50 @@ public class EmployeesService {
 
         return employeesResponseDTOList;
 
+
+    }
+
+    public MypageResponseDTO findMyPage(Long empNo) {
+        log.info("empNo {}", empNo);
+
+        Employees employees = employeesRepository.findByEmpNo(empNo);
+        if(employees==null) {
+            throw new RuntimeException("해당 사원 정보가 없습니다.");
+        }
+
+        log.info("employess ----------------{}", employees);
+        return MypageResponseDTO.builder()
+                .empNo(empNo)
+                .empId(employees.getEmpId())
+                .deptName(employees.getDepartment().getDeptName())
+                .posName(employees.getPosition().getPosName())
+                .empExtension(employees.getEmpExtension())
+                .empPhone(employees.getEmpPhone())
+                .empAddress(employees.getEmpAddress())
+                .build();
+
+    }
+
+    public MypageResponseDTO updateMyPage(MypageModifyDTO modifyDTO) {
+
+        log.info("{}---------", modifyDTO);
+
+        Employees employees = employeesRepository.findByEmpId(modifyDTO.getEmpId()).orElseThrow();
+        employees.setEmpAddress(modifyDTO.getEmpAddress());
+        employees.setEmpPhone(modifyDTO.getEmpPhone());
+        employees.setEmpPassword(encoder.encode(modifyDTO.getEmpPassword()));
+
+        Employees saved = employeesRepository.save(employees);
+
+        return MypageResponseDTO.builder()
+                 .empNo(saved.getEmpNo())
+                .empId(saved.getEmpId())
+                .deptName(saved.getDepartment().getDeptName())
+                .posName(saved.getPosition().getPosName())
+                .empExtension(saved.getEmpExtension())
+                .empPhone(saved.getEmpPhone())
+                .empAddress(saved.getEmpAddress())
+                .build();
 
     }
 }
