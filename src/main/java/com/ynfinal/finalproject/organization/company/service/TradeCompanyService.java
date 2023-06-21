@@ -12,8 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,6 +32,7 @@ public class TradeCompanyService {
                     String empName = tradeCompany.getEmployees() != null ? tradeCompany.getEmployees().getEmpName() : null;
 
                     return TradeCompanyResponseDTO.builder()
+                            .trCompName(tradeCompany.getTrCompName())
                             .trCompCode(tradeCompany.getTrCompCode())
                             .trCompRegNo(tradeCompany.getTrCompRegNo())
                             .trCompCeo(tradeCompany.getTrCompCeo())
@@ -53,42 +54,47 @@ public class TradeCompanyService {
     }
 
 
-    public TradeCompanyResponseDTO insertTradeCompany(TradeCompanyRequestDTO tradeCompanyRequestDTO) {
-
-        StoreHouseListResponseDTO storeHouseListResponseDTO =
-                storeHouseRepository.findByStorehouseName(tradeCompanyRequestDTO.getStorehouseName()).orElseThrow();
-
-        TradeCompany tradeCompany = TradeCompany.builder()
-                .trCompName(tradeCompanyRequestDTO.getTrCompName())
-                .trCompPhone(tradeCompanyRequestDTO.getTrCompPhone())
-                .trAddr(tradeCompanyRequestDTO.getTrAddr())
-                .trEtc(tradeCompanyRequestDTO.getTrEtc())
-                .trCompCode(tradeCompanyRequestDTO.getTrCompCode())
-                .trStartDate(tradeCompanyRequestDTO.getTrStartDate())
-                .trBuy(tradeCompanyRequestDTO.getTrBuy())
-                .trSell(tradeCompanyRequestDTO.getTrSell())
-                .storeHouse(StoreHouse.builder()
-                        .storehouseCode(storeHouseListResponseDTO.getStorehouseCode())
-                        .storehouseAddr(storeHouseListResponseDTO.getStorehouseAddr())
-                        .storehouseType(storeHouseListResponseDTO.getStorehouseType())
-                        .storehouseStartDate(storeHouseListResponseDTO.getStorehouseStartDate())
-                        .storehouseName(storeHouseListResponseDTO.getStorehouseName())
-                        .build())
-                .build();
-
-        TradeCompany save = tradeCompanyRepository.save(tradeCompany);
+    public List<TradeCompanyResponseDTO> insertTradeCompany(List<TradeCompanyRequestDTO> tradeCompanyRequestDTOList) {
+        List<TradeCompanyResponseDTO> list = new ArrayList<>();
+        for (TradeCompanyRequestDTO tradeCompanyRequestDTO : tradeCompanyRequestDTOList) {
 
 
-        return TradeCompanyResponseDTO.builder()
-                .trCompName(save.getTrCompName())
-                .trCompPhone(save.getTrCompPhone())
-                .trAddr(save.getTrAddr())
-                .trEtc(save.getTrEtc())
-                .trCompCode(save.getTrCompCode())
-                .trStartDate(save.getTrStartDate())
-                .trBuy(save.getTrBuy())
-                .trSell(save.getTrSell())
-                .storehouseName(save.getStoreHouse().getStorehouseName())
-                .build();
+            StoreHouseListResponseDTO storeHouseListResponseDTO =
+                    storeHouseRepository.findByStorehouseName(tradeCompanyRequestDTO.getStorehouseName()).orElseThrow();
+
+            TradeCompany tradeCompany = TradeCompany.builder()
+                    .trCompCode(tradeCompanyRequestDTO.getTrCompCode())
+                    .trCompName(tradeCompanyRequestDTO.getTrCompName())
+                    .trCompPhone(tradeCompanyRequestDTO.getTrCompPhone())
+                    .trAddr(tradeCompanyRequestDTO.getTrAddr())
+                    .trEtc(tradeCompanyRequestDTO.getTrEtc())
+                    .trCompCode(tradeCompanyRequestDTO.getTrCompCode())
+                    .trStartDate(tradeCompanyRequestDTO.getTrStartDate())
+                    .trBuy(tradeCompanyRequestDTO.getTrBuy())
+                    .trSell(tradeCompanyRequestDTO.getTrSell())
+                    .storeHouse(StoreHouse.builder()
+                            .storehouseCode(storeHouseListResponseDTO.getStorehouseCode())
+                            .storehouseAddr(storeHouseListResponseDTO.getStorehouseAddr())
+                            .storehouseType(storeHouseListResponseDTO.getStorehouseType())
+                            .storehouseStartDate(storeHouseListResponseDTO.getStorehouseStartDate())
+                            .storehouseName(storeHouseListResponseDTO.getStorehouseName())
+                            .build())
+                    .build();
+
+            TradeCompany save = tradeCompanyRepository.save(tradeCompany);
+
+            list.add(TradeCompanyResponseDTO.builder()
+                    .trCompName(save.getTrCompName())
+                    .trCompPhone(save.getTrCompPhone())
+                    .trAddr(save.getTrAddr())
+                    .trEtc(save.getTrEtc())
+                    .trCompCode(save.getTrCompCode())
+                    .trStartDate(save.getTrStartDate())
+                    .trBuy(save.getTrBuy())
+                    .trSell(save.getTrSell())
+                    .storehouseName(save.getStoreHouse().getStorehouseName())
+                    .build());
+        }
+        return list;
     }
 }

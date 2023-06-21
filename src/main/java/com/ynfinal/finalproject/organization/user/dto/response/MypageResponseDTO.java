@@ -13,6 +13,7 @@ import lombok.*;
 public class MypageResponseDTO {
     private Long empNo;
     private String empId;
+    private String empName;
     private String deptName;
     private String posName;
     private String empExtension;

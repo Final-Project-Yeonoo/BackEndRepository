@@ -36,10 +36,10 @@ public class TradeCompanyController {
     }
 
     @PostMapping
-    public ResponseEntity<?> handleTrCompPostRequest(@Validated @RequestBody TradeCompanyRequestDTO tradeCompanyRequestDTO){
+    public ResponseEntity<?> handleTrCompPostRequest(@Validated @RequestBody List<TradeCompanyRequestDTO> tradeCompanyRequestDTO){
 
-        TradeCompanyResponseDTO tradeCompanyResponseDTO = tradeCompanyService.insertTradeCompany(tradeCompanyRequestDTO);
-        return ResponseEntity.ok(tradeCompanyResponseDTO);
+        List<TradeCompanyResponseDTO> tradeCompanyResponseDTOS = tradeCompanyService.insertTradeCompany(tradeCompanyRequestDTO);
+        return ResponseEntity.ok(tradeCompanyResponseDTOS);
     }
 //    @PutMapping
 //

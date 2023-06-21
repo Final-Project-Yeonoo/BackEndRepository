@@ -168,6 +168,7 @@ public class EmployeesService {
         return MypageResponseDTO.builder()
                 .empNo(empNo)
                 .empId(employees.getEmpId())
+                .empName(employees.getEmpName())
                 .deptName(employees.getDepartment().getDeptName())
                 .posName(employees.getPosition().getPosName())
                 .empExtension(employees.getEmpExtension())
