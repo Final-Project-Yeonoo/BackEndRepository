@@ -45,6 +45,7 @@ public class TradeCompanyService {
                             .trUpdateDate(tradeCompany.getTrUpdateDate())
                             .trAddr(tradeCompany.getTrAddr())
                             .storehouseName(storehouseName)
+                            .trEtc(tradeCompany.getTrEtc())
                             .empName(empName)
                             .build();
                 })
