@@ -15,7 +15,7 @@ public class StoreHouseListResponseDTO {
 
     private Long storehouseCode;
     private String storehouseName;
-    private StoreHouseType storehouseType;
+    private String storehouseType;
     private Date storehouseStartDate;
     private String storehouseAddr;
 
@@ -26,6 +26,7 @@ public class StoreHouseListResponseDTO {
         this.storehouseName = storeHouse.getStorehouseName();
         this.storehouseAddr = storeHouse.getStorehouseAddr();
         this.storehouseStartDate = storeHouse.getStorehouseStartDate();
+        this.storehouseType = String.valueOf(storeHouse.getStorehouseType());
 
     }
 }

@@ -2,6 +2,7 @@ package com.ynfinal.finalproject.organization.company.service;
 
 import com.ynfinal.finalproject.inventory.storeHouse.dto.response.StoreHouseListResponseDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.entity.StoreHouse;
+import com.ynfinal.finalproject.inventory.storeHouse.entity.StoreHouseType;
 import com.ynfinal.finalproject.inventory.storeHouse.repository.StoreHouseRepository;
 import com.ynfinal.finalproject.organization.company.dto.request.TradeCompanyRequestDTO;
 import com.ynfinal.finalproject.organization.company.dto.response.TradeCompanyResponseDTO;
@@ -76,7 +77,7 @@ public class TradeCompanyService {
                     .storeHouse(StoreHouse.builder()
                             .storehouseCode(storeHouseListResponseDTO.getStorehouseCode())
                             .storehouseAddr(storeHouseListResponseDTO.getStorehouseAddr())
-                            .storehouseType(storeHouseListResponseDTO.getStorehouseType())
+                            .storehouseType(StoreHouseType.valueOf(storeHouseListResponseDTO.getStorehouseType()))
                             .storehouseStartDate(storeHouseListResponseDTO.getStorehouseStartDate())
                             .storehouseName(storeHouseListResponseDTO.getStorehouseName())
                             .build())

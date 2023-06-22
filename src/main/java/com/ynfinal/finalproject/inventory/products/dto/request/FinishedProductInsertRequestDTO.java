@@ -15,6 +15,9 @@ public class FinishedProductInsertRequestDTO {
     private int finishedPrice;
     private int finishedCount;
 
+
+
+
     public FinishedProduct toEntity(){
         return FinishedProduct.builder()
                 .finishedName(this.finishedName)
