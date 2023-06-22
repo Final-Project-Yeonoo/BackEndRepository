@@ -11,5 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class DepartmentResponseDTO {
+    private Long deptCode;
     private String deptName;
 }

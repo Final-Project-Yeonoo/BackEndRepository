@@ -22,6 +22,7 @@ public class DepartmentService {
     public List<DepartmentResponseDTO> findAll() {
         List<DepartmentResponseDTO> departmentResponseDTOList = departmentRepository.findAll().stream().map(
                 department -> DepartmentResponseDTO.builder()
+                        .deptCode(department.getDeptCode())
                         .deptName(department.getDeptName())
                         .build()
         ).collect(Collectors.toList());
