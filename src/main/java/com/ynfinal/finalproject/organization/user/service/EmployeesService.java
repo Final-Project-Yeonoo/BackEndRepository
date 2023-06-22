@@ -143,12 +143,31 @@ public class EmployeesService {
     public List<EmployeesResponseDTO> findAll() {
         List<Employees> employeesList = employeesRepository.findAll();
         List<EmployeesResponseDTO> employeesResponseDTOList = employeesList.stream().map(employees ->
-                EmployeesResponseDTO.builder()
-                        .empId(employees.getEmpId())
-                        .empName(employees.getEmpName())
-                        .posName(employees.getPosition().getPosName())
-                        .deptName(employees.getDepartment().getDeptName())
-                        .build()
+        {
+            Authorization byEmployeesEmpNo = authorizationRepository.findByEmployees_EmpNo(employees.getEmpNo());
+
+
+
+            return EmployeesResponseDTO.builder()
+                    .empId(employees.getEmpId())
+                    .empName(employees.getEmpName())
+                    .posName(employees.getPosition().getPosName())
+                    .deptName(employees.getDepartment().getDeptName())
+                    .empExtension(employees.getEmpExtension())
+                    .empHiredDate(employees.getEmpHiredDate())
+                    .empPhone(employees.getEmpPhone())
+                    .empAddress(employees.getEmpAddress())
+                    .empValidate(employees.isEmpValidate())
+                    .userAuth(byEmployeesEmpNo.getUserAuth())
+                    .infoAuth(byEmployeesEmpNo.getInfoAuth())
+                    .salesAuth(byEmployeesEmpNo.getSalesAuth())
+                    .purchaseAuth(byEmployeesEmpNo.getPurchaseAuth())
+                    .inventoryAuth(byEmployeesEmpNo.getInventoryAuth())
+                    .productAuth(byEmployeesEmpNo.getProductAuth())
+                    .build();
+        }
+
+
         ).collect(Collectors.toList());
 
         return employeesResponseDTOList;
