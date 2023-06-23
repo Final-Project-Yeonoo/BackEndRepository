@@ -1,8 +1,9 @@
 package com.ynfinal.finalproject.inventory.storeHouse.service;
 
-import com.ynfinal.finalproject.inventory.products.entity.RawProduct;
+import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHouseDeleteRequestDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHouseInsertDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHouseModifyRequestDTO;
+import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHousefilterDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.response.StoreHouseListResponseDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.entity.StoreHouse;
 import com.ynfinal.finalproject.inventory.storeHouse.entity.StoreHouseType;
@@ -32,13 +33,17 @@ public class StoreHouseService {
 
     }
 
-    public boolean insertStoreHouse(StoreHouseInsertDTO requestDTO) {
+    public boolean insertStoreHouse(List<StoreHouseInsertDTO> requestDTOList) {
 
         log.info("insert dto");
-        StoreHouse storeHouse = requestDTO.toEntity();
+        for (StoreHouseInsertDTO requestDTO : requestDTOList) {
+            StoreHouse storeHouse = requestDTO.toEntity();
 
-        repository.save(storeHouse);
-        log.info("새로운 창고가 등록되었습니다. {}", storeHouse.getStorehouseName());
+            log.info("{} ---------- ",storeHouse);
+
+            repository.save(storeHouse);
+            log.info("새로운 창고가 등록되었습니다. {}", storeHouse.getStorehouseName());
+        }
 
         return true;
     }
@@ -99,4 +104,21 @@ public class StoreHouseService {
         repository.deleteById(storehouseCode);
 
     }
+
+    public void deleteListStoreHouse(List<StoreHouseDeleteRequestDTO> storeHouseDeleteRequestDTOS) {
+
+        storeHouseDeleteRequestDTOS.stream().forEach( d -> {
+                    if(d.getStorehouseCode()==null) return;
+                    repository.deleteById(d.getStorehouseCode());
+                }
+        );
+
+
+    }
+
+//    public List<StoreHouseListResponseDTO> storehousefilterList(StoreHousefilterDTO dto) {
+//        return repository.findFilteredStorehouses(dto.getStorehouseName(), dto.getStorehouseAddr(), dto.getStorehouseType(), dto.getStorehouseEtc()).stream()
+//                .map(StoreHouseListResponseDTO::new)
+//                .collect(Collectors.toList());
+//    }
 }

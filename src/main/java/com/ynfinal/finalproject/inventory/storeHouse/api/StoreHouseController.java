@@ -1,8 +1,10 @@
 package com.ynfinal.finalproject.inventory.storeHouse.api;
 
 import com.ynfinal.finalproject.inventory.products.dto.request.FinishedProductInsertRequestDTO;
+import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHouseDeleteRequestDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHouseInsertDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHouseModifyRequestDTO;
+import com.ynfinal.finalproject.inventory.storeHouse.dto.request.StoreHousefilterDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.dto.response.StoreHouseListResponseDTO;
 import com.ynfinal.finalproject.inventory.storeHouse.service.StoreHouseService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-@Controller
+@RestController
 @Slf4j
 @RequiredArgsConstructor
 @Validated
@@ -36,10 +38,26 @@ public class StoreHouseController {
         return ResponseEntity.ok().body(storehouseList);
     }
 
+
+
+//    @GetMapping("/filter")
+//    public ResponseEntity<?> storeHouseFilterList(@RequestParam(required = false) String storehouseName,
+//                                                  @RequestParam(required = false) String storehouseAddr,
+//                                                  @RequestParam(required = false) String storehouseType,
+//                                                  @RequestParam(required = false) String storehouseEtc){
+//        StoreHousefilterDTO dto = new StoreHousefilterDTO();
+//        dto.setStorehouseName(storehouseName);
+//        dto.setStorehouseAddr(storehouseAddr);
+//        dto.setStorehouseType(storehouseType);
+//        dto.setStorehouseEtc(storehouseEtc);
+//
+//        List<StoreHouseListResponseDTO> storehouseList = storeHouseService.storehousefilterList(dto);
+//        return ResponseEntity.ok().body(storehouseList);
+//    }
     // 창고 등록하기
     @PostMapping
     public ResponseEntity<?> addStoreHouseProduct(
-            @Valid @RequestBody StoreHouseInsertDTO requestDTO
+            @Valid @RequestBody List<StoreHouseInsertDTO> requestDTO
     ){
 
         log.info("/ynfinal/store : POST!! ");
@@ -71,6 +89,18 @@ public class StoreHouseController {
         log.info("/ynfinal/store/{storehouseCode} : DELETE");
 
         storeHouseService.deleteStoreHouse(storehouseCode);
+        return ResponseEntity.ok().body("창고를 정상적으로 삭제했습니다.");
+    }
+
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteListStoreHouse(
+            @RequestBody @Validated List<StoreHouseDeleteRequestDTO> storeHouseDeleteRequestDTOS
+    ){
+
+        log.info("/ynfinal/store : DELETE");
+
+        storeHouseService.deleteListStoreHouse(storeHouseDeleteRequestDTOS);
         return ResponseEntity.ok().body("창고를 정상적으로 삭제했습니다.");
     }
 

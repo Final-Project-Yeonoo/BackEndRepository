@@ -34,6 +34,8 @@ public class StoreHouse {
     @Column(length = 200)
     private String storehouseAddr;
 
+    private String storehouseEtc;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
