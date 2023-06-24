@@ -21,6 +21,7 @@ public class EmployeesResponseDTO {
     private String empId;
     private String deptName;
     private String posName;
+    private String empPassword;
     private String empExtension;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime empHiredDate;

@@ -157,6 +157,7 @@ public class EmployeesService {
                     .empHiredDate(employees.getEmpHiredDate())
                     .empPhone(employees.getEmpPhone())
                     .empAddress(employees.getEmpAddress())
+                    .empPassword(employees.getEmpPassword())
                     .empValidate(employees.isEmpValidate())
                     .userAuth(byEmployeesEmpNo.getUserAuth())
                     .infoAuth(byEmployeesEmpNo.getInfoAuth())
