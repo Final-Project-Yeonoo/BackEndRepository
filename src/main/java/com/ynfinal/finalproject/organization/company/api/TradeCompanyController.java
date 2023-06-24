@@ -37,7 +37,6 @@ public class TradeCompanyController {
 
     @PostMapping
     public ResponseEntity<?> handleTrCompPostRequest(@Validated @RequestBody List<TradeCompanyRequestDTO> tradeCompanyRequestDTO){
-
         List<TradeCompanyResponseDTO> tradeCompanyResponseDTOS = tradeCompanyService.insertTradeCompany(tradeCompanyRequestDTO);
         return ResponseEntity.ok(tradeCompanyResponseDTOS);
     }
