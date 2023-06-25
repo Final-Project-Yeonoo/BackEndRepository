@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,8 +39,11 @@ public class EstimateService {
     }
 
     public void insertEstimates(List<EstimateRequestDTO> requestDTO) {
+        Date currentDate = new Date();
         for (EstimateRequestDTO estimateRequestDTO : requestDTO) {
             Estimate estimate = estimateRequestDTO.toEntity();
+
+
             Employees employees = employeesRepository.findByEmpNo(1L);
             TradeCompany tradeCompany = tradeCompanyRepository.findById(1L).orElseThrow();
             Project project = projectRepository.findByProjectCode(1L);
@@ -47,6 +51,10 @@ public class EstimateService {
             estimate.setEmployees(employees);
             estimate.setTradeCompany(tradeCompany);
             estimate.setProject(project);
+
+            if(estimate.getProjectRegDate()==null) estimate.setProjectRegDate(currentDate);
+            estimate.setProjectUpdateDate(currentDate);
+
             estimateRepository.save(estimate);
         }
     }
