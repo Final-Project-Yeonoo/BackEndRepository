@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Builder
 @Entity
+@Setter
 @Table(name = "FINISHED_PRODUCT")
 public class FinishedProduct {
 

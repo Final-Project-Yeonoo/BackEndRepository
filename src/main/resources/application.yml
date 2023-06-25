@@ -27,3 +27,11 @@ springdoc:
 
 jwt:
   secret: tj3FeRCresRAKT/1VsmmSiwnGtTLfUS+Cx5qyvHy0xM8huR65mt6dykV6NvXz8ym1nubaf9p4gJNRPXV+YGPKA==
+
+# s3 접근설정
+aws:
+  credentials:
+    accessKey:
+    secretKey:
+  region:
+  bucketName:
