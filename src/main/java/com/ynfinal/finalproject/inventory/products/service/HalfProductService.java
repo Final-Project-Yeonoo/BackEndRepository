@@ -6,6 +6,7 @@ import com.ynfinal.finalproject.inventory.products.dto.response.HalfProductListR
 import com.ynfinal.finalproject.inventory.products.entity.HalfProduct;
 import com.ynfinal.finalproject.inventory.products.entity.RawProduct;
 import com.ynfinal.finalproject.inventory.products.repository.HalfProductRepository;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -86,7 +87,7 @@ public class HalfProductService {
                     .halfName(halfName)
                     .halfPrice(halfPrice)
                     .halfCount(halfCount)
-                    .employees(e)
+                    .employees(Employees.builder().empNo(empNo).build())
                     .halfRegDate(halfRegDate)
                     .halfRegUpdate(LocalDateTime.now())
                     .build();

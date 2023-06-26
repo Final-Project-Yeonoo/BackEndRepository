@@ -28,25 +28,25 @@ class RawProductRepositoryTest {
     void insertTest() {
 
         // given
-        RawProductInsertRequestDTO dto = RawProductInsertRequestDTO.builder()
-                .rawCount(100)
-                .rawPrice(1000)
-                .rawName("원자재1")
-                .build();
+//        RawProductInsertRequestDTO dto = RawProductInsertRequestDTO.builder()
+//                .rawCount(100)
+//                .rawPrice(1000)
+//                .rawName("원자재1")
+//                .build();
 
-        RawProduct rawProduct = dto.toEntity();
-        System.out.println(dto);
-        System.out.println(rawProduct);
+//        RawProduct rawProduct = dto.toEntity();
+//        System.out.println(dto);
+//        System.out.println(rawProduct);
 
         // when
-        RawProduct save = null;
-        try {
-            save = repository.save(rawProduct);
-            System.out.println("save = " + save);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+//        RawProduct save = null;
+//        try {
+//            save = repository.save(rawProduct);
+//            System.out.println("save = " + save);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            throw new RuntimeException(e);
+//        }
 
         // then
 

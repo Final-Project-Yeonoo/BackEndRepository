@@ -1,6 +1,7 @@
 package com.ynfinal.finalproject.inventory.products.dto.request;
 
 import com.ynfinal.finalproject.inventory.products.entity.HalfProduct;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.*;
 
 @Getter
@@ -16,6 +17,7 @@ public class HalfProductInsertRequestDTO {
     private String halfName;
     private String halfComment;
     private int halfCount;
+    private Long empNo;
 
     public HalfProduct toEntity(){
 
@@ -24,7 +26,7 @@ public class HalfProductInsertRequestDTO {
                 .halfCount(this.halfCount)
                 .halfComment(this.halfComment)
                 .halfName(this.halfName)
-
+                .employees(Employees.builder().empNo(empNo).build())
                 .build();
     }
 }

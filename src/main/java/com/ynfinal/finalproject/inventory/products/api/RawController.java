@@ -23,7 +23,7 @@ public class RawController {
 
     private final RawProductService rawProductService;
 
-    // 모든 원자제 리스트
+    // 모든 원자재 리스트
     @GetMapping
     public ResponseEntity<?> rawItemList(){
 
@@ -35,7 +35,7 @@ public class RawController {
 
     }
 
-    // 원자제 등록하기
+    // 원자재 등록하기
     @PostMapping
     public ResponseEntity<?> addRawProducts(
             @Valid @RequestBody

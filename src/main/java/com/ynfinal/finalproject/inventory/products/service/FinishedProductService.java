@@ -62,7 +62,7 @@ public class FinishedProductService {
             Long finishedCode = entity.getFinishedCode();
             int finishedCount = entity.getFinishedCount();
             String finishedName = entity.getFinishedName();
-//            Long empNo = entity.getEmployees().getEmpNo();
+            Long empNo = entity.getEmployees().getEmpNo();
             LocalDateTime finishedRegDate = entity.getFinishedRegDate();
 
             // dto에서 받아온 값
@@ -71,7 +71,7 @@ public class FinishedProductService {
             int modifiedFinishedCount = requestDTO.getFinishedCount();
             int modifiedFinishedPrice = requestDTO.getFinishedPrice();
             String modifiedFinishedSize = requestDTO.getFinishedSize();
-            Long modifiedStroeCode = requestDTO.getStoreHouse().getStorehouseCode();
+            Long modifiedStoreCode = requestDTO.getStoreHouse().getStorehouseCode();
 
 
             // dto에 값이 있을때만 update한다
@@ -91,8 +91,8 @@ public class FinishedProductService {
                     .finishedPrice(finishedPrice)
                     .finishedCount(finishedCount)
                     .finishedSize(modifiedFinishedSize)
-                    .storeHouse(StoreHouse.builder().storehouseCode(modifiedStroeCode).build())
-//                    .employees(Employees.builder().empNo(empNo).build())
+                    .storeHouse(StoreHouse.builder().storehouseCode(modifiedStoreCode).build())
+                    .employees(Employees.builder().empNo(empNo).build())
                     .finishedRegDate(finishedRegDate)
                     .finishedRegUpdate(LocalDateTime.now())
                     .build();

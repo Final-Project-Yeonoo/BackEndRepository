@@ -12,7 +12,7 @@ import lombok.*;
 public class RawProductInsertRequestDTO {
     private Long rawCode;
     private String rawName;
-    private Integer rawCount;
+
 
     private String rawType;
 
@@ -20,8 +20,7 @@ public class RawProductInsertRequestDTO {
         return RawProduct.builder()
                 .rawCode(this.rawCode)
                 .rawName(this.rawName)
-                .rawCount(this.rawCount)
-                .rawCode(this.rawCode)
+                .rawType(this.rawType)
                 .build();
     }
 
