@@ -11,16 +11,20 @@ import lombok.*;
 @Builder
 public class HalfProductInsertRequestDTO {
 
+//    아이템코드
+    private Long halfCode;
     private String halfName;
-    private int halfPrice;
+    private String halfComment;
     private int halfCount;
 
     public HalfProduct toEntity(){
 
         return HalfProduct.builder()
+                .halfCode(this.halfCode)
                 .halfCount(this.halfCount)
+                .halfComment(this.halfComment)
                 .halfName(this.halfName)
-                .halfPrice(this.halfPrice)
+
                 .build();
     }
 }

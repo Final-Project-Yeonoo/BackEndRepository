@@ -60,12 +60,13 @@ public class HalfProductService {
             // 기본값을 유지하기 위한 코드
             long halfCode = entity.getHalfCode();
             int halfCount = entity.getHalfCount();
-            int halfPrice = entity.getHalfPrice();
+            Long empNo = entity.getEmployees().getEmpNo();
             String halfName = entity.getHalfName();
             LocalDateTime halfRegDate = entity.getHalfRegDate();
 
             // dto에서 받아온 값
             String modifiedHalfName = requestDTO.getHalfName();
+            int halfPrice = requestDTO.halfPrice;
             int modifiedHalfCount = requestDTO.getHalfCount();
             int modifiedHalfPrice = requestDTO.getHalfPrice();
 
@@ -85,6 +86,7 @@ public class HalfProductService {
                     .halfName(halfName)
                     .halfPrice(halfPrice)
                     .halfCount(halfCount)
+                    .employees(e)
                     .halfRegDate(halfRegDate)
                     .halfRegUpdate(LocalDateTime.now())
                     .build();

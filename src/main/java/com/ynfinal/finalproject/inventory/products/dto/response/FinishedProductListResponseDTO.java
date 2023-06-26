@@ -23,6 +23,7 @@ public class FinishedProductListResponseDTO {
     private int finishedPrice;
     private StoreHouse storeHouse;
     private Employees employees;
+    private String finishedSize;
 
 
     public FinishedProductListResponseDTO(FinishedProduct finishedProduct) {
@@ -30,6 +31,7 @@ public class FinishedProductListResponseDTO {
         this.finishedName = finishedProduct.getFinishedName();
         this.finishedCount = finishedProduct.getFinishedCount();
         this.finishedPrice = finishedProduct.getFinishedPrice();
+        this.finishedSize = finishedProduct.getFinishedSize();
         this.finishedRegDate = finishedProduct.getFinishedRegDate();
         this.finishedRegUpdate = finishedProduct.getFinishedRegUpdate();
 

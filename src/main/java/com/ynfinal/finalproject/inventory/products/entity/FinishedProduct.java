@@ -30,6 +30,9 @@ public class FinishedProduct {
     @Builder.Default
     private int finishedCount = 0;
 
+    @Column(length = 30, nullable = true)
+    private String finishedSize;
+
     @CreationTimestamp
     private LocalDateTime finishedRegDate;
 

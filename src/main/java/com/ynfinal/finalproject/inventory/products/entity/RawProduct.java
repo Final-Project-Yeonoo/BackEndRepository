@@ -26,6 +26,9 @@ public class RawProduct {
     @Column(length = 20, nullable = false)
     private String rawName;
 
+    @Column(length = 30, nullable = true)
+    private String rawType;
+
     @Column(length = 8)
     @Builder.Default
     private int rawCount = 0;
