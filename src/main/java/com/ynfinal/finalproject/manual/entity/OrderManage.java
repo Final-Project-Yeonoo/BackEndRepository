@@ -1,7 +1,9 @@
 package com.ynfinal.finalproject.manual.entity;
 
+import com.ynfinal.finalproject.organization.company.entity.TradeCompany;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -37,11 +39,15 @@ public class OrderManage {
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_NO")
-    private Employees employees;
+    @JoinColumn(name = "TR_COMP_CODE")
+    private TradeCompany tradeCompany;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ESTIMATE_CODE")
-    private Estimate estimate;
+    @JoinColumn(name = "EMP_NO")
+    private Employees employees;
+    @CreationTimestamp
+    private Date estimateDate;
+    @Enumerated(EnumType.STRING)
+    private EstimateOrderType estimateOrderType;
 
 }

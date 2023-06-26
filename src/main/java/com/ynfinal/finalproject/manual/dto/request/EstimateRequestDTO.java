@@ -9,6 +9,8 @@ import com.ynfinal.finalproject.organization.company.entity.TradeCompany;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.*;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 @Getter
 @Setter
@@ -19,7 +21,9 @@ import java.util.Date;
 public class EstimateRequestDTO {
     private Long estimateCode;
     private Date estimateDate;
+    @Enumerated(EnumType.STRING)
     private EstimateOrderType estimateOrderType;
+    @Enumerated(EnumType.STRING)
     private EstimatePayment estimatePayment;
     private String estimateEtc;
     private Date projectRegDate;

@@ -20,6 +20,7 @@ public class OrderDetailCreateDTO {
     private Long finishedCode;
     private Long orderCode;
 
+
     public OrderDetail toEntity() {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setOrderDetailSeq(orderDetailSeq);

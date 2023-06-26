@@ -18,6 +18,7 @@ public class OrderDetailResponseDTO {
     private Float orderDetailVat;
     private String orderDetailEtc;
     private Long finishedCode;
+    private String finishedName;
     private Long orderCode;
 
 
@@ -29,6 +30,7 @@ public class OrderDetailResponseDTO {
         this.orderDetailVat = orderDetail.getOrderDetailVAT();
         this.orderDetailEtc = orderDetail.getOrderDetailEtc();
         this.finishedCode = orderDetail.getFinishedProduct().getFinishedCode();
+        this.finishedName = orderDetail.getFinishedProduct().getFinishedName();
         this.orderCode = orderDetail.getOrderManage().getOrderCode();
     }
 

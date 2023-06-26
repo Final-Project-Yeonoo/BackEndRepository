@@ -37,12 +37,6 @@ public class OrderDetailService {
     public void createOrderDetails(List<OrderDetailCreateDTO> requestDTOs) {
         for (OrderDetailCreateDTO requestDTO : requestDTOs) {
             OrderDetail orderDetail =requestDTO.toEntity();
-            FinishedProduct finishedProduct = finishedProductRepository.findById(requestDTO.getFinishedCode()).orElseThrow();
-
-            OrderManage orderManage = orderManageRepository.findById(orderDetail.getOrderDetailSeq()).orElseThrow();
-            orderDetail.setFinishedProduct(finishedProduct);
-            orderDetail.setOrderManage(orderManage);
-
             orderDetailRepository.save(orderDetail);
         }
     }

@@ -40,12 +40,11 @@ public class OrderManageService {
 
         for (OrderManageCreateDTO requestDTO : requestDTOs) {
             OrderManage orderManage = requestDTO.toEntity();
-            Employees employees = employeesRepository.findByEmpNo(1L);
-            Estimate estimate = estimateRepository.findById(1L).orElseThrow();
-            Project project = projectRepository.findByProjectCode(1L);
-            orderManage.setEstimate(estimate);
-            orderManage.setEmployees(employees);
-            orderManage.setProject(project);
+            Employees employees = employeesRepository.findByEmpId(requestDTO.getEmpId()).orElseThrow();
+//            Project project = projectRepository.findByProjectCode(1L);
+            orderManage.setEmployees(Employees.builder().empNo(employees.getEmpNo()).build());
+            orderManage.setProject(Project.builder().projectCode(requestDTO.getProjectCode()).build());
+            orderManage.setTradeCompany(TradeCompany.builder().trCompCode(requestDTO.getTrCompCode()).build());
             orderManageRepository.save(orderManage);
         }
     }
