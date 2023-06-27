@@ -32,7 +32,7 @@ public class ItemOrderController {
 
     @PostMapping
     public ResponseEntity<?> itemOrderInput(
-            ItemOrderInputRequestDTO requestDTO
+            @RequestBody ItemOrderInputRequestDTO requestDTO
     ){
 
         log.info("/ynfinal/order : POST !! ");

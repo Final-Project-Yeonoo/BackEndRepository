@@ -99,4 +99,10 @@ public class TradeCompanyService {
         }
         return list;
     }
+
+    public void deleteOrderManages(List<Long> trIds) {
+        for (Long trId : trIds) {
+            tradeCompanyRepository.deleteById(trId);
+        }
+    }
 }

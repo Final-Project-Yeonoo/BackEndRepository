@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class RawProductService {
 
     private final RawProductRepository rawRepository;

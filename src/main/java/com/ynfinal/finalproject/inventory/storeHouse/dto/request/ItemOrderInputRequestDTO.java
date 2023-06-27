@@ -6,6 +6,8 @@ import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.util.Check;
 import lombok.*;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 import java.util.Date;
 //  발주서 등록 요청 DTO
@@ -17,6 +19,7 @@ import java.util.Date;
 public class ItemOrderInputRequestDTO {
 
     // 발주서의 저장, 확정 확인
+    @Enumerated(EnumType.STRING)
     private Check itemOrderCheck;
 
     // 입고 예정 일자 / 발주일? -> 추가하거나 하나마 사용하거나 해야돼요
@@ -43,6 +46,8 @@ public class ItemOrderInputRequestDTO {
                 .itemOrderStart(this.itemOrderStart)
                 .itemOrderReg(this.itemOrderReg)
                 .itemOrderUpdate(this.itemOrderUpdate)
+                .employees(Employees.builder().empNo(empNo).build())
+                .tradeCompany(TradeCompany.builder().trCompCode(trCompCode).build())
                 .build();
 
         return itemOrder;

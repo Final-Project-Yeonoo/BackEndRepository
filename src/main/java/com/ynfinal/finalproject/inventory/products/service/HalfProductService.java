@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class HalfProductService {
 
     private final HalfProductRepository halfRepository;
