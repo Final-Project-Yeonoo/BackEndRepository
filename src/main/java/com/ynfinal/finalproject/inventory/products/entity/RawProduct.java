@@ -39,7 +39,7 @@ public class RawProduct {
     @CreationTimestamp
     private LocalDateTime rawRegUpdate;
 
-    @Column(columnDefinition = "INT CHECK (rawPrice >= 0)", length = 10)
+    @Column(length = 10)
     private int rawPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -39,7 +39,7 @@ public class HalfProduct {
     @Column(length = 100, nullable = true)
     private String halfComment;
 
-    @Column(columnDefinition = "INT CHECK (halfPrice >= 0)", length = 10)
+    @Column( length = 10)
     private int halfPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)

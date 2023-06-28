@@ -40,7 +40,7 @@ public class FinishedProduct {
     @CreationTimestamp
     private LocalDateTime finishedRegUpdate;
 
-    @Column(columnDefinition = "INT CHECK (finishedPrice >= 0)", length = 10)
+    @Column( length = 10)
     private int finishedPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
