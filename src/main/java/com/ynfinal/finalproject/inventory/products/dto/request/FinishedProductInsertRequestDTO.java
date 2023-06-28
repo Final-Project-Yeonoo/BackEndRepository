@@ -11,9 +11,9 @@ import lombok.*;
 @EqualsAndHashCode
 @Builder
 public class FinishedProductInsertRequestDTO {
-
+    private Long finishedCode;
     private String finishedName;
-    private int finishedCount;
+
     private String finishedSize;
 
 
@@ -22,8 +22,8 @@ public class FinishedProductInsertRequestDTO {
 
     public FinishedProduct toEntity(){
         return FinishedProduct.builder()
+                .finishedCode(this.finishedCode)
                 .finishedName(this.finishedName)
-                .finishedCount(this.finishedCount)
                 .finishedSize(this.finishedSize)
                 .build();
     }
