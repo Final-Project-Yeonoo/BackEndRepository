@@ -37,6 +37,7 @@ public class OrderManageCreateDTO {
         orderManage.setOrderEtc(this.orderEtc);
         orderManage.setOrderDate(this.orderDate);
         orderManage.setOrderType(this.orderType);
+
         orderManage.setEstimateOrderType(this.estimateOrderType);
         orderManage.setProject(Project.builder().projectCode(this.projectCode).build());
         orderManage.setEmployees(Employees.builder().empId(this.empId).empNo(this.empNo).build());

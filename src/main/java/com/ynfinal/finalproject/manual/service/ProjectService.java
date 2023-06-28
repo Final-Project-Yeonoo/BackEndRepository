@@ -32,7 +32,9 @@ public class ProjectService {
     public void insertProject(List<ProjectPostDTO> requestDTO) {
         for (ProjectPostDTO projectPostDTO : requestDTO) {
             Project project = projectPostDTO.toEntity();
-            Employees employees = employeesRepository.findByEmpId("1001").orElseThrow();
+            String s = projectPostDTO.getEmpId();
+            if(s==null) continue;
+            Employees employees = employeesRepository.findByEmpId(s).orElseThrow();
             project.setEmployees(employees);
             projectRepository.save(project);
 

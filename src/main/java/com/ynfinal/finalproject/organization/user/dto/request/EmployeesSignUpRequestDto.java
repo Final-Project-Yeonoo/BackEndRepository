@@ -53,16 +53,16 @@ public class EmployeesSignUpRequestDto {
 
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private Check userAuth = Check.N;
+    private Check userAuth = Check.Y;
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private Check infoAuth= Check.N;
+    private Check infoAuth= Check.Y;
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private Check purchaseAuth= Check.N;
+    private Check purchaseAuth= Check.Y;
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private Check inventoryAuth= Check.N;
+    private Check inventoryAuth= Check.Y;
 
 
     public Employees toEntity(){

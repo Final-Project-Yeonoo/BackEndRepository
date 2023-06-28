@@ -143,9 +143,10 @@ public class EmployeesService {
         }
 
         log.info("{}님 로그인 성공!!", employees.getEmpName());
+        Authorization authorization = authorizationRepository.findByEmployees_EmpNo(employees.getEmpNo());
         // 로그인 성공 후에 클라이언트에 리턴된 값, 토큰 인증 방식
         // Jwt를 클라이언트에게 발급
-        String token = tokenProvider.createToken(employees);
+        String token = tokenProvider.createToken(employees, authorization);
 
         return new LoginResponseDTO(employees, token);
 
