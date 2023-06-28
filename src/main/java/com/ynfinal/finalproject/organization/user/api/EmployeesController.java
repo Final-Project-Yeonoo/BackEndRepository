@@ -1,6 +1,7 @@
 package com.ynfinal.finalproject.organization.user.api;
 
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
+import com.ynfinal.finalproject.organization.user.dto.request.EmployeesModifyDTO;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.MypageModifyDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesResponseDTO;
@@ -134,5 +135,10 @@ public class EmployeesController {
         return ResponseEntity.ok(mypageResponseDTO);
     }
 
+    @PatchMapping
+    public ResponseEntity<?> modifyEmployee (@RequestBody List<EmployeesModifyDTO> list){
+        employeesService.updateEmployee(list);
+        return ResponseEntity.ok("ok!");
+    }
 }
 

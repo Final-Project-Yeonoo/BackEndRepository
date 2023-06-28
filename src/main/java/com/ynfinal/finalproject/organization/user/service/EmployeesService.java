@@ -3,6 +3,7 @@ package com.ynfinal.finalproject.organization.user.service;
 import com.ynfinal.finalproject.organization.user.auth.TokenProvider;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
+import com.ynfinal.finalproject.organization.user.dto.request.EmployeesModifyDTO;
 import com.ynfinal.finalproject.organization.user.dto.request.MypageModifyDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesResponseDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpResponseDTO;
@@ -13,15 +14,14 @@ import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.organization.user.exception.DuplicatedEmpIdExpcetion;
 import com.ynfinal.finalproject.organization.user.exception.NoRegisteredArgumentsException;
 import com.ynfinal.finalproject.organization.user.repository.AuthorizationRepository;
-import com.ynfinal.finalproject.organization.user.repository.DepartmentRepository;
 import com.ynfinal.finalproject.organization.user.repository.EmployeesRepository;
-import com.ynfinal.finalproject.organization.user.repository.PositionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +36,15 @@ public class EmployeesService {
     private final PasswordEncoder encoder;
     private final TokenProvider tokenProvider;
     //유저리스트 변경내용
+    public void updateEmployee(List<EmployeesModifyDTO> employeesSignUpRequestDto) {
+        List<EmployeesResponseDTO> list = new ArrayList<>();
 
+        for(EmployeesModifyDTO dto : employeesSignUpRequestDto ) {
+            employeesRepository.save(dto.toEntity());
+
+        }
+
+    }
 
 
 

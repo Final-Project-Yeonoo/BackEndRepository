@@ -23,4 +23,6 @@ public interface EmployeesRepository
     boolean existsByEmpExtension(String empExtension);
     boolean existsByEmpPhone(String empPhone);
 
+
+
 }
