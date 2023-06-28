@@ -12,6 +12,7 @@ import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -76,7 +77,7 @@ class EmployeesRepositoryTest {
                 .empId("camping@camp.com")
                 .empPassword(encoder.encode("aaa111!!!"))
                 .empName("안녕안녕")
-                .empHiredDate(LocalDateTime.now())
+                .empHiredDate(LocalDate.now())
                 .empPhone("010-1111-1112")
                 .empExtension("1112")
                 .build();

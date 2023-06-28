@@ -11,6 +11,7 @@ import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Base64;
 
@@ -35,7 +36,7 @@ class EmployeesServiceTest {
                 .empId(empId)
                 .empPassword("aaa111!!!")
                 .empName("John Doe")
-                .empHiredDate(LocalDateTime.now())
+                .empHiredDate(LocalDate.now())
                 .empPhone("123-456-7890")
                 .empExtension("123")
 //                .empProfile("profile.png")
