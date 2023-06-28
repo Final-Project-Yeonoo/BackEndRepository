@@ -48,15 +48,20 @@ public class EmployeesSignUpRequestDto {
     @NotNull(message = "입사일을 입력해주세요")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDate empHiredDate;
+    @Builder.Default
     private boolean empValidate = false;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check userAuth = Check.N;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check infoAuth= Check.N;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check purchaseAuth= Check.N;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check inventoryAuth= Check.N;
 
 

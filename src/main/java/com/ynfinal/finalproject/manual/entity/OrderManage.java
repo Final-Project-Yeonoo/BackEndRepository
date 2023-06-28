@@ -16,34 +16,31 @@ import java.util.Date;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "ORDER_MANAGE")
+@Table(name = "order_manage")
 public class OrderManage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ORDER_CODE")
     private Long orderCode;
 
-    @Column(name = "ORDER_ETC", length = 200)
     private String orderEtc;
 
-    @Column(name = "ORDER_DATE")
     private Date orderDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "ORDER_TYPE")
+    @Builder.Default
     private OrderType orderType = OrderType.저장;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_CODE")
+    @JoinColumn(name = "project_code",  foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TR_COMP_CODE")
+    @JoinColumn(name = "tr_comp_code")
     private TradeCompany tradeCompany;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "emp_no", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
     @CreationTimestamp
     private Date estimateDate;

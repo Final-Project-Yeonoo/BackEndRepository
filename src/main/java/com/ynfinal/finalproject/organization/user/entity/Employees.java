@@ -18,12 +18,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "HR_EMPLOYEES")
+@Table(name = "hr_employees")
 public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long empNo;         // 1, 2, 3, 4, 5, 6
-    @Column(nullable=false, unique=true)    // 변경 못하게
+    private Long empNo;         // 1, 2, 3, 4, 5, 6// 변경 못하게
     private String empId;
 //    @Column(nullable=false)
     private String empPassword;

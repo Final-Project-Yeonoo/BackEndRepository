@@ -30,17 +30,23 @@ public class EmployeesResponseDTO {
     private String empAddress;
     private boolean empValidate;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check userAuth = Check.N;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check infoAuth = Check.N;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check salesAuth = Check.N;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check purchaseAuth = Check.N;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check inventoryAuth = Check.N;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check productAuth = Check.N;
 
 

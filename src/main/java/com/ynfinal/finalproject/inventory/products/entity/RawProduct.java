@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "RAW_PRODUCT")
+@Table(name = "raw_product")
 public class RawProduct {
 
     @Id
@@ -39,7 +39,7 @@ public class RawProduct {
     @CreationTimestamp
     private LocalDateTime rawRegUpdate;
 
-    @Column(columnDefinition = "INT CHECK (rawPrice >= 0)", length = 10)
+    @Column(length = 10)
     private int rawPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)

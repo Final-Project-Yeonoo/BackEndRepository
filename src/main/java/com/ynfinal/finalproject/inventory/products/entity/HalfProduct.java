@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "HALF_PRODUCT")
+@Table(name = "half_product")
 public class HalfProduct {
 
 
@@ -39,15 +39,15 @@ public class HalfProduct {
     @Column(length = 100, nullable = true)
     private String halfComment;
 
-    @Column(columnDefinition = "INT CHECK (halfPrice >= 0)", length = 10)
+    @Column(length = 10)
     private int halfPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "STOREHOUSE_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "storehouse_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StoreHouse storeHouse;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "emp_no", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 
 }

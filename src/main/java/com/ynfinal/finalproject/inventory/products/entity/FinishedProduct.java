@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Setter
-@Table(name = "FINISHED_PRODUCT")
+@Table(name = "finished_product")
 public class FinishedProduct {
 
     @Id
@@ -40,15 +40,15 @@ public class FinishedProduct {
     @CreationTimestamp
     private LocalDateTime finishedRegUpdate;
 
-    @Column(columnDefinition = "INT CHECK (finishedPrice >= 0)", length = 10)
+    @Column(length = 10)
     private int finishedPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "STOREHOUSE_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "storehouse_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StoreHouse storeHouse;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "emp_no", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 
 }

@@ -20,7 +20,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "TRADING_COMPANY")
+@Table(name = "trading_company")
 public class TradeCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

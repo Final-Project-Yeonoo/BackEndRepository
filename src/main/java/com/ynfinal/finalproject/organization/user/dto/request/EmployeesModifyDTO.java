@@ -48,11 +48,15 @@ public class EmployeesModifyDTO {
     private boolean empValidate = false;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Check userAuth = Check.N;
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private Check infoAuth= Check.N;
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private Check purchaseAuth= Check.N;
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private Check inventoryAuth= Check.N;
 

@@ -18,8 +18,10 @@ public class OrderManageCreateDTO {
     private String orderEtc;
     private Date orderDate;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private OrderType orderType = OrderType.저장;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private EstimateOrderType estimateOrderType = EstimateOrderType.OEM;
     private Long projectCode;
     private Long empNo;

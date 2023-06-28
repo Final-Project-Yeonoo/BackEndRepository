@@ -15,7 +15,7 @@ import java.util.Date;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "ESTIMATE")
+@Table(name = "estimate")
 public class Estimate {
 
     @Id

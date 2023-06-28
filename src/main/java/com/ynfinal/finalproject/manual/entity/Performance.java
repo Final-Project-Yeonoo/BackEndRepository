@@ -14,7 +14,7 @@ import java.util.Date;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "PERFORMANCE")
+@Table(name = "performnace")
 public class Performance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +27,10 @@ public class Performance {
     private Date performanceEnddate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "job_order_code")
+    @JoinColumn(name = "job_order_code", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private JobOrder jobOrder;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "finished_code")
+    @JoinColumn(name = "finished_code", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private FinishedProduct finishedProduct;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))

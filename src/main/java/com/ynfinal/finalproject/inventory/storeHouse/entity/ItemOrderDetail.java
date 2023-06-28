@@ -13,7 +13,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "ITEM_ORDER_DETAIL")
+@Table(name = "item_order_detail")
 public class ItemOrderDetail {
 
     @Id
@@ -33,7 +33,7 @@ public class ItemOrderDetail {
     private double taxCode = 0.1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ITEM_ORDER_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "item_order_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private ItemOrder itemOrder;
 
     // 사용하지 않을 예정으로 주석처리해둠
