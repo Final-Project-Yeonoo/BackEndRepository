@@ -2,6 +2,8 @@ package com.ynfinal.finalproject.inventory.products.dto.request;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
@@ -14,5 +16,8 @@ public class RawProductModifyRequestDTO {
     public String rawName;
     public int rawCount;
     public int rawPrice;
+    private String rawType;
+    private LocalDateTime rawRegUpdate;
+
 
 }

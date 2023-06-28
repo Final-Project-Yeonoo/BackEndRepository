@@ -15,6 +15,8 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class CompanyPostRequestDTO {
     @NotBlank
+    private Long compCode;
+    @NotBlank
     private String compName;
     @NotBlank
     private String compRegNo;
@@ -24,6 +26,7 @@ public class CompanyPostRequestDTO {
 
     public Company toEntity(){
         return Company.builder()
+                .compCode(compCode)
                 .compName(compName)
                 .compRegNo(compRegNo)
                 .compCeo(compCeo)

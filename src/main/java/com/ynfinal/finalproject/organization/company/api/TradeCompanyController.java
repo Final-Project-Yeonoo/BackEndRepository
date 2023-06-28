@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -38,6 +37,7 @@ public class TradeCompanyController {
 
     @PostMapping
     public ResponseEntity<?> handleTrCompPostRequest(@Validated @RequestBody List<TradeCompanyRequestDTO> tradeCompanyRequestDTO){
+
         List<TradeCompanyResponseDTO> tradeCompanyResponseDTOS = tradeCompanyService.insertTradeCompany(tradeCompanyRequestDTO);
         return ResponseEntity.ok(tradeCompanyResponseDTOS);
     }
@@ -48,6 +48,7 @@ public class TradeCompanyController {
             tradeCompanyService.deleteOrderManages(orderManageIds);
             return ResponseEntity.ok("TrCompDelete manages deleted successfully.");
         }
+
 }
 
 

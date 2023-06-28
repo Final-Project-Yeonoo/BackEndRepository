@@ -2,6 +2,8 @@ package com.ynfinal.finalproject.inventory.products.dto.request;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @ToString
 @AllArgsConstructor
@@ -14,5 +16,8 @@ public class HalfProductModifyRequestDTO {
     public String halfName;
     public int halfCount;
     public int halfPrice;
+    private LocalDateTime halfRegUpdate;
+    private String halfComment;
+
 
 }
