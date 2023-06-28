@@ -5,6 +5,8 @@ import com.ynfinal.finalproject.inventory.products.dto.request.FinishedProductMo
 import com.ynfinal.finalproject.inventory.products.dto.response.FinishedProductListResponseDTO;
 import com.ynfinal.finalproject.inventory.products.entity.FinishedProduct;
 import com.ynfinal.finalproject.inventory.products.repository.FinishedProductRepository;
+import com.ynfinal.finalproject.inventory.storeHouse.entity.StoreHouse;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -59,16 +61,20 @@ public class FinishedProductService {
         finishedProduct.ifPresent(entity -> {
 
             // 기본값을 유지하기 위한 코드
-            long finishedCode = entity.getFinishedCode();
+            Long finishedCode = entity.getFinishedCode();
             int finishedCount = entity.getFinishedCount();
-            int finishedPrice = entity.getFinishedPrice();
             String finishedName = entity.getFinishedName();
+            Long empNo = entity.getEmployees().getEmpNo();
             LocalDateTime finishedRegDate = entity.getFinishedRegDate();
 
             // dto에서 받아온 값
             String modifiedFinishedName = requestDTO.getFinishedName();
+            int finishedPrice = requestDTO.getFinishedPrice();
             int modifiedFinishedCount = requestDTO.getFinishedCount();
             int modifiedFinishedPrice = requestDTO.getFinishedPrice();
+            String modifiedFinishedSize = requestDTO.getFinishedSize();
+            Long modifiedStoreCode = requestDTO.getStoreHouse().getStorehouseCode();
+
 
             // dto에 값이 있을때만 update한다
             if (modifiedFinishedCount > 0) {
@@ -86,6 +92,9 @@ public class FinishedProductService {
                     .finishedName(finishedName)
                     .finishedPrice(finishedPrice)
                     .finishedCount(finishedCount)
+                    .finishedSize(modifiedFinishedSize)
+                    .storeHouse(StoreHouse.builder().storehouseCode(modifiedStoreCode).build())
+                    .employees(Employees.builder().empNo(empNo).build())
                     .finishedRegDate(finishedRegDate)
                     .finishedRegUpdate(LocalDateTime.now())
                     .build();

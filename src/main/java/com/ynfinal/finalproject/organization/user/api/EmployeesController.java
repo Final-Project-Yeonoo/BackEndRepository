@@ -1,6 +1,7 @@
 package com.ynfinal.finalproject.organization.user.api;
 
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
+import com.ynfinal.finalproject.organization.user.dto.request.EmployeesModifyDTO;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.MypageModifyDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.EmployeesResponseDTO;
@@ -93,6 +94,26 @@ public class EmployeesController {
                     .body(responseDTO);
     }
 
+    @PostMapping("/{empNo}")
+    public ResponseEntity<?> modify(
+            @Validated @RequestBody EmployeesSignUpRequestDto dto,
+            BindingResult result
+    ){
+        log.info("/api/auth POST! - {}", dto);
+
+        if( result.hasErrors()){
+            log.warn(result.toString());
+            return ResponseEntity.badRequest()
+                    .body(result.getFieldError());
+        }
+
+        EmployeesSignUpResponseDTO responseDTO = employeesService.create(dto);
+        return ResponseEntity.ok()
+                .body(responseDTO);
+    }
+
+
+
     // 로그인 요청 처리
     @PostMapping("/signin")
     public ResponseEntity<?> signIn(
@@ -114,5 +135,10 @@ public class EmployeesController {
         return ResponseEntity.ok(mypageResponseDTO);
     }
 
+    @PatchMapping
+    public ResponseEntity<?> modifyEmployee (@RequestBody List<EmployeesModifyDTO> list){
+        employeesService.updateEmployee(list);
+        return ResponseEntity.ok("ok!");
+    }
 }
 

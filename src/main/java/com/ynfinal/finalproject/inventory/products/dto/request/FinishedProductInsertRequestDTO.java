@@ -1,6 +1,7 @@
 package com.ynfinal.finalproject.inventory.products.dto.request;
 
 import com.ynfinal.finalproject.inventory.products.entity.FinishedProduct;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.*;
 
 @Getter
@@ -10,19 +11,20 @@ import lombok.*;
 @EqualsAndHashCode
 @Builder
 public class FinishedProductInsertRequestDTO {
-
+    private Long finishedCode;
     private String finishedName;
-    private int finishedPrice;
-    private int finishedCount;
+
+    private String finishedSize;
+
 
 
 
 
     public FinishedProduct toEntity(){
         return FinishedProduct.builder()
+                .finishedCode(this.finishedCode)
                 .finishedName(this.finishedName)
-                .finishedCount(this.finishedCount)
-                .finishedPrice(this.finishedPrice)
+                .finishedSize(this.finishedSize)
                 .build();
     }
 }

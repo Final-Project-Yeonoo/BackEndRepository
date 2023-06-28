@@ -36,6 +36,8 @@ public class HalfProduct {
 
     @CreationTimestamp
     private LocalDateTime halfRegUpdate;
+    @Column(length = 100, nullable = true)
+    private String halfComment;
 
     @Column(columnDefinition = "INT CHECK (halfPrice >= 0)", length = 10)
     private int halfPrice;

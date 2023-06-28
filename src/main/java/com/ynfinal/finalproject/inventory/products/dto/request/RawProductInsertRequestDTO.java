@@ -10,16 +10,15 @@ import lombok.*;
 @EqualsAndHashCode
 @Builder
 public class RawProductInsertRequestDTO {
-
+    private Long rawCode;
     private String rawName;
-    private Integer rawCount;
-    private Integer rawPrice;
+    private String rawType;
 
     public RawProduct toEntity() {
         return RawProduct.builder()
+                .rawCode(this.rawCode)
                 .rawName(this.rawName)
-                .rawCount(this.rawCount)
-                .rawPrice(this.rawPrice)
+                .rawType(this.rawType)
                 .build();
     }
 

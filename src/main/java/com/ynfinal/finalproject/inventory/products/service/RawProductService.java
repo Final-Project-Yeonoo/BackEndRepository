@@ -74,6 +74,7 @@ public class RawProductService {
             String modifiedRawName = requestDTO.getRawName();
             int modifiedRawCount = requestDTO.getRawCount();
             int modifiedRawPrice = requestDTO.getRawPrice();
+            String rawType = requestDTO.getRawType();
 
             // dto에 값이 있을때만 update한다
             if(modifiedRawCount > 0){
@@ -92,6 +93,7 @@ public class RawProductService {
                     .rawPrice(rawPrice)
                     .rawCount(rawCount)
                     .rawRegDate(rawRegDate)
+                    .rawType(rawType)
                     .rawRegUpdate(LocalDateTime.now())
                     .build();
             rawRepository.save(save);

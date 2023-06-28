@@ -17,6 +17,7 @@ public class RawProductListResponseDTO {
     private Long rawCode;
     private String rawName;
     private int rawCount;
+    private String rawType;
     private LocalDateTime rawRegDate;
     private LocalDateTime rawRegUpdate;
     private int rawPrice;
@@ -28,6 +29,7 @@ public class RawProductListResponseDTO {
         this.rawRegDate = rawProduct.getRawRegDate();
         this.rawRegUpdate = rawProduct.getRawRegUpdate();
         this.rawPrice = rawProduct.getRawPrice();
+        this.rawType = rawProduct.getRawType();
     }
 
 

@@ -6,6 +6,7 @@ import com.ynfinal.finalproject.inventory.products.dto.response.HalfProductListR
 import com.ynfinal.finalproject.inventory.products.entity.HalfProduct;
 import com.ynfinal.finalproject.inventory.products.entity.RawProduct;
 import com.ynfinal.finalproject.inventory.products.repository.HalfProductRepository;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -61,12 +62,13 @@ public class HalfProductService {
             // 기본값을 유지하기 위한 코드
             long halfCode = entity.getHalfCode();
             int halfCount = entity.getHalfCount();
-            int halfPrice = entity.getHalfPrice();
+            Long empNo = entity.getEmployees().getEmpNo();
             String halfName = entity.getHalfName();
             LocalDateTime halfRegDate = entity.getHalfRegDate();
 
             // dto에서 받아온 값
             String modifiedHalfName = requestDTO.getHalfName();
+            int halfPrice = requestDTO.halfPrice;
             int modifiedHalfCount = requestDTO.getHalfCount();
             int modifiedHalfPrice = requestDTO.getHalfPrice();
 
@@ -86,6 +88,7 @@ public class HalfProductService {
                     .halfName(halfName)
                     .halfPrice(halfPrice)
                     .halfCount(halfCount)
+                    .employees(Employees.builder().empNo(empNo).build())
                     .halfRegDate(halfRegDate)
                     .halfRegUpdate(LocalDateTime.now())
                     .build();
