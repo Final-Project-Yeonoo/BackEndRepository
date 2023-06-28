@@ -43,6 +43,6 @@ public class JobOrder {
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "storehouse_code")
+    @JoinColumn(name = "storehouse_code",  nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StoreHouse storeHouse;
 }
