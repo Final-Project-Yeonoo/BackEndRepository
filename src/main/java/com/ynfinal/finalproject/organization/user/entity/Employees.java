@@ -3,6 +3,7 @@ package com.ynfinal.finalproject.organization.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ynfinal.finalproject.organization.company.entity.Company;
+import com.ynfinal.finalproject.util.Check;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -53,7 +54,14 @@ public class Employees {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pos_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     Position position;
-
+    @Enumerated(EnumType.STRING)
+    private Check userAuth = Check.N;
+    @Enumerated(EnumType.STRING)
+    private Check infoAuth= Check.N;
+    @Enumerated(EnumType.STRING)
+    private Check purchaseAuth= Check.N;
+    @Enumerated(EnumType.STRING)
+    private Check inventoryAuth= Check.N;
 
 
 

@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class EmployeesResponseDTO {
+    private Long empNo;
     private String empName;
     private String empId;
     private String deptName;

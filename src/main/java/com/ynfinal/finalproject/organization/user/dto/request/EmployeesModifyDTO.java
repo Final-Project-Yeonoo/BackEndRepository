@@ -25,7 +25,7 @@ import java.time.LocalDate;
 @Builder
 public class EmployeesModifyDTO {
 
-//    private Long empNo;
+    private Long empNo;
 //    @NotBlank(message = "이름을 입력해주세요")
     private String empName;
 //    @NotBlank(message = "아이디를 입력해주세요")
@@ -34,9 +34,9 @@ public class EmployeesModifyDTO {
 //    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,30}$",
 //            message = "비밀번호는 8~30 자리이면서 1개 이상의 알파벳, 숫자, 특수문자를 포함해야합니다.")
     private String empPassword;
-//    @NotNull(message = "부서코드를 입력해주세요")
+    @NotNull(message = "부서코드를 입력해주세요")
     private Long deptCode;
-//    @NotNull(message = "직급코드를 입력해주세요")
+    @NotNull(message = "직급코드를 입력해주세요")
     private Long posCode;
 //    @NotBlank(message = "휴대폰번호를 입력해주세요")
     private String empPhone;
@@ -47,13 +47,12 @@ public class EmployeesModifyDTO {
     private LocalDate empHiredDate;
     private boolean empValidate = false;
 
-    @Enumerated(EnumType.STRING)
     private Check userAuth = Check.N;
-    @Enumerated(EnumType.STRING)
+
     private Check infoAuth= Check.N;
-    @Enumerated(EnumType.STRING)
+
     private Check purchaseAuth= Check.N;
-    @Enumerated(EnumType.STRING)
+
     private Check inventoryAuth= Check.N;
 
     private String empAddress;
@@ -69,7 +68,11 @@ public class EmployeesModifyDTO {
                 .empHiredDate(empHiredDate)
                 .empValidate(empValidate)
                 .empAddress(empAddress)
-                //TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
+                .userAuth(userAuth)
+                .infoAuth(infoAuth)
+                .inventoryAuth(inventoryAuth)
+                .purchaseAuth(purchaseAuth)
+//                TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
 //                .company(Company.builder().compCode(1L).build())
                 .build();
     }

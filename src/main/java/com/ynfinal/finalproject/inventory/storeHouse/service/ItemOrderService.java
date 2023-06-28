@@ -39,27 +39,27 @@ public class ItemOrderService {
     }
 
     // 발주 등록하기
-    @Transactional
-    public boolean addItemOrder(ItemOrderInputRequestDTO requestDTO) {
-
-        Long trCompCode = requestDTO.getTrCompCode();
-        Long empNo = requestDTO.getEmpNo();
-
-        TradeCompany tradeCompany = tradeCompanyRepository.findByTrCompCode(trCompCode);
-        Employees foundEmp = employeesRepository.findByEmpNo(empNo);
-
-        ItemOrder itemOrder = ItemOrder.builder()
-                .itemOrderCheck(requestDTO.getItemOrderCheck())
-                .itemOrderStart(requestDTO.getItemOrderStart())
-                .itemOrderReg(requestDTO.getItemOrderReg())
-                .itemOrderUpdate(requestDTO.getItemOrderUpdate())
-                .tradeCompany(tradeCompany)
-                .employees(foundEmp)
-                .build();
-
-        itemOrderRepository.save(itemOrder);
-        return true;
-    }
+//    @Transactional
+//    public boolean addItemOrder(ItemOrderInputRequestDTO requestDTO) {
+//
+//        Long trCompCode = requestDTO.getTrCompCode();
+//        Long empNo = requestDTO.getEmpNo();
+//
+//        TradeCompany tradeCompany = tradeCompanyRepository.findByTrCompCode(trCompCode);
+//        Employees foundEmp = employeesRepository.findByEmpNo(empNo);
+//
+//        ItemOrder itemOrder = ItemOrder.builder()
+//                .itemOrderCheck(requestDTO.getItemOrderCheck())
+//                .itemOrderStart(requestDTO.getItemOrderStart())
+//                .itemOrderReg(requestDTO.getItemOrderReg())
+//                .itemOrderUpdate(requestDTO.getItemOrderUpdate())
+//                .tradeCompany(tradeCompany)
+//                .employees(foundEmp)
+//                .build();
+//
+//        itemOrderRepository.save(itemOrder);
+//        return true;
+//    }
 
 
 

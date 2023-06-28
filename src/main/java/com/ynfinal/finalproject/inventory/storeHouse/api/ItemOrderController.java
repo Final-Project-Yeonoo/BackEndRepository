@@ -30,17 +30,17 @@ public class ItemOrderController {
 
     }
 
-    @PostMapping
-    public ResponseEntity<?> itemOrderInput(
-            ItemOrderInputRequestDTO requestDTO
-    ){
-
-        log.info("/ynfinal/order : POST !! ");
-        boolean b = itemOrderService.addItemOrder(requestDTO);
-
-
-        return ResponseEntity.ok().body(b);
-    }
+//    @PostMapping
+//    public ResponseEntity<?> itemOrderInput(
+//            ItemOrderInputRequestDTO requestDTO
+//    ){
+//
+//        log.info("/ynfinal/order : POST !! ");
+//        boolean b = itemOrderService.addItemOrder(requestDTO);
+//
+//
+//        return ResponseEntity.ok().body(b);
+//    }
 
 
     @DeleteMapping("/{itemOrderCode}")
