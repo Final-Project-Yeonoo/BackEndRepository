@@ -4,13 +4,11 @@ import com.ynfinal.finalproject.inventory.products.entity.FinishedProduct;
 import com.ynfinal.finalproject.manual.entity.JobOrder;
 import com.ynfinal.finalproject.manual.entity.Performance;
 import com.ynfinal.finalproject.manual.entity.Project;
+import com.ynfinal.finalproject.manual.entity.Status;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
@@ -32,6 +30,8 @@ public class PerformanceResponseDTO {
     private String finishedName;
     private Long projectCode;
     private String projectName;
+    @Enumerated(EnumType.STRING)
+    private Status jobOrderType;
 
     public PerformanceResponseDTO(Performance performance) {
         this.performanceCode = performance.getPerformanceCode();
@@ -42,6 +42,7 @@ public class PerformanceResponseDTO {
         this.jobOrderInstructDate = performance.getJobOrder().getJobOrderInstructDate();
         this.jobOrderCode = performance.getJobOrder().getJobOrderCode();
         this.jobOrderQuantity = performance.getJobOrder().getJobOrderQuantity();
+        this.jobOrderType = performance.getJobOrder().getJobOrderType();
         this.finishedCode = performance.getFinishedProduct().getFinishedCode();
         this.finishedName = performance.getFinishedProduct().getFinishedName();
         this.projectCode = performance.getProject().getProjectCode();

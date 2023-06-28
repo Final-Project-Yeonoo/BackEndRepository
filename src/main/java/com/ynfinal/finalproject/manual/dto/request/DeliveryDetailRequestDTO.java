@@ -18,7 +18,7 @@ public class DeliveryDetailRequestDTO {
     private Long deliveryDetailQuantity;
     private Long deliveryDetailUnitprice;
     private Float deliveryDetailTaxcode;
-    private Float deliveryDetailVat;
+//    private Float deliveryDetailVat;
     private Long finishedCode;
     private Long deliveryCode;
     public DeliveryDetail toEntity() {
@@ -27,7 +27,7 @@ public class DeliveryDetailRequestDTO {
         deliveryDetail.setDeliveryDetailQuantity(this.deliveryDetailQuantity);
         deliveryDetail.setDeliveryDetailUnitprice(this.deliveryDetailUnitprice);
         deliveryDetail.setDeliveryDetailTaxcode(this.deliveryDetailTaxcode);
-        deliveryDetail.setDeliveryDetailVat(this.deliveryDetailVat);
+//        deliveryDetail.setDeliveryDetailVat(this.deliveryDetailVat);
         deliveryDetail.setFinishedProduct(FinishedProduct.builder().finishedCode(this.finishedCode).build());
         deliveryDetail.setDelivery(Delivery.builder().deliveryCode(deliveryCode).build());
         return deliveryDetail;
