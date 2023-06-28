@@ -21,13 +21,14 @@ public class ReturnDetailResponseDTO {
     private Long returnDetailQuantity;
     private Long finishedCode;
     private String finishedName;
-
+    private Long returnedCode;
     public ReturnDetailResponseDTO(ReturnDetail returnDetail) {
         this.returnDetailCode = returnDetail.getReturnDetailCode();
         this.returnDetailReceiptDate = returnDetail.getReturnDetailReceiptDate();
         this.returnDetailQuantity = returnDetail.getReturnDetailQuantity();
         this.finishedCode = returnDetail.getFinishedProduct().getFinishedCode();
         this.finishedName = returnDetail.getFinishedProduct().getFinishedName();
+        this.returnedCode = returnDetail.getReturned().getReturnedCode();
     }
 
 

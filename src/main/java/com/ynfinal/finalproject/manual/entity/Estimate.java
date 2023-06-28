@@ -44,15 +44,15 @@ public class Estimate {
     private Date projectUpdateDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_NO")
+    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_CODE")
+    @JoinColumn(name = "PROJECT_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TR_COMP_CODE")
+    @JoinColumn(name = "TR_COMP_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private TradeCompany tradeCompany;
 
 

@@ -37,11 +37,11 @@ public class OrderDetail {
     private String orderDetailEtc;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FINISHED_CODE")
+    @JoinColumn(name = "FINISHED_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private FinishedProduct finishedProduct;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_CODE")
+    @JoinColumn(name = "ORDER_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private OrderManage orderManage;
 
 }

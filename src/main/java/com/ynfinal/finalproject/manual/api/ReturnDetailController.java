@@ -21,7 +21,7 @@ import java.util.List;
 @Validated
 @RequestMapping("/ynfinal/return/detail")
 public class ReturnDetailController {
-    private ReturnDetailService returnDetailService;
+    private final ReturnDetailService returnDetailService;
 
     @GetMapping
     public ResponseEntity<List<ReturnDetailResponseDTO>> getReturnDetail() {

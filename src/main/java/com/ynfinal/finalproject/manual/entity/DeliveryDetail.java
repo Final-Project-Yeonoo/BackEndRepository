@@ -25,9 +25,13 @@ public class DeliveryDetail {
     private Float deliveryDetailTaxcode;
     private Float deliveryDetailVat;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "delivery_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Delivery delivery;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "finished_code")
+    @JoinColumn(name = "finished_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private FinishedProduct finishedProduct;
 
 }

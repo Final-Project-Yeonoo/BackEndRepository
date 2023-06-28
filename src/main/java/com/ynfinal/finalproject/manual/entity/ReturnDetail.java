@@ -24,6 +24,11 @@ public class ReturnDetail {
     private Long returnDetailQuantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "finished_code")
+    @JoinColumn(name = "returned_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Returned returned;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "finished_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private FinishedProduct finishedProduct;
 }

@@ -35,10 +35,10 @@ public class Delivery {
 
 
     @ManyToOne
-    @JoinColumn(name = "tr_comp_code")
+    @JoinColumn(name = "tr_comp_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private TradeCompany tradeCompany;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_no")
+    @JoinColumn(name = "emp_no", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 }

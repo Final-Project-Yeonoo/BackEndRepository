@@ -1,6 +1,7 @@
 package com.ynfinal.finalproject.manual.dto.request;
 
 import com.ynfinal.finalproject.inventory.products.entity.FinishedProduct;
+import com.ynfinal.finalproject.manual.entity.Delivery;
 import com.ynfinal.finalproject.manual.entity.DeliveryDetail;
 import lombok.*;
 
@@ -19,7 +20,7 @@ public class DeliveryDetailRequestDTO {
     private Float deliveryDetailTaxcode;
     private Float deliveryDetailVat;
     private Long finishedCode;
-
+    private Long deliveryCode;
     public DeliveryDetail toEntity() {
         DeliveryDetail deliveryDetail = new DeliveryDetail();
         deliveryDetail.setDeliveryDetailCode(this.deliveryDetailCode);
@@ -28,6 +29,7 @@ public class DeliveryDetailRequestDTO {
         deliveryDetail.setDeliveryDetailTaxcode(this.deliveryDetailTaxcode);
         deliveryDetail.setDeliveryDetailVat(this.deliveryDetailVat);
         deliveryDetail.setFinishedProduct(FinishedProduct.builder().finishedCode(this.finishedCode).build());
+        deliveryDetail.setDelivery(Delivery.builder().deliveryCode(deliveryCode).build());
         return deliveryDetail;
     }
 }

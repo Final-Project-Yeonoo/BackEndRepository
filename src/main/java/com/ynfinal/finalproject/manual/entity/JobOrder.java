@@ -35,11 +35,11 @@ public class JobOrder {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "finished_code")
+    @JoinColumn(name = "finished_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private FinishedProduct finishedProduct;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_code")
+    @JoinColumn(name = "project_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)

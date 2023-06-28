@@ -33,6 +33,6 @@ public class Performance {
     @JoinColumn(name = "finished_code")
     private FinishedProduct finishedProduct;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_code")
+    @JoinColumn(name = "project_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Project project;
 }

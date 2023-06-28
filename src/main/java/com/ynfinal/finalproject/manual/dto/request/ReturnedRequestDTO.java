@@ -23,6 +23,8 @@ public class ReturnedRequestDTO {
     private Long returnedReceipt;
     private Long trCompCode;
 
+
+
     public Returned toEntity() {
         Returned returned = new Returned();
         returned.setReturnedCode(this.returnedCode);

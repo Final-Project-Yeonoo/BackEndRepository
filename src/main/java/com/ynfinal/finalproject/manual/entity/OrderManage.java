@@ -43,7 +43,7 @@ public class OrderManage {
     private TradeCompany tradeCompany;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_NO")
+    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
     @CreationTimestamp
     private Date estimateDate;

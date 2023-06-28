@@ -21,7 +21,7 @@ public class DeliveryDetailResponseDTO {
     private Float deliveryDetailVat;
     private Long finishedCode;
     private String finishedName;
-
+    private Long deliveryCode;
     public DeliveryDetailResponseDTO(DeliveryDetail deliveryDetail) {
         this.deliveryDetailCode = deliveryDetail.getDeliveryDetailCode();
         this.deliveryDetailQuantity = deliveryDetail.getDeliveryDetailQuantity();
@@ -30,5 +30,6 @@ public class DeliveryDetailResponseDTO {
         this.deliveryDetailVat = deliveryDetail.getDeliveryDetailVat();
         this.finishedCode = deliveryDetail.getFinishedProduct().getFinishedCode();
         this.finishedName = deliveryDetail.getFinishedProduct().getFinishedName();
+        this.deliveryCode = deliveryDetail.getDelivery().getDeliveryCode();
     }
 }
