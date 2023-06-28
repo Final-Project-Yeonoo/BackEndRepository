@@ -137,6 +137,10 @@ public class EmployeesController {
 
     @PatchMapping
     public ResponseEntity<?> modifyEmployee (@RequestBody List<EmployeesModifyDTO> list){
+        for (EmployeesModifyDTO employeesModifyDTO : list) {
+            log.info("{} ----------- ", employeesModifyDTO.getEmpName());
+        }
+
         employeesService.updateEmployee(list);
         return ResponseEntity.ok("ok!");
     }

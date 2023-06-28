@@ -25,7 +25,7 @@ import java.time.LocalDate;
 @Builder
 public class EmployeesModifyDTO {
 
-//    private Long empNo;
+    private Long empNo;
 //    @NotBlank(message = "이름을 입력해주세요")
     private String empName;
 //    @NotBlank(message = "아이디를 입력해주세요")
@@ -59,6 +59,7 @@ public class EmployeesModifyDTO {
     private String empAddress;
     public Employees toEntity(){
         return Employees.builder()
+                .empNo(empNo)
                 .empName(empName)
                 .empId(empId)
                 .empPassword(empPassword)

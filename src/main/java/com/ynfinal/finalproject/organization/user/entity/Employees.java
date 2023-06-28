@@ -25,15 +25,15 @@ public class Employees {
     private Long empNo;         // 1, 2, 3, 4, 5, 6
     @Column(nullable=false, unique=true)    // 변경 못하게
     private String empId;
-    @Column(nullable=false)
+//    @Column(nullable=false)
     private String empPassword;
-    @Column(nullable=false)
+//    @Column(nullable=false)
     private String empName;
     @CreationTimestamp
     private LocalDate empHiredDate;
-    @Column(unique=true)
+//    @Column(unique=true)
     private String empPhone;
-    @Column(unique=true)
+//    @Column(unique=true)
     private String empExtension;
 
     private String empAddress;
