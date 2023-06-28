@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthCheckController {
 @GetMapping("/health-check")
     public ResponseEntity<?> healthCheck() {
-    log.info("server is running! ");
+    log.info("server is running!! ");
     return  ResponseEntity.ok()
             .body("server is ok!");
 }
