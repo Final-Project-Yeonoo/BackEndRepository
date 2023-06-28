@@ -13,20 +13,18 @@ import lombok.*;
 public class HalfProductInsertRequestDTO {
 
 //    아이템코드
-    private Long halfCode;
+
     private String halfName;
     private String halfComment;
     private int halfCount;
-    private Long empNo;
+
 
     public HalfProduct toEntity(){
 
         return HalfProduct.builder()
-                .halfCode(this.halfCode)
                 .halfCount(this.halfCount)
                 .halfComment(this.halfComment)
                 .halfName(this.halfName)
-                .employees(Employees.builder().empNo(empNo).build())
                 .build();
     }
 }

@@ -7,6 +7,7 @@ import lombok.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Setter
@@ -24,7 +25,7 @@ public class EmployeesResponseDTO {
     private String empPassword;
     private String empExtension;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime empHiredDate;
+    private LocalDate empHiredDate;
     private String empPhone;
     private String empAddress;
     private boolean empValidate;

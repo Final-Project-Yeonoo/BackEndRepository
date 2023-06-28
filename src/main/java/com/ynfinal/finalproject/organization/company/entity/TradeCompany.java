@@ -9,6 +9,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -38,13 +39,13 @@ public class TradeCompany {
     @Enumerated(EnumType.STRING)
     private Check trSell = Check.N;
     @CreationTimestamp
-    private LocalDateTime trStartDate;
+    private LocalDate trStartDate;
     @CreationTimestamp
-    private LocalDateTime trEndDate;
+    private LocalDate trEndDate;
     @CreationTimestamp
-    private LocalDateTime trRegDate;
+    private LocalDate trRegDate;
     @CreationTimestamp
-    private LocalDateTime trUpdateDate;
+    private LocalDate trUpdateDate;
 
     private String trAddr;
     private String trEtc;

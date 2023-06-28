@@ -12,8 +12,6 @@ import lombok.*;
 public class RawProductInsertRequestDTO {
     private Long rawCode;
     private String rawName;
-
-
     private String rawType;
 
     public RawProduct toEntity() {

@@ -7,6 +7,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -29,7 +30,7 @@ public class Employees {
     @Column(nullable=false)
     private String empName;
     @CreationTimestamp
-    private LocalDateTime empHiredDate;
+    private LocalDate empHiredDate;
     @Column(unique=true)
     private String empPhone;
     @Column(unique=true)

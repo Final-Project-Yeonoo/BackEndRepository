@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -43,7 +44,11 @@ public class TradeCompanyController {
     }
 //    @PutMapping
 //
-//    @DeleteMapping
+      @DeleteMapping
+        public ResponseEntity<String> handleTrCompDeleteRequest(@Valid @RequestBody List<Long> orderManageIds) {
+            tradeCompanyService.deleteOrderManages(orderManageIds);
+            return ResponseEntity.ok("TrCompDelete manages deleted successfully.");
+        }
 }
 
 

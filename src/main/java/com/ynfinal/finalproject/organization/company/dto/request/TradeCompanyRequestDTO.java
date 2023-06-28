@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Setter
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 public class TradeCompanyRequestDTO {
 
     private String storehouseName;
-    private LocalDateTime trStartDate;
+    private LocalDate trStartDate;
     @Enumerated(EnumType.STRING)
     private Check trBuy = Check.N;
     @Enumerated(EnumType.STRING)

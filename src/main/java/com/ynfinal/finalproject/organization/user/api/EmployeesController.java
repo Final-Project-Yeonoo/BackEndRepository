@@ -93,6 +93,26 @@ public class EmployeesController {
                     .body(responseDTO);
     }
 
+    @PostMapping("/{empNo}")
+    public ResponseEntity<?> modify(
+            @Validated @RequestBody EmployeesSignUpRequestDto dto,
+            BindingResult result
+    ){
+        log.info("/api/auth POST! - {}", dto);
+
+        if( result.hasErrors()){
+            log.warn(result.toString());
+            return ResponseEntity.badRequest()
+                    .body(result.getFieldError());
+        }
+
+        EmployeesSignUpResponseDTO responseDTO = employeesService.create(dto);
+        return ResponseEntity.ok()
+                .body(responseDTO);
+    }
+
+
+
     // 로그인 요청 처리
     @PostMapping("/signin")
     public ResponseEntity<?> signIn(
