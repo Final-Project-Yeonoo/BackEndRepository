@@ -148,7 +148,7 @@ public class EmployeesService {
         // Jwt를 클라이언트에게 발급
         String token = tokenProvider.createToken(employees, authorization);
 
-        return new LoginResponseDTO(employees, token);
+        return new LoginResponseDTO(employees, token, authorization);
 
 
     }

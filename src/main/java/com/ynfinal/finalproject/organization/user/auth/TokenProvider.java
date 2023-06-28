@@ -79,8 +79,8 @@ public class TokenProvider {
                 )
                 // token payload에 들어갈 클레임 생성
                 .setClaims(claims)
-                .setIssuer("여누솔루션") // iss : 발급자 정보
                 .setIssuedAt(new Date()) // iat: 발급시간
+                .setIssuer("여누솔루션") // iss : 발급자 정보
                 .setExpiration(expiry) // exp: 만료시간
                 .setSubject(employeesEntity.getEmpId()) // 토큰을 식별할 수 있는 주요
                 .compact();
