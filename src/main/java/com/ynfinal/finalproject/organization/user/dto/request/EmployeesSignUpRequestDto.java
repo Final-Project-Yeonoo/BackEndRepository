@@ -29,40 +29,36 @@ import java.time.LocalDateTime;
 @Builder
 public class EmployeesSignUpRequestDto {
 
-//    @NotBlank(message = "이름을 입력해주세요")
+    @NotBlank(message = "이름을 입력해주세요")
     private String empName;
-//    @NotBlank(message = "아이디를 입력해주세요")
+    @NotBlank(message = "아이디를 입력해주세요")
     private String empId;
-//    @NotBlank(message = "비밀번호를 입력해주세요")
-//    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,30}$",
-//            message = "비밀번호는 8~30 자리이면서 1개 이상의 알파벳, 숫자, 특수문자를 포함해야합니다.")
+    @NotBlank(message = "비밀번호를 입력해주세요")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,30}$",
+            message = "비밀번호는 8~30 자리이면서 1개 이상의 알파벳, 숫자, 특수문자를 포함해야합니다.")
     private String empPassword;
-//    @NotNull(message = "부서코드를 입력해주세요")
+    @NotNull(message = "부서코드를 입력해주세요")
     private Long deptCode;
-//    @NotNull(message = "직급코드를 입력해주세요")
+    @NotNull(message = "직급코드를 입력해주세요")
     private Long posCode;
-//    @NotBlank(message = "휴대폰번호를 입력해주세요")
+    @NotBlank(message = "휴대폰번호를 입력해주세요")
     private String empPhone;
-//    @NotBlank(message = "내선번호를 입력해주세요")
+    @NotBlank(message = "내선번호를 입력해주세요")
     private String empExtension;
-//    @NotNull(message = "입사일을 입력해주세요")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate empHiredDate;
-    @Builder.Default
+    @NotNull(message = "입사일을 입력해주세요")
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date empHiredDate;
     private boolean empValidate = false;
 
-    @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private Check userAuth = Check.Y;
-    @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private Check infoAuth= Check.Y;
-    @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private Check purchaseAuth= Check.Y;
-    @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private Check inventoryAuth= Check.Y;
+
+    private Check userAuth;
+
+    private Check infoAuth;
+
+    private Check purchaseAuth;
+
+    private Check inventoryAuth;
 
 
     public Employees toEntity(){
@@ -76,6 +72,10 @@ public class EmployeesSignUpRequestDto {
                 .empExtension(empExtension)
                 .empHiredDate(empHiredDate)
                 .empValidate(empValidate)
+                .userAuth(userAuth)
+                .infoAuth(infoAuth)
+                .purchaseAuth(purchaseAuth)
+                .inventoryAuth(inventoryAuth)
                 //TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
 //                .company(Company.builder().compCode(1L).build())
                 .build();

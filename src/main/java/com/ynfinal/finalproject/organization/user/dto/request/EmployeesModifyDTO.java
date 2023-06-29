@@ -14,6 +14,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Setter
@@ -34,36 +36,31 @@ public class EmployeesModifyDTO {
 //    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,30}$",
 //            message = "비밀번호는 8~30 자리이면서 1개 이상의 알파벳, 숫자, 특수문자를 포함해야합니다.")
     private String empPassword;
-//    @NotNull(message = "부서코드를 입력해주세요")
+    @NotNull(message = "부서코드를 입력해주세요")
     private Long deptCode;
-//    @NotNull(message = "직급코드를 입력해주세요")
+    @NotNull(message = "직급코드를 입력해주세요")
     private Long posCode;
 //    @NotBlank(message = "휴대폰번호를 입력해주세요")
     private String empPhone;
 //    @NotBlank(message = "내선번호를 입력해주세요")
     private String empExtension;
-//    @NotNull(message = "입사일을 입력해주세요")
+    @NotNull(message = "입사일을 입력해주세요")
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate empHiredDate;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date empHiredDate;
     private boolean empValidate = false;
 
-    @Enumerated(EnumType.STRING)
-    @Builder.Default
     private Check userAuth = Check.N;
-    @Builder.Default
-    @Enumerated(EnumType.STRING)
+
     private Check infoAuth= Check.N;
-    @Builder.Default
-    @Enumerated(EnumType.STRING)
+
     private Check purchaseAuth= Check.N;
-    @Builder.Default
-    @Enumerated(EnumType.STRING)
+
     private Check inventoryAuth= Check.N;
 
     private String empAddress;
     public Employees toEntity(){
         return Employees.builder()
-                .empNo(empNo)
                 .empName(empName)
                 .empId(empId)
                 .empPassword(empPassword)
@@ -74,7 +71,11 @@ public class EmployeesModifyDTO {
                 .empHiredDate(empHiredDate)
                 .empValidate(empValidate)
                 .empAddress(empAddress)
-                //TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
+                .userAuth(userAuth)
+                .infoAuth(infoAuth)
+                .inventoryAuth(inventoryAuth)
+                .purchaseAuth(purchaseAuth)
+//                TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
 //                .company(Company.builder().compCode(1L).build())
                 .build();
     }
