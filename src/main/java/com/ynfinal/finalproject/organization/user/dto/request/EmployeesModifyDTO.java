@@ -71,10 +71,10 @@ public class EmployeesModifyDTO {
                 .empHiredDate(empHiredDate)
                 .empValidate(empValidate)
                 .empAddress(empAddress)
-                .userAuth(userAuth)
-                .infoAuth(infoAuth)
-                .inventoryAuth(inventoryAuth)
-                .purchaseAuth(purchaseAuth)
+//                .userAuth(userAuth)
+//                .infoAuth(infoAuth)
+//                .inventoryAuth(inventoryAuth)
+//                .purchaseAuth(purchaseAuth)
 //                TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
 //                .company(Company.builder().compCode(1L).build())
                 .build();

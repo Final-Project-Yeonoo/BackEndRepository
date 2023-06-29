@@ -160,12 +160,20 @@ public class EmployeesService {
             employees.setEmpValidate(employeesModifyDTOEmpValidate);
             employees.setEmpHiredDate(modifyDTOEmpHiredDate);
             employees.setEmpAddress(modifyDTOEmpAddress);
-            employees.setUserAuth(employeesModifyDTOUserAuth);
-            employees.setInfoAuth(modifyDTOInfoAuth);
-            employees.setInventoryAuth(employeesModifyDTOInventoryAuth);
-            employees.setPurchaseAuth(employeesModifyDTOPurchaseAuth);
+//            employees.setUserAuth(employeesModifyDTOUserAuth);
+//            employees.setInfoAuth(modifyDTOInfoAuth);
+//            employees.setInventoryAuth(employeesModifyDTOInventoryAuth);
+//            employees.setPurchaseAuth(employeesModifyDTOPurchaseAuth);
 
             Employees updated = employeesRepository.save(employees);
+            Authorization authorization = Authorization.builder()
+                    .employees(updated)
+                    .infoAuth(modifyDTOInfoAuth)
+                    .userAuth(employeesModifyDTOUserAuth)
+                    .inventoryAuth(employeesModifyDTOInventoryAuth)
+                    .purchaseAuth(employeesModifyDTOPurchaseAuth)
+                    .build();
+            authorizationRepository.save(authorization);
             updatedEmployees.add(convertToResponseDTO(updated));
         } else {
             log.warn("Employee not found for empNo: {}", target);
