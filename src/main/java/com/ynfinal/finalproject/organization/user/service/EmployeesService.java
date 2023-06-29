@@ -1,5 +1,7 @@
 package com.ynfinal.finalproject.organization.user.service;
 
+import com.ynfinal.finalproject.aws.S3Service;
+import com.ynfinal.finalproject.organization.user.auth.TokenEmployeeInfo;
 import com.ynfinal.finalproject.organization.user.auth.TokenProvider;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesLoginRequestDto;
 import com.ynfinal.finalproject.organization.user.dto.request.EmployeesSignUpRequestDto;
@@ -17,12 +19,17 @@ import com.ynfinal.finalproject.organization.user.repository.AuthorizationReposi
 import com.ynfinal.finalproject.organization.user.repository.EmployeesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,6 +42,10 @@ public class EmployeesService {
 
     private final PasswordEncoder encoder;
     private final TokenProvider tokenProvider;
+    private final S3Service s3Service;
+
+//    @Value("${upload.path}")
+//    private String uploadRootPath;
     //유저리스트 변경내용
     public void updateEmployee(List<EmployeesModifyDTO> employeesSignUpRequestDto) {
         List<EmployeesResponseDTO> list = new ArrayList<>();
@@ -233,5 +244,44 @@ public class EmployeesService {
                 .empAddress(saved.getEmpAddress())
                 .build();
 
+    }
+
+    /**
+     * 업로드된 파일을 서버에 저장하고 저장 경로를 리턴
+     * @param originalFile - 업로드된 파일의 정보
+     * @return 실제로 저장된 이미지의 경로
+     */
+    public String uploadProfileImage(MultipartFile originalFile) throws IOException {
+
+        // 루트 디렉토리가 존재하는지 확인 후 존재하지 않으면 생성
+//        File rootDir = new File(uploadRootPath);
+//        if (!rootDir.exists()) rootDir.mkdir();
+
+        // 파일명을 유니크하게 변경
+        String uniqueFileName = UUID.randomUUID()
+                + "_" + originalFile.getOriginalFilename();
+
+//         파일을 저장
+//        File uploadFile = new File(uploadRootPath + "/" + uniqueFileName);
+//        originalFile.transferTo(uploadFile);
+
+        // 파일을 S3 버킷에 저장
+        String uploadUrl = s3Service.uploadToS3Bucket(originalFile.getBytes(), uniqueFileName);
+
+        return uploadUrl;
+//            return uploadFile.toString();
+    }
+
+    public String getProfilePath(String empId) {
+        Employees employees = employeesRepository.findByEmpId(empId).orElseThrow();
+//        return uploadRootPath + "/" + user.getProfileImg();
+        return employees.getEmpProfile();
+    }
+
+    public void modifyProfile(TokenEmployeeInfo tokenEmployeeInfo, String uploadedFilePath) {
+        log.info("{}---------ㅋㅋ", tokenEmployeeInfo.getEmpId());
+        Employees employees1 = employeesRepository.findByEmpId(tokenEmployeeInfo.getEmpId()).orElseThrow();
+        employees1.setEmpProfile(uploadedFilePath);
+        employeesRepository.save(employees1);
     }
 }

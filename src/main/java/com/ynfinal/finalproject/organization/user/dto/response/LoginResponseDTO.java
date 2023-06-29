@@ -26,7 +26,7 @@ public class LoginResponseDTO {
     private String infoAuth;
     private String purchaseAuth;
     private String inventoryAuth;
-
+    private String empProfile;
 //    private String message; // 로그인 메시지
     public LoginResponseDTO(Employees employees, String token, Authorization authorization) {
         this.empNo = employees.getEmpNo();
@@ -36,7 +36,9 @@ public class LoginResponseDTO {
         this.infoAuth = String.valueOf(authorization.getInfoAuth());
         this.purchaseAuth = String.valueOf(authorization.getPurchaseAuth());
         this.inventoryAuth = String.valueOf(authorization.getInventoryAuth());
+        this.empProfile = employees.getEmpProfile();
         this.token = token;
+
 
     }
 }

@@ -69,7 +69,7 @@ public class TokenProvider {
         claims.put("infoAuth", String.valueOf(authorization.getInfoAuth()));
         claims.put("purchaseAuth", String.valueOf(authorization.getPurchaseAuth()));
         claims.put("inventoryAuth", String.valueOf(authorization.getInventoryAuth()));
-
+        claims.put("empProfile", employeesEntity.getEmpProfile());
 
         return Jwts.builder()
                 // token header에 들어갈 서명
