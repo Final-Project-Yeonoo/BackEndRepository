@@ -21,6 +21,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @RestController
@@ -135,14 +136,13 @@ public class EmployeesController {
         return ResponseEntity.ok(mypageResponseDTO);
     }
 
-    @PatchMapping
-    public ResponseEntity<?> modifyEmployee (@RequestBody List<EmployeesModifyDTO> list){
-        for (EmployeesModifyDTO employeesModifyDTO : list) {
-            log.info("{} ----------- ", employeesModifyDTO.getEmpName());
-        }
+    @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT})
+    public ResponseEntity<?> modifyEmployee (@Valid @RequestBody EmployeesModifyDTO employeesModifyDTO){
+        log.info("MODIFY 0K! {}",employeesModifyDTO );
 
-        employeesService.updateEmployee(list);
-        return ResponseEntity.ok("ok!");
+        List<EmployeesResponseDTO> responseDTOList = employeesService.updateEmployee(employeesModifyDTO);
+
+        return ResponseEntity.ok().body(responseDTOList);
     }
 }
 

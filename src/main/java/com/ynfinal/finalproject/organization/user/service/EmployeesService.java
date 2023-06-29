@@ -10,19 +10,28 @@ import com.ynfinal.finalproject.organization.user.dto.response.EmployeesSignUpRe
 import com.ynfinal.finalproject.organization.user.dto.response.LoginResponseDTO;
 import com.ynfinal.finalproject.organization.user.dto.response.MypageResponseDTO;
 import com.ynfinal.finalproject.organization.user.entity.Authorization;
+import com.ynfinal.finalproject.organization.user.entity.Department;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
+import com.ynfinal.finalproject.organization.user.entity.Position;
 import com.ynfinal.finalproject.organization.user.exception.DuplicatedEmpIdExpcetion;
 import com.ynfinal.finalproject.organization.user.exception.NoRegisteredArgumentsException;
 import com.ynfinal.finalproject.organization.user.repository.AuthorizationRepository;
+import com.ynfinal.finalproject.organization.user.repository.DepartmentRepository;
 import com.ynfinal.finalproject.organization.user.repository.EmployeesRepository;
+import com.ynfinal.finalproject.organization.user.repository.PositionRepository;
+import com.ynfinal.finalproject.util.Check;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,20 +41,146 @@ import java.util.stream.Collectors;
 public class EmployeesService {
     private final AuthorizationRepository authorizationRepository;
     private final EmployeesRepository employeesRepository;
+    private final DepartmentRepository departmentRepository;
+    private final PositionRepository positionRepository;
 
     private final PasswordEncoder encoder;
     private final TokenProvider tokenProvider;
     //유저리스트 변경내용
-    public void updateEmployee(List<EmployeesModifyDTO> employeesSignUpRequestDto) {
-        List<EmployeesResponseDTO> list = new ArrayList<>();
+    public List<EmployeesResponseDTO> updateEmployee(EmployeesModifyDTO employeesModifyDTO) {
 
-        for(EmployeesModifyDTO dto : employeesSignUpRequestDto ) {
-            employeesRepository.save(dto.toEntity());
+//        List<EmployeesResponseDTO> updatedEmployees = new ArrayList<>();
+//
+//        log.info("확인!!{}", employeesModifyDTO);
+//        // 수정 전 데이터 조회
+//        Long target = employeesModifyDTO.getEmpNo();
+//        System.out.println("target : " + target);
+//
+//        Optional<Employees> byEmpNo = employeesRepository.findByEmpNo(target);
+//
+//        System.out.println("\n\n");
+//        System.out.println("list = " + byEmpNo);
+//
+//        // 변경이 안되는 값
+//        byEmpNo.ifPresent(entity -> {
+//            Long empNo = entity.getEmpNo();
+//            // 변경이 될 수 있는 DTO에서 받은 값
+//            Long modifyDTODeptCode = employeesModifyDTO.getDeptCode();
+//            String modifyDTOEmpAddress = employeesModifyDTO.getEmpAddress();
+//            LocalDate modifyDTOEmpHiredDate = employeesModifyDTO.getEmpHiredDate();
+//            String modifyDTOEmpExtension = employeesModifyDTO.getEmpExtension();
+//            String modifyDTOEmpId = employeesModifyDTO.getEmpId();
+//            String employeesModifyDTOEmpName = employeesModifyDTO.getEmpName();
+//            String employeesModifyDTOEmpPassword = employeesModifyDTO.getEmpPassword();
+//            String employeesModifyDTOEmpPhone = employeesModifyDTO.getEmpPhone();
+//            Long employeesModifyDTOPosCode = employeesModifyDTO.getPosCode();
+//            Check modifyDTOInfoAuth = employeesModifyDTO.getInfoAuth();
+//            Check employeesModifyDTOInventoryAuth = employeesModifyDTO.getInventoryAuth();
+//            Check employeesModifyDTOPurchaseAuth = employeesModifyDTO.getPurchaseAuth();
+//            Check employeesModifyDTOUserAuth = employeesModifyDTO.getUserAuth();
+//            boolean employeesModifyDTOEmpValidate = employeesModifyDTO.isEmpValidate();
+//
+//            System.out.println("employeesModifyDTOPosCode : " + employeesModifyDTOPosCode);
+//            System.out.println("modifyDTODeptCode : " + modifyDTODeptCode);
+//
+//            entity.setEmpId(modifyDTOEmpId);
+//            entity.setEmpPassword(employeesModifyDTOEmpPassword);
+//            entity.setDepartment(Department.builder().deptCode(modifyDTODeptCode).build());
+//            entity.setPosition(Position.builder().posCode(employeesModifyDTOPosCode).build());
+//            entity.setEmpExtension(modifyDTOEmpExtension);
+//            entity.setEmpName(employeesModifyDTOEmpName);
+//            entity.setEmpPhone(employeesModifyDTOEmpPhone);
+//            entity.setEmpValidate(employeesModifyDTOEmpValidate);
+//            entity.setEmpHiredDate(modifyDTOEmpHiredDate);
+//            entity.setEmpAddress(modifyDTOEmpAddress);
+//            entity.setUserAuth(employeesModifyDTOUserAuth);
+//            entity.setInfoAuth(modifyDTOInfoAuth);
+//            entity.setInventoryAuth(employeesModifyDTOInventoryAuth);
+//            entity.setPurchaseAuth(employeesModifyDTOPurchaseAuth);
+//
+//            Employees updated = employeesRepository.save(entity);
+//            updatedEmployees.add(convertToResponseDTO(updated));
+//        });
+//
+//
+//        return updatedEmployees ;
 
+        List<EmployeesResponseDTO> updatedEmployees = new ArrayList<>();
+
+        log.info("확인!!{}", employeesModifyDTO);
+        // 수정 전 데이터 조회
+        Long target = employeesModifyDTO.getEmpNo();
+        System.out.println("target : " + target);
+
+        Employees employees = employeesRepository.findByEmpNo(target);
+
+        System.out.println("\n\n");
+        System.out.println("employees = " + employees);
+
+        if (employees != null) {
+            // 변경이 안되는 값
+            Long empNo = employees.getEmpNo();
+            // 변경이 될 수 있는 DTO에서 받은 값
+            Long modifyDTODeptCode = employeesModifyDTO.getDeptCode();
+            String modifyDTOEmpAddress = employeesModifyDTO.getEmpAddress();
+            Date modifyDTOEmpHiredDate = employeesModifyDTO.getEmpHiredDate();
+            String modifyDTOEmpExtension = employeesModifyDTO.getEmpExtension();
+            String modifyDTOEmpId = employeesModifyDTO.getEmpId();
+            String employeesModifyDTOEmpName = employeesModifyDTO.getEmpName();
+            String employeesModifyDTOEmpPassword = employeesModifyDTO.getEmpPassword();
+            String employeesModifyDTOEmpPhone = employeesModifyDTO.getEmpPhone();
+            Long employeesModifyDTOPosCode = employeesModifyDTO.getPosCode();
+            Check modifyDTOInfoAuth = employeesModifyDTO.getInfoAuth();
+            Check employeesModifyDTOInventoryAuth = employeesModifyDTO.getInventoryAuth();
+            Check employeesModifyDTOPurchaseAuth = employeesModifyDTO.getPurchaseAuth();
+            Check employeesModifyDTOUserAuth = employeesModifyDTO.getUserAuth();
+            boolean employeesModifyDTOEmpValidate = employeesModifyDTO.isEmpValidate();
+
+            System.out.println("employeesModifyDTOPosCode : " + employeesModifyDTOPosCode);
+            System.out.println("modifyDTODeptCode : " + modifyDTODeptCode);
+
+            employees.setEmpId(modifyDTOEmpId);
+            employees.setEmpPassword(employeesModifyDTOEmpPassword);
+            employees.setDepartment(Department.builder().deptCode(modifyDTODeptCode).build());
+            employees.setPosition(Position.builder().posCode(employeesModifyDTOPosCode).build());
+            employees.setEmpExtension(modifyDTOEmpExtension);
+            employees.setEmpName(employeesModifyDTOEmpName);
+            employees.setEmpPhone(employeesModifyDTOEmpPhone);
+            employees.setEmpValidate(employeesModifyDTOEmpValidate);
+            employees.setEmpHiredDate(modifyDTOEmpHiredDate);
+            employees.setEmpAddress(modifyDTOEmpAddress);
+            employees.setUserAuth(employeesModifyDTOUserAuth);
+            employees.setInfoAuth(modifyDTOInfoAuth);
+            employees.setInventoryAuth(employeesModifyDTOInventoryAuth);
+            employees.setPurchaseAuth(employeesModifyDTOPurchaseAuth);
+
+            Employees updated = employeesRepository.save(employees);
+            updatedEmployees.add(convertToResponseDTO(updated));
+        } else {
+            log.warn("Employee not found for empNo: {}", target);
+            // 추가적인 로깅 또는 기타 작업 수행
         }
+
+        return updatedEmployees;
+
+
 
     }
 
+
+    private EmployeesResponseDTO convertToResponseDTO(Employees employees) {
+        EmployeesResponseDTO responseDTO = new EmployeesResponseDTO();
+
+        // Employees 객체의 필드 값을 EmployeesResponseDTO에 설정
+        responseDTO.setEmpNo(employees.getEmpNo());
+        responseDTO.setEmpId(employees.getEmpId());
+        responseDTO.setEmpName(employees.getEmpName());
+        responseDTO.setEmpAddress(employees.getEmpAddress());
+        responseDTO.setEmpPassword(employees.getEmpPassword());
+        responseDTO.setEmpPhone(employees.getEmpPhone());
+
+        return responseDTO;
+    }
 
 
     // 회원가입 처리
@@ -163,6 +298,7 @@ public class EmployeesService {
 
 
             return EmployeesResponseDTO.builder()
+                    .empNo(employees.getEmpNo())
                     .empId(employees.getEmpId())
                     .empName(employees.getEmpName())
                     .posName(employees.getPosition().getPosName())
@@ -234,4 +370,7 @@ public class EmployeesService {
                 .build();
 
     }
+
+
+
 }
