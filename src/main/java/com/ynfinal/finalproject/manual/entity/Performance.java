@@ -14,7 +14,7 @@ import java.util.Date;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "performnace")
+@Table(name = "performance")
 public class Performance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
