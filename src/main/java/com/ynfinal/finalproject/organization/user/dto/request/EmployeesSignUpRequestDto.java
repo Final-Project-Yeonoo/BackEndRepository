@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Setter
@@ -46,18 +47,19 @@ public class EmployeesSignUpRequestDto {
     @NotBlank(message = "내선번호를 입력해주세요")
     private String empExtension;
     @NotNull(message = "입사일을 입력해주세요")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate empHiredDate;
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date empHiredDate;
     private boolean empValidate = false;
 
-    @Enumerated(EnumType.STRING)
-    private Check userAuth = Check.N;
-    @Enumerated(EnumType.STRING)
-    private Check infoAuth= Check.N;
-    @Enumerated(EnumType.STRING)
-    private Check purchaseAuth= Check.N;
-    @Enumerated(EnumType.STRING)
-    private Check inventoryAuth= Check.N;
+
+    private Check userAuth;
+
+    private Check infoAuth;
+
+    private Check purchaseAuth;
+
+    private Check inventoryAuth;
 
 
     public Employees toEntity(){
@@ -71,6 +73,10 @@ public class EmployeesSignUpRequestDto {
                 .empExtension(empExtension)
                 .empHiredDate(empHiredDate)
                 .empValidate(empValidate)
+                .userAuth(userAuth)
+                .infoAuth(infoAuth)
+                .purchaseAuth(purchaseAuth)
+                .inventoryAuth(inventoryAuth)
                 //TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
 //                .company(Company.builder().compCode(1L).build())
                 .build();

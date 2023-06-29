@@ -14,6 +14,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Setter
@@ -42,9 +44,10 @@ public class EmployeesModifyDTO {
     private String empPhone;
 //    @NotBlank(message = "내선번호를 입력해주세요")
     private String empExtension;
-//    @NotNull(message = "입사일을 입력해주세요")
+    @NotNull(message = "입사일을 입력해주세요")
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate empHiredDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date empHiredDate;
     private boolean empValidate = false;
 
     private Check userAuth = Check.N;

@@ -27,7 +27,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -121,7 +123,7 @@ public class EmployeesService {
             // 변경이 될 수 있는 DTO에서 받은 값
             Long modifyDTODeptCode = employeesModifyDTO.getDeptCode();
             String modifyDTOEmpAddress = employeesModifyDTO.getEmpAddress();
-            LocalDate modifyDTOEmpHiredDate = employeesModifyDTO.getEmpHiredDate();
+            Date modifyDTOEmpHiredDate = employeesModifyDTO.getEmpHiredDate();
             String modifyDTOEmpExtension = employeesModifyDTO.getEmpExtension();
             String modifyDTOEmpId = employeesModifyDTO.getEmpId();
             String employeesModifyDTOEmpName = employeesModifyDTO.getEmpName();

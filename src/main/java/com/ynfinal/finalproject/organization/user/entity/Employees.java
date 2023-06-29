@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -30,8 +31,8 @@ public class Employees {
     private String empPassword;
     @Column(nullable=false)
     private String empName;
-    @CreationTimestamp
-    private LocalDate empHiredDate;
+//    @CreationTimestamp
+    private Date empHiredDate;
     @Column(unique=true)
     private String empPhone;
     @Column(unique=true)
