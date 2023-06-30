@@ -19,6 +19,7 @@ public class RawProductInsertRequestDTO {
         return RawProduct.builder()
 //                .rawCode(this.rawCode)
                 .rawName(this.rawName)
+                .employees(Employees.builder().empNo(empNo).build())
                 .rawType(this.rawType)
                 .employees(Employees.builder().empNo(empNo).build())
                 .build();

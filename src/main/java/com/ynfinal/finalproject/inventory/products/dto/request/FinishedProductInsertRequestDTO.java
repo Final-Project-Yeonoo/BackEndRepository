@@ -13,7 +13,7 @@ import lombok.*;
 public class FinishedProductInsertRequestDTO {
     private Long finishedCode;
     private String finishedName;
-
+    private Long empNo;
     private String finishedSize;
 
 
@@ -24,6 +24,7 @@ public class FinishedProductInsertRequestDTO {
         return FinishedProduct.builder()
                 .finishedCode(this.finishedCode)
                 .finishedName(this.finishedName)
+                .employees(Employees.builder().empNo(empNo).build())
                 .finishedSize(this.finishedSize)
                 .build();
     }

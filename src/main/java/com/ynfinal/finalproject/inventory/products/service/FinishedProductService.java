@@ -76,6 +76,7 @@ public class FinishedProductService {
             Long modifiedStoreCode = requestDTO.getStoreHouse().getStorehouseCode();
 
 
+
             // dto에 값이 있을때만 update한다
             if (modifiedFinishedCount > 0) {
                 finishedCount = modifiedFinishedCount;

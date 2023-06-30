@@ -68,6 +68,7 @@ public class RawProductService {
             long rawCode = entity.getRawCode();
             int rawCount = entity.getRawCount();
             int rawPrice = entity.getRawPrice();
+            Long empNo = entity.getEmployees().getEmpNo();
             String rawName = entity.getRawName();
             LocalDateTime rawRegDate = entity.getRawRegDate();
 
@@ -97,6 +98,7 @@ public class RawProductService {
                     .rawType(rawType)
                     .employees(Employees.builder().empNo(requestDTO.getEmpNo()).build())
                     .rawRegUpdate(LocalDateTime.now())
+                    .employees(Employees.builder().empNo(empNo).build())
                     .build();
             rawRepository.save(save);
 

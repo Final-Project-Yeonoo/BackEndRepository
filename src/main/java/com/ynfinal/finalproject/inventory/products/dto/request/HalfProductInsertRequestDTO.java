@@ -23,6 +23,7 @@ public class HalfProductInsertRequestDTO {
         return HalfProduct.builder()
                 .halfCode(this.halfCode)
                 .halfComment(this.halfComment)
+                .employees(Employees.builder().empNo(empNo).build())
                 .halfName(this.halfName)
                 .employees(Employees.builder().empNo(empNo).build())
                 .build();
