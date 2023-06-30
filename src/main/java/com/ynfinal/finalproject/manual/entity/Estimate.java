@@ -15,7 +15,7 @@ import java.util.Date;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "ESTIMATE")
+@Table(name = "estimate")
 public class Estimate {
 
     @Id
@@ -44,15 +44,15 @@ public class Estimate {
     private Date projectUpdateDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "emp_no", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "project_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TR_COMP_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "tr_comp_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private TradeCompany tradeCompany;
 
 

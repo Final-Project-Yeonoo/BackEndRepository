@@ -20,6 +20,7 @@ public class HalfProductListResponseDTO {
     private LocalDateTime halfRegUpdate;
     private int halfPrice;
     private String halfComment;
+    private String empName;
 
     public HalfProductListResponseDTO(HalfProduct halfProduct) {
         this.halfCode = halfProduct.getHalfCode();
@@ -29,5 +30,6 @@ public class HalfProductListResponseDTO {
         this.halfRegDate = halfProduct.getHalfRegDate();
         this.halfRegUpdate = halfProduct.getHalfRegUpdate();
         this.halfComment = halfProduct.getHalfComment();
+        this.empName  =halfProduct.getEmployees().getEmpName();
     }
 }

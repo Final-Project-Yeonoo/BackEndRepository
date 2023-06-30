@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional
 public class ItemOrderService {
 
     private final ItemOrderRepository itemOrderRepository;
@@ -46,10 +45,7 @@ public class ItemOrderService {
         Long trCompCode = requestDTO.getTrCompCode();
         Long empNo = requestDTO.getEmpNo();
 
-        log.info("{}-------------------ㅋㅋㅋ", trCompCode);
-
-        TradeCompany tradeCompany = tradeCompanyRepository.findById(trCompCode).orElseThrow();
-//        TradeCompany tradeCompany = tradeCompanyRepository.findByTrCompCode(trCompCode);
+        TradeCompany tradeCompany = tradeCompanyRepository.findByTrCompCode(trCompCode);
         Employees foundEmp = employeesRepository.findByEmpNo(empNo);
 
         ItemOrder itemOrder = ItemOrder.builder()

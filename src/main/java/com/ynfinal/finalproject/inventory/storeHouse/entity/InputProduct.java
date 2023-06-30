@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "INPUT_PRODUCT")
+@Table(name = "input_product")
 public class InputProduct {
 
     @Id
@@ -30,18 +30,18 @@ public class InputProduct {
     private LocalDateTime inputProductDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ITEM_ORDER_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "item_order_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private ItemOrder itemOrder;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ITEM_ORDER_DETAIL_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "item_order_detail_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private ItemOrderDetail itemOrderDetail;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "STOREHOUSE_CODE", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "storehouse_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StoreHouse storeHouse;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "emp_no", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees ;
 }

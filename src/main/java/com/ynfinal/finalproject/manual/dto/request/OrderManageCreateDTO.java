@@ -18,8 +18,10 @@ public class OrderManageCreateDTO {
     private String orderEtc;
     private Date orderDate;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private OrderType orderType = OrderType.저장;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private EstimateOrderType estimateOrderType = EstimateOrderType.OEM;
     private Long projectCode;
     private Long empNo;
@@ -35,6 +37,7 @@ public class OrderManageCreateDTO {
         orderManage.setOrderEtc(this.orderEtc);
         orderManage.setOrderDate(this.orderDate);
         orderManage.setOrderType(this.orderType);
+
         orderManage.setEstimateOrderType(this.estimateOrderType);
         orderManage.setProject(Project.builder().projectCode(this.projectCode).build());
         orderManage.setEmployees(Employees.builder().empId(this.empId).empNo(this.empNo).build());

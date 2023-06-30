@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class TokenEmployeeInfo {
-
+//    private Long empNo;
     private String empId;
     private String empName;
 

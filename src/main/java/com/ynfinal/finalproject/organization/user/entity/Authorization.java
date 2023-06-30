@@ -7,13 +7,14 @@ import lombok.*;
 import javax.persistence.*;
 
 @Getter
+@Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "AUTHORIZATION")
+@Table(name = "authorization")
 public class Authorization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,23 +22,23 @@ public class Authorization {
 
     @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Check userAuth = Check.N;
+    private Check userAuth = Check.Y;
     @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Check infoAuth = Check.N;
+    private Check infoAuth = Check.Y;
 
     @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Check salesAuth = Check.N;
+    private Check salesAuth = Check.Y;
     @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Check purchaseAuth = Check.N;
+    private Check purchaseAuth = Check.Y;
     @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Check inventoryAuth = Check.N;
+    private Check inventoryAuth = Check.Y;
     @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Check productAuth = Check.N;
+    private Check productAuth = Check.Y;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))

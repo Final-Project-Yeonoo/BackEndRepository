@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "JOB_ORDER")
+@Table(name = "job_order")
 public class JobOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +43,6 @@ public class JobOrder {
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "storehouse_code",  nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "storehouse_code", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StoreHouse storeHouse;
 }

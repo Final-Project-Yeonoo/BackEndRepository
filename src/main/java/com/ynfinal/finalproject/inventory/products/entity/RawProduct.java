@@ -16,17 +16,17 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "RAW_PRODUCT")
+@Table(name = "raw_product")
 public class RawProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rawCode;
 
-    @Column(length = 20, nullable = false)
+//    @Column(length = 20, nullable = false)
     private String rawName;
 
-    @Column(length = 30, nullable = true)
+//    @Column(length = 30, nullable = true)
     private String rawType;
 
     @Column(length = 8)

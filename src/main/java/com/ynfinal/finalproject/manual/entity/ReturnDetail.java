@@ -14,7 +14,7 @@ import java.util.Date;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "RETURN_DETAIL")
+@Table(name = "return_detail")
 public class ReturnDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

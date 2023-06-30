@@ -24,6 +24,7 @@ public class FinishedProductListResponseDTO {
     private StoreHouse storeHouse;
     private Employees employees;
     private String finishedSize;
+    private String empName;
 
 
     public FinishedProductListResponseDTO(FinishedProduct finishedProduct) {
@@ -34,6 +35,7 @@ public class FinishedProductListResponseDTO {
 //        this.finishedSize = finishedProduct.getFinishedSize();
         this.finishedRegDate = finishedProduct.getFinishedRegDate();
         this.finishedRegUpdate = finishedProduct.getFinishedRegUpdate();
+        this.empName  =finishedProduct.getEmployees().getEmpName();
 
     }
 }

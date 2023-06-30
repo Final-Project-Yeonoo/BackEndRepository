@@ -17,7 +17,9 @@ public class HalfProductModifyRequestDTO {
     public int halfCount;
     public int halfPrice;
     private LocalDateTime halfRegUpdate;
+    private Long empNo;
     private String halfComment;
+
 
 
 }

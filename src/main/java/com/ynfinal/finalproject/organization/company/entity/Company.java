@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Setter
-@Table(name = "MY_COMPANY")
+@Table(name = "my_company")
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -35,6 +35,6 @@ public class Project {
     @Column(length = 200)
     private String projectEtc;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMP_NO", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "emp_no", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Employees employees;
 }

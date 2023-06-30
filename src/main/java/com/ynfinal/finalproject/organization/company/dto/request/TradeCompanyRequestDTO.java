@@ -19,8 +19,10 @@ public class TradeCompanyRequestDTO {
 
     private String storehouseName;
     private LocalDate trStartDate;
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private Check trBuy = Check.N;
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private Check trSell = Check.N;
     private Long trCompCode;

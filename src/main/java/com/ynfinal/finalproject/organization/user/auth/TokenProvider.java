@@ -2,6 +2,7 @@ package com.ynfinal.finalproject.organization.user.auth;
 
 // 토큰 발급, 서명 위조 검사 객체
 
+import com.ynfinal.finalproject.organization.user.entity.Authorization;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -31,10 +32,12 @@ public class TokenProvider {
 
     /**
      * Json Web Token을 생성하는 메서드
-     * @param employeesEntity  - 토큰의 내용(클레임) 에 포함될 사원 정보
+     *
+     * @param employeesEntity - 토큰의 내용(클레임) 에 포함될 사원 정보
+     * @param authorization
      * @return - 생성된 json을 암호화한 토큰값
      */
-    public String createToken(Employees employeesEntity){
+    public String createToken(Employees employeesEntity, Authorization authorization){
         // 토큰 생성
         /*
             {
@@ -62,8 +65,11 @@ public class TokenProvider {
         claims.put("empExtension", employeesEntity.getEmpExtension());
         claims.put("empPhone", employeesEntity.getEmpPhone());
         claims.put("empAddress", employeesEntity.getEmpAddress());
-
-
+        claims.put("userAuth", String.valueOf(authorization.getUserAuth()));
+        claims.put("infoAuth", String.valueOf(authorization.getInfoAuth()));
+        claims.put("purchaseAuth", String.valueOf(authorization.getPurchaseAuth()));
+        claims.put("inventoryAuth", String.valueOf(authorization.getInventoryAuth()));
+        claims.put("empProfile", employeesEntity.getEmpProfile());
 
         return Jwts.builder()
                 // token header에 들어갈 서명
@@ -73,8 +79,8 @@ public class TokenProvider {
                 )
                 // token payload에 들어갈 클레임 생성
                 .setClaims(claims)
-                .setIssuer("여누솔루션") // iss : 발급자 정보
                 .setIssuedAt(new Date()) // iat: 발급시간
+                .setIssuer("여누솔루션") // iss : 발급자 정보
                 .setExpiration(expiry) // exp: 만료시간
                 .setSubject(employeesEntity.getEmpId()) // 토큰을 식별할 수 있는 주요
                 .compact();

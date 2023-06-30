@@ -39,7 +39,9 @@ public class OrderManageService {
         Date currentDate = new Date();
 
         for (OrderManageCreateDTO requestDTO : requestDTOs) {
+
             OrderManage orderManage = requestDTO.toEntity();
+
             Employees employees = employeesRepository.findByEmpId(requestDTO.getEmpId()).orElseThrow();
 //            Project project = projectRepository.findByProjectCode(1L);
             orderManage.setEmployees(Employees.builder().empNo(employees.getEmpNo()).build());

@@ -18,6 +18,7 @@ import java.util.Date;
 public class StoreHouseInsertDTO {
     private Long storehouseCode;
     private String storehouseName;
+    @Builder.Default
     private String storehouseType = "FINISHED";
     private String storehouseAddr;
     private Date storehouseStartDate;
