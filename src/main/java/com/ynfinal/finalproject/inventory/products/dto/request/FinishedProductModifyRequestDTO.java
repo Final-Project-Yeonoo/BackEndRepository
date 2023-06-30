@@ -20,7 +20,7 @@ public class FinishedProductModifyRequestDTO {
     private int finishedPrice;
     private LocalDateTime finishedRegUpdate;
     private StoreHouse storeHouse;
-    private Employees employees;
+    private Long empNo;
     private String finishedSize;
 
 }

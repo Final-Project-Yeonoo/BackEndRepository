@@ -17,6 +17,7 @@ public class RawProductModifyRequestDTO {
     public int rawCount;
     public int rawPrice;
     private String rawType;
+    private Long empNo;
     private LocalDateTime rawRegUpdate;
 
 

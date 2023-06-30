@@ -16,7 +16,7 @@ public class HalfProductInsertRequestDTO {
     private Long halfCode;
     private String halfName;
     private String halfComment;
-
+    private Long empNo;
 
 
     public HalfProduct toEntity(){
@@ -24,6 +24,7 @@ public class HalfProductInsertRequestDTO {
         return HalfProduct.builder()
                 .halfCode(this.halfCode)
                 .halfComment(this.halfComment)
+                .employees(Employees.builder().empNo(empNo).build())
                 .halfName(this.halfName)
                 .build();
     }
