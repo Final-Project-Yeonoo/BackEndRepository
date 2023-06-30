@@ -5,6 +5,7 @@ import com.ynfinal.finalproject.inventory.products.dto.request.RawProductModifyR
 import com.ynfinal.finalproject.inventory.products.dto.response.RawProductListResponseDTO;
 import com.ynfinal.finalproject.inventory.products.entity.RawProduct;
 import com.ynfinal.finalproject.inventory.products.repository.RawProductRepository;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -67,6 +68,7 @@ public class RawProductService {
             long rawCode = entity.getRawCode();
             int rawCount = entity.getRawCount();
             int rawPrice = entity.getRawPrice();
+            Long empNo = entity.getEmployees().getEmpNo();
             String rawName = entity.getRawName();
             LocalDateTime rawRegDate = entity.getRawRegDate();
 
@@ -95,6 +97,7 @@ public class RawProductService {
                     .rawRegDate(rawRegDate)
                     .rawType(rawType)
                     .rawRegUpdate(LocalDateTime.now())
+                    .employees(Employees.builder().empNo(empNo).build())
                     .build();
             rawRepository.save(save);
 
