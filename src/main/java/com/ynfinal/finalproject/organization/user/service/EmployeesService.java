@@ -166,13 +166,22 @@ public class EmployeesService {
 //            employees.setPurchaseAuth(employeesModifyDTOPurchaseAuth);
 
             Employees updated = employeesRepository.save(employees);
-            Authorization authorization = Authorization.builder()
-                    .employees(updated)
-                    .infoAuth(modifyDTOInfoAuth)
-                    .userAuth(employeesModifyDTOUserAuth)
-                    .inventoryAuth(employeesModifyDTOInventoryAuth)
-                    .purchaseAuth(employeesModifyDTOPurchaseAuth)
-                    .build();
+            Authorization authorization = authorizationRepository.findByEmployees_EmpNo(updated.getEmpNo());
+            authorization.setInfoAuth(employeesModifyDTO.getInfoAuth());
+            authorization.setUserAuth(employeesModifyDTO.getUserAuth());
+            authorization.setProductAuth(employeesModifyDTO.getProductAuth());
+            authorization.setSalesAuth(employeesModifyDTO.getSalesAuth());
+            authorization.setPurchaseAuth(employeesModifyDTO.getPurchaseAuth());
+            authorization.setInventoryAuth(employeesModifyDTO.getInventoryAuth());
+
+
+//            Authorization authorization = Authorization.builder()
+//                    .employees(updated)
+//                    .infoAuth(modifyDTOInfoAuth)
+//                    .userAuth(employeesModifyDTOUserAuth)
+//                    .inventoryAuth(employeesModifyDTOInventoryAuth)
+//                    .purchaseAuth(employeesModifyDTOPurchaseAuth)
+//                    .build();
             authorizationRepository.save(authorization);
             updatedEmployees.add(convertToResponseDTO(updated));
         } else {
@@ -223,14 +232,18 @@ public class EmployeesService {
         Employees employees = dto.toEntity();
         Employees saved = employeesRepository.save(employees);
 
+        Authorization authorization = dto.toAuthEntity();
+        authorization.setEmployees(Employees.builder().empNo(saved.getEmpNo()).build());
         // 권한 저장 처리
-        Authorization authorization = Authorization.builder()
-                .employees(Employees.builder().empNo(saved.getEmpNo()).build())
-                .userAuth(dto.getUserAuth())
-                .infoAuth(dto.getInfoAuth())
-                .purchaseAuth(dto.getPurchaseAuth())
-                .inventoryAuth(dto.getInventoryAuth())
-                .build();
+//        Authorization authorization = Authorization.builder()
+//                .employees(Employees.builder().empNo(saved.getEmpNo()).build())
+//                .userAuth(dto.getUserAuth())
+//                .infoAuth(dto.getInfoAuth())
+//                .purchaseAuth(dto.getPurchaseAuth())
+//                .inventoryAuth(dto.getInventoryAuth())
+//                .build();
+
+
         authorizationRepository.save(authorization);
 
         log.info("회원가입 정상 수행!!! -- save user {}", saved);
@@ -251,20 +264,20 @@ public class EmployeesService {
         String empId = dto.getEmpId();
         String empExtension = dto.getEmpExtension();
         String empPhone = dto.getEmpPhone();
-        if(isDuplicate(empId)){
-            log.warn("이메일이 중복되었습니다. {}", empId );
-            throw new DuplicatedEmpIdExpcetion("중복된 사원아이디입니다.");
-        }
-
-        if(isEmpPhone(empPhone)){
-            log.warn("핸드폰번호가 중복되었습니다. - {}", empPhone);
-            throw new DuplicatedEmpIdExpcetion("중복된 핸드폰번호입니다.");
-        }
-
-        if(isExtensionDuplicate(empExtension)){
-            log.warn("내선번호가 중복되었습니다. - {}", empExtension);
-            throw new DuplicatedEmpIdExpcetion("중복된 내선번호입니다.");
-        }
+//        if(isDuplicate(empId)){
+//            log.warn("이메일이 중복되었습니다. {}", empId );
+//            throw new DuplicatedEmpIdExpcetion("중복된 사원아이디입니다.");
+//        }
+//
+//        if(isEmpPhone(empPhone)){
+//            log.warn("핸드폰번호가 중복되었습니다. - {}", empPhone);
+//            throw new DuplicatedEmpIdExpcetion("중복된 핸드폰번호입니다.");
+//        }
+//
+//        if(isExtensionDuplicate(empExtension)){
+//            log.warn("내선번호가 중복되었습니다. - {}", empExtension);
+//            throw new DuplicatedEmpIdExpcetion("중복된 내선번호입니다.");
+//        }
     }
 
     private boolean isEmpPhone(String empPhone) {
@@ -277,6 +290,7 @@ public class EmployeesService {
 
     public boolean isDuplicate(String empId) {
         return employeesRepository.existsByEmpId(empId);
+//        return true;
     }
 
     // 사원 인증
@@ -310,7 +324,8 @@ public class EmployeesService {
     // 사원 전체 조회
     public List<EmployeesResponseDTO> findAll() {
         List<Employees> employeesList = employeesRepository.findAll();
-        List<EmployeesResponseDTO> employeesResponseDTOList = employeesList.stream().map(employees ->
+
+        return employeesList.stream().map(employees ->
         {
             Authorization byEmployeesEmpNo = authorizationRepository.findByEmployees_EmpNo(employees.getEmpNo());
 
@@ -339,8 +354,6 @@ public class EmployeesService {
 
 
         ).collect(Collectors.toList());
-
-        return employeesResponseDTOList;
 
 
     }
@@ -422,11 +435,16 @@ public class EmployeesService {
         return employees.getEmpProfile();
     }
 
-    public void modifyProfile(TokenEmployeeInfo tokenEmployeeInfo, String uploadedFilePath) {
+    public LoginResponseDTO modifyProfile(TokenEmployeeInfo tokenEmployeeInfo, String uploadedFilePath) {
         log.info("{}---------ㅋㅋ", tokenEmployeeInfo.getEmpId());
         Employees employees1 = employeesRepository.findByEmpId(tokenEmployeeInfo.getEmpId()).orElseThrow();
         employees1.setEmpProfile(uploadedFilePath);
-        employeesRepository.save(employees1);
+        Employees save = employeesRepository.save(employees1);
+        Authorization authorization = authorizationRepository.findByEmployees_EmpNo(save.getEmpNo());
+        String token = tokenProvider.createToken(save, authorization);
+        return new LoginResponseDTO(save, token, authorization);
+
+
     }
 
 

@@ -31,6 +31,7 @@ public class EstimateController {
 
     @PostMapping
     public ResponseEntity<String> createEstimates(@Valid @RequestBody List<EstimateRequestDTO> requestDTO) {
+        log.info("{}--------------------", requestDTO);
         estimateService.insertEstimates(requestDTO);
         return ResponseEntity.ok("Estimates created successfully.");
     }

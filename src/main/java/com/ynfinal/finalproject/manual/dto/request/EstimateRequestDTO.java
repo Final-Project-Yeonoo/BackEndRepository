@@ -29,6 +29,7 @@ public class EstimateRequestDTO {
     private Date projectRegDate;
     private Date projectUpdateDate;
     private Long empNo;
+    private String empId;
     private Long projectCode;
     private Long trCompCode;
 
@@ -41,7 +42,7 @@ public class EstimateRequestDTO {
         estimate.setEstimateEtc(this.estimateEtc);
         estimate.setProjectRegDate(this.projectRegDate);
         estimate.setProjectUpdateDate(this.projectUpdateDate);
-        estimate.setEmployees(Employees.builder().empNo(empNo).build());
+        estimate.setEmployees(Employees.builder().empId(empId).build());
         estimate.setProject(Project.builder().projectCode(projectCode).build());
         estimate.setTradeCompany(TradeCompany.builder().trCompCode(trCompCode).build());
         return estimate;

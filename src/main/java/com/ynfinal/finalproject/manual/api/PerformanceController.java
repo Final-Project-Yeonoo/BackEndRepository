@@ -39,6 +39,7 @@ public class PerformanceController {
 
     @DeleteMapping
     public ResponseEntity<String> deletePerformance(@Valid @RequestBody List<Long> ids) {
+        log.info("{}----------------", ids);
         performanceService.deletePerformance(ids);
         return ResponseEntity.ok("performanceService deleted successfully.");
     }

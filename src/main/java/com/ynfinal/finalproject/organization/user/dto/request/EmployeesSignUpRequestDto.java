@@ -52,16 +52,18 @@ public class EmployeesSignUpRequestDto {
     private Date empHiredDate;
     private boolean empValidate = false;
 
-
-    private Check userAuth;
-
-    private Check infoAuth;
-
-    private Check purchaseAuth;
-
-    private Check inventoryAuth;
-
-
+    @Builder.Default
+    private Check userAuth = Check.Y;
+    @Builder.Default
+    private Check infoAuth = Check.Y;
+    @Builder.Default
+    private Check purchaseAuth= Check.Y;
+    @Builder.Default
+    private Check inventoryAuth= Check.Y;
+    @Builder.Default
+    private Check salesAuth= Check.Y;
+    @Builder.Default
+    private Check productAuth = Check.Y;
     public Employees toEntity(){
         return Employees.builder()
                 .empName(empName)
@@ -78,9 +80,22 @@ public class EmployeesSignUpRequestDto {
 //                .purchaseAuth(purchaseAuth)
 //                .inventoryAuth(inventoryAuth)
                 //TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
-//                .company(Company.builder().compCode(1L).build())
+                .company(Company.builder().compCode(1L).build())
                 .build();
     }
+
+
+    public Authorization toAuthEntity(){
+        return Authorization.builder()
+                .userAuth(userAuth)
+                .infoAuth(infoAuth)
+                .purchaseAuth(purchaseAuth)
+                .inventoryAuth(inventoryAuth)
+                .salesAuth(salesAuth)
+                .productAuth(productAuth)
+                .build();
+    }
+
 
 
 

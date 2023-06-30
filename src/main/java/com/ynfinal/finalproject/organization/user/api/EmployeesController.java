@@ -137,9 +137,9 @@ public class EmployeesController {
                 uploadedFilePath = employeesService.uploadProfileImage(profileImg);
             }
 
-            employeesService.modifyProfile(tokenEmployeeInfo ,uploadedFilePath);
+            LoginResponseDTO loginResponseDTO = employeesService.modifyProfile(tokenEmployeeInfo ,uploadedFilePath);
             return ResponseEntity.ok()
-                    .body("수정완료");
+                    .body(loginResponseDTO);
 
         } catch (Exception e) {
             log.warn("기타 예외가 발생했습니다.");

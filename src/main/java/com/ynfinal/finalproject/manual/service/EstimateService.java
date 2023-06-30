@@ -44,13 +44,24 @@ public class EstimateService {
             Estimate estimate = estimateRequestDTO.toEntity();
 
 
-            Employees employees = employeesRepository.findByEmpNo(1L);
-            TradeCompany tradeCompany = tradeCompanyRepository.findById(1L).orElseThrow();
-            Project project = projectRepository.findByProjectCode(1L);
+            Employees employees = employeesRepository.findByEmpId(estimateRequestDTO.getEmpId()).orElseThrow();
+//            TradeCompany tradeCompany = tradeCompanyRepository.findById(1L).orElseThrow();
+//            Project project = projectRepository.findByProjectCode(1L);
+
+//            Employees employees = employeesRepository.findByEmpNo(1L);
+//            TradeCompany tradeCompany = tradeCompanyRepository.findById(1L).orElseThrow();
+//            Project project = projectRepository.findByProjectCode(1L);
+
+
             // Set the employees to the estimate (assuming EMP_NO is used for mapping)
-            estimate.setEmployees(employees);
-            estimate.setTradeCompany(tradeCompany);
-            estimate.setProject(project);
+//            estimate.setEmployees(employees);
+//            estimate.setTradeCompany(tradeCompany);
+//            estimate.setProject(project);
+
+            estimate.setEmployees(Employees.builder().empNo(employees.getEmpNo()).build());
+            estimate.setTradeCompany(TradeCompany.builder().trCompCode(estimateRequestDTO.getTrCompCode()).build());
+            estimate.setProject(Project.builder().projectCode(estimateRequestDTO.getProjectCode()).build());
+
 
             if(estimate.getProjectRegDate()==null) estimate.setProjectRegDate(currentDate);
             estimate.setProjectUpdateDate(currentDate);

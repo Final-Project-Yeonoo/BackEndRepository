@@ -21,6 +21,7 @@ public class RawProductListResponseDTO {
     private LocalDateTime rawRegDate;
     private LocalDateTime rawRegUpdate;
     private int rawPrice;
+    private String empName;
 
     public RawProductListResponseDTO(RawProduct rawProduct){
         this.rawCode = rawProduct.getRawCode();
@@ -30,6 +31,7 @@ public class RawProductListResponseDTO {
         this.rawRegUpdate = rawProduct.getRawRegUpdate();
         this.rawPrice = rawProduct.getRawPrice();
         this.rawType = rawProduct.getRawType();
+        this.empName  =rawProduct.getEmployees().getEmpName();
     }
 
 

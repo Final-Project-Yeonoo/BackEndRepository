@@ -1,6 +1,8 @@
 package com.ynfinal.finalproject.organization.user.dto.request;
 
 
+import com.ynfinal.finalproject.organization.company.entity.Company;
+import com.ynfinal.finalproject.organization.user.entity.Authorization;
 import com.ynfinal.finalproject.organization.user.entity.Department;
 import com.ynfinal.finalproject.organization.user.entity.Employees;
 import com.ynfinal.finalproject.organization.user.entity.Position;
@@ -48,15 +50,21 @@ public class EmployeesModifyDTO {
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date empHiredDate;
+    @Builder.Default
     private boolean empValidate = false;
+    @Builder.Default
+    private Check userAuth = Check.Y;
+    @Builder.Default
+    private Check infoAuth= Check.Y;
+    @Builder.Default
+    private Check purchaseAuth= Check.Y;
+    @Builder.Default
+    private Check inventoryAuth= Check.Y;
+    @Builder.Default
+    private Check salesAuth = Check.Y;
+    @Builder.Default
+    private Check productAuth = Check.Y;
 
-    private Check userAuth = Check.N;
-
-    private Check infoAuth= Check.N;
-
-    private Check purchaseAuth= Check.N;
-
-    private Check inventoryAuth= Check.N;
 
     private String empAddress;
     public Employees toEntity(){
@@ -76,10 +84,20 @@ public class EmployeesModifyDTO {
 //                .inventoryAuth(inventoryAuth)
 //                .purchaseAuth(purchaseAuth)
 //                TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
-//                .company(Company.builder().compCode(1L).build())
+                .company(Company.builder().compCode(1L).build())
                 .build();
     }
 
+    public Authorization toAuthEntity(){
+        return Authorization.builder()
+                .userAuth(userAuth)
+                .infoAuth(infoAuth)
+                .purchaseAuth(purchaseAuth)
+                .inventoryAuth(inventoryAuth)
+                .salesAuth(salesAuth)
+                .productAuth(productAuth)
+                .build();
+    }
 
 
 }

@@ -26,7 +26,7 @@ public class OrderDetail {
     @Column(name = "order_detail_taxcode", columnDefinition = "FLOAT(10,2) DEFAULT 0.1")
     private float orderDetailTaxCode;
 
-    @Formula("order_detail_unitprice * order_detail_quantity * order_detail_taxcode + order_detail_unitprice * order_detail_quantity")
+    @Formula("order_detail_unit_price * order_detail_quantity * order_detail_taxcode + order_detail_unit_price * order_detail_quantity")
     private float orderDetailVAT;
 
     @Column(name = "order_detail_etc", length = 200)

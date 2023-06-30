@@ -27,7 +27,7 @@ public class DeliveryRequestDTO {
     private Date deliveryRegDate;
     private Date deliveryModifyDate;
     private Long trCompCode;
-    private Long empNo;
+    private String empId;
 
     public Delivery toEntity() {
         Delivery delivery = new Delivery();
@@ -38,7 +38,7 @@ public class DeliveryRequestDTO {
         delivery.setDeliveryRegDate(this.deliveryRegDate);
         delivery.setDeliveryModifyDate(this.deliveryModifyDate);
         delivery.setTradeCompany(TradeCompany.builder().trCompCode(trCompCode).build());
-        delivery.setEmployees(Employees.builder().empNo(empNo).build());
+        delivery.setEmployees(Employees.builder().empId(empId).build());
         return delivery;
     }
 }
