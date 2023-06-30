@@ -19,6 +19,6 @@ public class RawProductModifyRequestDTO {
     private String rawType;
     private Long empNo;
     private LocalDateTime rawRegUpdate;
-    private Long empNo;
+
 
 }
