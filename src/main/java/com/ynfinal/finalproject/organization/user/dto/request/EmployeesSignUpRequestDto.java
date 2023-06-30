@@ -80,6 +80,7 @@ public class EmployeesSignUpRequestDto {
 //                .purchaseAuth(purchaseAuth)
 //                .inventoryAuth(inventoryAuth)
                 //TODO 사원 관리를 등록하는 사람의 회사 코드를 가져오기
+
                 .company(Company.builder().compCode(1L).build())
                 .build();
     }

@@ -23,10 +23,10 @@ public class RawProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rawCode;
 
-    @Column(length = 20, nullable = false)
+//    @Column(length = 20, nullable = false)
     private String rawName;
 
-    @Column(length = 30, nullable = true)
+//    @Column(length = 30, nullable = true)
     private String rawType;
 
     @Column(length = 8)

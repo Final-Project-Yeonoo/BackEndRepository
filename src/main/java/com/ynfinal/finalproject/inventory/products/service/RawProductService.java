@@ -5,6 +5,7 @@ import com.ynfinal.finalproject.inventory.products.dto.request.RawProductModifyR
 import com.ynfinal.finalproject.inventory.products.dto.response.RawProductListResponseDTO;
 import com.ynfinal.finalproject.inventory.products.entity.RawProduct;
 import com.ynfinal.finalproject.inventory.products.repository.RawProductRepository;
+import com.ynfinal.finalproject.organization.user.entity.Employees;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class RawProductService {
     private final RawProductRepository rawRepository;
 
     // 원자제 전체 리스트 조회하기
-    @Transactional(readOnly = true)
+//    @Transactional(readOnly = true)
     public List<RawProductListResponseDTO> rawProductList() {
         return rawRepository.findAll().stream()
                 .map(RawProductListResponseDTO::new)
@@ -33,7 +34,7 @@ public class RawProductService {
 
     // 원자제 등록하기
     public List<RawProductListResponseDTO> addRawProducts(
-            final RawProductInsertRequestDTO dto
+             RawProductInsertRequestDTO dto
     ) {
         log.info("-----{}", dto);
 
@@ -94,6 +95,7 @@ public class RawProductService {
                     .rawCount(rawCount)
                     .rawRegDate(rawRegDate)
                     .rawType(rawType)
+                    .employees(Employees.builder().empNo(requestDTO.getEmpNo()).build())
                     .rawRegUpdate(LocalDateTime.now())
                     .build();
             rawRepository.save(save);
