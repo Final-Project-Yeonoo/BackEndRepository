@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 @Slf4j
 public class S3Service {
 
-    // s3 버킷을 제어하는 객체
+    // s3 버킷을 제어하는 객체 
     private S3Client s3;
 
     @Value("${aws.credentials.accessKey}")
